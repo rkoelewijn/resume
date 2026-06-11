@@ -10,10 +10,24 @@ export const enData: ResumeData = {
   },
   education: [
     {
-      ...assets.radboud,
+      degree: "MSc Data Science & AI",
+      institution: "Radboud University",
+      timeline: "2026 - Present",
+      logoLight: assets.radboud.logoLight,
+    },
+      {
+      degree: "MSc Information Sciences",
+      institution: "Radboud University",
+      timeline: "2026 - Present",
+      logoLight: assets.radboud.logoLight,
+    },
+    {
+      logoLight: assets.radboud.logoLight,
       degree: "BSc Computing Science (Specialization: Data & Software Science)",
       institution: "Radboud University",
-      timeline: "Sep 2022 – present",
+      timeline: "Sep 2022 - July 2026",
+      gpa: assets.radboud.gpa,
+      projectId: assets.radboud.projectId,
       minor: "Bedrijfskunde (Business Administration)",
       courses: "Data Analysis, Intro to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Information Systems, Information Modelling and Databases",
       details: "Conducted thesis research on detecting hallucinations in LLMs."
@@ -22,7 +36,7 @@ export const enData: ResumeData = {
       ...assets.streek,
       degree: "Gymnasium NT/NG",
       institution: "CSG Het Streek Lyceum",
-      timeline: "Sep 2016 – Jul 2022"
+      timeline: "Sep 2016 - Jul 2022"
     }
   ],
   relevant_experience: [
@@ -30,14 +44,14 @@ export const enData: ResumeData = {
       ...assets.studentConsultant,
       role: "Consultant",
       company: "Student Consultant",
-      timeline: "Aug 2024 – present",
+      timeline: "Aug 2024 - present",
       description: "Work within the Talent Experience and Business Development organizational functions to expand and maintain the professional network. Executed a project for GROND'G involving building a PowerBI dashboard for KPIs and setting up the PMK Adoptie Rapportage Dashboard."
     },
     {
       ...assets.thalia,
       role: "Secretary (Board Member)",
       company: "Study Association Thalia",
-      timeline: "Sep 2024 – Sep 2025",
+      timeline: "Sep 2024 - Sep 2025",
       description: "Board member of the Computing Science study association. Responsible for writing newsletters, taking minutes, and managing all information channels."
     }
   ],
@@ -46,21 +60,21 @@ export const enData: ResumeData = {
       ...assets.tapasia,
       role: "Gastheer",
       company: "TapAsia",
-      timeline: "Apr 2021 – Jun 2025",
+      timeline: "Apr 2021 - Jun 2025",
       description: "Welcoming guests, managing the waiting staff, and fixing problems that occur during shifts."
     },
     {
       ...assets.albertHeijn,
       role: "Retail Stock Clerk",
       company: "Albert Heijn",
-      timeline: "Mar 2019 – Apr 2021",
+      timeline: "Mar 2019 - Apr 2021",
       description: "Restocking shelves, ensuring the shopping environment is clean and organized, and assisting customers with finding their products."
     }
   ],
   // ... (training, projects, and skills remain exactly the same)
   training: [
     { title: "Operating Model Practitioner", organization: "Capgemini", date: "March 2026" },
-    { title: "Core training – Basic consultancy skills", organization: "Student Consultant", date: "Ongoing" },
+    { title: "Core training - Basic consultancy skills", organization: "Student Consultant", date: "Ongoing" },
     { title: "Project- and Stakeholder management Training", organization: "Student Consultant", date: "Ongoing" },
     { title: "C2 Cambridge English", organization: "Cambridge Assessment", date: "Achieved" }
   ],

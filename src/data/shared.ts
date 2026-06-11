@@ -3,7 +3,7 @@
 export const sharedBasics = {
   name: "Ruben Koelewijn",
   photo: "/img/Ruben_Koelewijn2.jpg",
-  title: "Data Scientist & Student Consultant",
+  title: "Data Consultant & Computing Science Student",
   email: "rubenkoelewijn21@gmail.com",
   linkedin: "https://www.linkedin.com/in/ruben-koelewijn",
   github: "https://github.com/rkoelewijn",
@@ -22,13 +22,13 @@ export const assets = {
     companyUrl: "https://thalia.nu/"
   },
   tapasia: {
-    logo: "/logos/tapasia.png"
   },
   albertHeijn: {
-    logo: "/logos/ah.png"
   },
   radboud: {
-    logo: "/logos/radboud.png"
+    logoLight: "/logos/radboud_logo.png",
+    projectId: "cloudspeakers-thesis", // Match this to your project object ID
+    gpa: "7.1/10"
   },
   streek: {
     logo: "/logos/streek.png"

@@ -59,22 +59,36 @@ const downloadPDF = () => {
             <a :href="resumeData.basics.linkedin" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
           </div>
         </div>
-        <img v-if="resumeData.basics.photo" :src="resumeData.basics.photo" alt="Ruben Koelewijn" class="profile-photo" />
+        
+        <div class="photo-container">
+           <img v-if="resumeData.basics.photo" :src="resumeData.basics.photo" alt="Ruben Koelewijn" class="profile-photo" />
+        </div>
       </div>
       <p class="summary-text">{{ resumeData.basics.summary }}</p>
     </header>
 
     <hr />
 
-    <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Relevant Experience' : 'Relevante Ervaring' }}</h3>
-      <div v-for="job in resumeData.relevant_experience" :key="job.company" class="experience-card">
+<section>
+  <h3 class="section-title">{{ currentLang === 'en' ? 'Relevant Experience' : 'Relevante Ervaring' }}</h3>
+  
+  <div class="timeline-container">
+    <div v-for="job in resumeData.relevant_experience" :key="job.company" class="timeline-item">
+      
+      <div 
+        :class="[
+          'timeline-dot', 
+          (job.timeline.includes('present') || job.timeline.includes('heden')) ? 'is-current' : 'is-past'
+        ]"
+      ></div>
+
+      <div class="timeline-content">
         <div class="card-header">
-         <img 
+          <img 
             v-if="job.logoLight" 
-            :src="isDarkMode ? (job.logoDark || job.logoLight) : job.logoLight" 
+            :src="isDarkMode && job.logoDark ? job.logoDark : job.logoLight" 
             :alt="job.company + ' logo'" 
-            class="company-logo" 
+            :class="['company-logo', { 'is-inverted': isDarkMode && !job.logoDark }]" 
           />
           <div>
             <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 
@@ -86,47 +100,57 @@ const downloadPDF = () => {
             <small class="timeline">{{ job.timeline }}</small>
           </div>
         </div>
-        <p style="margin-top: 0.5rem;">{{ job.description }}</p>
+        <p style="margin-top: 0.5rem; margin-bottom: 1.5rem;">{{ job.description }}</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <hr />
-
-    <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Side Jobs' : 'Bijbanen' }}</h3>
-      <ul class="compact-list">
-        <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
-           <div class="card-header">
-             <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
-             <div>
-               <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 
-               <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
-               <span v-else>{{ job.company }}</span> 
-               <span class="timeline">({{ job.timeline }})</span>
-             </div>
-           </div>
-        </li>
-      </ul>
-    </section>
-
-    <hr />
-
-    <section>
+<section>
       <h3 class="section-title">{{ currentLang === 'en' ? 'Education' : 'Opleiding' }}</h3>
-      <div v-for="edu in resumeData.education" :key="edu.degree" class="experience-card">
-        <div class="card-header">
-          <img v-if="edu.logo" :src="edu.logo" :alt="edu.institution + ' logo'" class="company-logo" />
-          <div>
-            <strong>{{ edu.degree }}</strong> - {{ edu.institution }} <br />
-            <small class="timeline">{{ edu.timeline }}</small>
-          </div>
-        </div>
-        <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
-        <p v-if="edu.courses" class="minor-text"><em>{{ currentLang === 'en' ? 'Key Courses:' : 'Relevante Vakken:' }}</em> {{ edu.courses }}</p>
-        <p v-if="edu.details" class="minor-text">{{ edu.details }}</p>
-      </div>
-    </section>
+      
+      <div class="timeline-container">
+        <div v-for="edu in resumeData.education" :key="edu.degree" class="timeline-item">
+          
+          <div 
+            :class="[
+              'timeline-dot', 
+              (edu.timeline.includes('Present') || edu.timeline.includes('Heden')) ? 'is-current' : 'is-past'
+            ]"
+          ></div>
 
+          <div class="timeline-content">
+            <div class="card-header">
+              <img 
+                v-if="edu.logoLight" 
+                :src="isDarkMode && edu.logoDark ? edu.logoDark : edu.logoLight" 
+                :alt="edu.institution + ' logo'" 
+                :class="['company-logo', { 'is-inverted': isDarkMode && !edu.logoDark }]" 
+              />
+              <div>
+                <strong>{{ edu.degree }}</strong>
+                <span v-if="edu.gpa" class="gpa-badge"> 
+                  ({{ currentLang === 'en' ? 'GPA' : 'Gemiddelde' }}: {{ edu.gpa }})
+                </span>
+                <br />
+                {{ edu.institution }} <br />
+                <small class="timeline">{{ edu.timeline }}</small>
+              </div>
+            </div>
+            
+            <div class="education-details" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+              <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
+              <p v-if="edu.courses" class="minor-text"><em>{{ currentLang === 'en' ? 'Key Courses:' : 'Relevante Vakken:' }}</em> {{ edu.courses }}</p>
+              <p v-if="edu.details" class="minor-text">{{ edu.details }}</p>
+              
+              <div v-if="edu.projectId" style="margin-top: 0.5rem;">
+                <RouterLink :to="'/' + edu.projectId" class="highlight-text" style="font-size: 0.85rem;">
+                  {{ currentLang === 'en' ? 'View Thesis Project' : 'Bekijk Thesis Project' }} &rarr;
+                </RouterLink>
+              </div>
+            </div> 
+          </div> </div> </div> </section>
     <hr />
 
     <section>
@@ -156,7 +180,24 @@ const downloadPDF = () => {
     </section>
 
     <hr />
+    <section>
+      <h3 class="section-title">{{ currentLang === 'en' ? 'Side Jobs' : 'Bijbanen' }}</h3>
+      <ul class="compact-list">
+        <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
+           <div class="card-header">
+             <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
+             <div>
+               <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 
+               <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
+               <span v-else>{{ job.company }}</span> 
+               <span class="timeline">({{ job.timeline }})</span>
+             </div>
+           </div>
+        </li>
+      </ul>
+    </section>
 
+    <hr /> 
     <section>
       <h3 class="section-title">{{ currentLang === 'en' ? 'Skills' : 'Vaardigheden' }}</h3>
       <div class="skills-grid">
@@ -216,6 +257,12 @@ const downloadPDF = () => {
 </template>
 
 <style scoped>
+/* Only invert if the specific 'is-inverted' class is present */
+.company-logo.is-inverted {
+  filter: invert(1) brightness(1.5);
+}
+
+
 /* Main Container */
 .resume-wrapper {
   background-color: var(--card-bg);
@@ -273,9 +320,16 @@ const downloadPDF = () => {
   align-items: center;
   justify-content: center;
 }
-
 /* Header & Typography */
+.header-section {
+  margin-bottom: 2rem;
+  /* Retaining the clean border accent */
+  border-left: 5px solid var(--accent-blue);
+  padding-left: 1.5rem;
+}
+
 .header-section h1 {
+  /* Gradient text removed, returning to solid primary color */
   color: var(--accent-blue);
   font-size: 2.5rem;
   margin-bottom: 0.2rem;
@@ -287,27 +341,74 @@ const downloadPDF = () => {
   margin-bottom: 1rem;
 }
 
+/* Updated Quick Links as pill-shaped tags */
+.quick-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quick-links a {
+  background-color: var(--divider);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  color: var(--text-main);
+}
+
+.quick-links a:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+/* Header Content with Negative Gap */
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: -2rem; 
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.text-side {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.photo-container {
+  flex-shrink: 0;
+  width: 220px;
+  height: 220px;
+  position: relative;
+  z-index: 1;
+  mask-image: linear-gradient(to right, transparent 0%, black 50%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%);
 }
 
 .profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%; /* Makes it a circle */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 4px solid var(--accent-blue);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(8, 7, 8, 0.15);
 }
 
-/* Ensure responsiveness for mobile */
-@media (max-width: 600px) {
+/* Responsive adjustment for screens smaller than 768px */
+@media (max-width: 768px) {
   .header-content {
     flex-direction: column-reverse;
     text-align: center;
+  }
+  .photo-container {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 1rem;
+    /* Change fade to vertical for mobile */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
   }
 }
 .summary-text {
@@ -473,4 +574,58 @@ a.highlight-text:hover {
 .bg-yellow { background-color: var(--accent-yellow); }
 /* Let the dark bar dynamically flip to a light bar in dark mode for contrast */
 .bg-dark { background-color: var(--text-main); } 
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* This creates the vertical line */
+  margin-left: 6px; 
+}
+
+/* The vertical line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--divider); /* Uses your existing theme variable */
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 30px; /* Space for the line and dot */
+  padding-bottom: 2rem; /* Spacing between entries */
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -5px;
+  top: 1.5rem; /* Updated as requested */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Past roles (Blue) */
+.timeline-dot.is-past {
+  background-color: var(--divider);
+  box-shadow: 0 0 8px 2px var(--divider);
+}
+
+/* Current roles (Yellow) */
+.timeline-dot.is-current {
+  background-color: var(--accent-blue);
+  box-shadow: 0 0 8px 2px var(--accent-blue);
+}
+
+.timeline-content {
+  /* Keeps your existing card styling intact */
+  width: 100%;
+}
 </style>

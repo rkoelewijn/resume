@@ -17,6 +17,8 @@ export interface Education {
   minor?: string;
   courses?: string;
   details?: string;
+  gpa?: string; 
+  projectId?: string; 
 }
 
 export interface Project {
