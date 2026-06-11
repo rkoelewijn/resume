@@ -1,61 +1,58 @@
 // src/data/nl.ts
 import type { ResumeData } from './types'
+import { assets, sharedBasics } from './shared'
 
 export const nlData: ResumeData = {
   basics: {
-    name: "Ruben Koelewijn",
-    title: "Data Scientist & Student Consultant",
-    email: "rubenkoelewijn21@gmail.com",
-    linkedin: "https://www.linkedin.com/in/ruben-koelewijn",
-    phone: "+31 6 51 69 65 16",
+    ...sharedBasics,
+    location: "Nijmegen, Gelderland, Nederland",
     summary: "Vierdejaars student Computing Science aan de Radboud Universiteit met als specialisatie Data & Software Science. Ervaring in data-analyse, dashboarding en softwareontwikkeling.",
-    location: "Nijmegen, Gelderland, Nederland"
   },
   education: [
     {
+      ...assets.radboud,
       degree: "BSc Computing Science (Specialisatie: Data & Software Science)",
       institution: "Radboud Universiteit",
-      logo: "/logos/radboud.png",
-      timeline: "Sep 2022 – heden",
+      timeline: "Sep 2022 - heden",
       minor: "Bedrijfskunde",
       courses: "Data Analysis, Intro to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Information Systems, Information Modelling and Databases",
       details: "Scriptieonderzoek uitgevoerd naar het detecteren van hallucinaties in LLMs."
     },
     {
+      ...assets.streek,
       degree: "Gymnasium NT/NG",
       institution: "CSG Het Streek Lyceum",
-      logo: "/logos/streek.png",
       timeline: "Sep 2016 – Jul 2022"
     }
   ],
   relevant_experience: [
     {
+      ...assets.studentConsultant,
       role: "Consultant",
       company: "Student Consultant",
-      logo: "/logos/student-consultant.png",
-      timeline: "Aug 2024 – heden",
+      timeline: "Aug 2024 - heden",
       description: "Werkzaam binnen de organisatorische functies Talent Experience en Business Development om het professionele netwerk uit te breiden en te onderhouden. Project uitgevoerd voor GROND'G over het bouwen van een PowerBI dashboard voor KPIs en het opzetten van het PMK Adoptie Rapportage Dashboard."
     },
     {
+      ...assets.thalia,
       role: "Secretaris (Bestuurslid)",
       company: "Studievereniging Thalia",
-      logo: "/logos/thalia.png",
-      timeline: "Sep 2024 – Sep 2025",
+      timeline: "Sep 2024 - Sep 2025",
       description: "Bestuurslid van de studievereniging van Computing Science. Verantwoordelijk voor het schrijven van nieuwsbrieven, notulen en het beheren van alle informatiekanalen."
     }
   ],
   side_jobs: [
     {
+      ...assets.tapasia,
       role: "Gastheer",
       company: "TapAsia",
-      logo: "/logos/tapasia.png",
       timeline: "Apr 2021 – Jun 2025",
       description: "Welkom heten van gasten, bediening aansturen en het oplossen van problemen die omhoog komen."
     },
     {
+      ...assets.albertHeijn,
       role: "Winkelmedewerker",
       company: "Albert Heijn",
-      logo: "/logos/ah.png",
       timeline: "Mrt 2019 – Apr 2021",
       description: "Het aanvullen van schappen, het verzorgen van een nette en georganiseerde winkelomgeving, en het assisteren van klanten bij het vinden van producten."
     }

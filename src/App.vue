@@ -8,35 +8,69 @@ import { RouterView } from 'vue-router'
   </main>
 </template>
 
+
 <style>
-/* Global Theme */
+/* Base Light Theme Variables */
+:root {
+  --bg-gradient: linear-gradient(135deg, #e6e8e6 0%, #cee5f2 100%);
+  --card-bg: #ffffff;
+  --text-main: #080708;
+  --text-muted: #666666;
+  --accent-blue: #3772ff;
+  --accent-yellow: #fdca40;
+  --divider: #cee5f2;
+  --card-alt: #fbfbfc;
+}
+
+/* Dark Theme Variables */
+.dark-theme {
+  --bg-gradient: linear-gradient(135deg, #080708 0%, #1a1b26 100%);
+  --card-bg: #1f2335;
+  --text-main: #e6e8e6;
+  --text-muted: #a9b1d6;
+  --divider: #292e42;
+  --card-alt: #24283b;
+}
+
+/* Global Styles using the Variables */
 body {
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  color: #080708; /* Rich Black */
-  background: linear-gradient(135deg, #e6e8e6 0%, #cee5f2 100%);
-  background-attachment: fixed; /* Keeps the gradient stable when scrolling */
-  min-height: 100vh; /* Ensures it stretches to the bottom of the window */  max-width: 900px;
+  color: var(--text-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  min-height: 100vh;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Global Links */
 a {
-  color: #3772ff; /* Primary Blue */
+  color: var(--accent-blue);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #fdca40; /* Yellow on hover */
+  color: var(--accent-yellow);
 }
 
-/* Global Dividers */
 hr {
   border: 0;
-  border-top: 2px solid #cee5f2; /* Light Blue */
+  border-top: 2px solid var(--divider);
   margin: 2.5rem 0;
+}
+
+/* Hide UI elements when printing to PDF */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    padding: 0;
+  }
 }
 </style>
