@@ -73,10 +73,15 @@ onMounted(async () => {
         <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button>
-       <button @click="toggleLang" class="lang-toggle">
-  <span :class="locale === 'en' ? 'fi fi-nl' : 'fi fi-gb'"></span>
-  {{ locale === 'en' ? 'NL' : 'EN' }}
-</button>
+      <button @click="toggleLang" class="lang-toggle-pill">
+        <div :class="['lang-option', { 'is-active': locale === 'nl' }]">
+          <span class="fi fi-nl"></span>
+        </div>
+        
+        <div :class="['lang-option', { 'is-active': locale === 'en' }]">
+          <span class="fi fi-gb"></span>
+        </div>
+      </button>
       </div>
     </div>
 
@@ -736,5 +741,59 @@ a.highlight-text:hover {
 
 :global(.dark-theme) .github-card:hover {
   box-shadow: 0 4px 12px rgba(55, 114, 255, 0.2);
+}
+/* Language Toggle Track */
+.lang-toggle-pill {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg); 
+  border: 1px solid var(--divider);
+  border-radius: 30px; 
+  padding: 0; /* CHANGED: Removed the 4px padding to make it flush */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  overflow: hidden; /* Ensures the active highlight respects the parent's rounded corners */
+}
+
+.lang-toggle-pill:hover {
+  background-color: var(--divider);
+  transform: translateY(-1px);
+}
+
+/* Individual Language Options */
+.lang-option {
+  flex: 1; /* NEW: Forces both options to be exactly the same width (50%) */
+  display: flex;
+  justify-content: center; /* Centers the content since it's now wider */
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.9rem; /* Slightly increased padding since the parent padding is gone */
+  border-radius: 30px; /* Matches the parent border-radius */
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.5; 
+}
+
+/* The Active Highlight State */
+.lang-option.is-active {
+  background-color: var(--accent-blue); 
+  opacity: 1;
+  /* Switched to a standard centered box-shadow since it now touches the edges */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15); 
+}
+
+/* Dark mode adjustments */
+:global(.dark-theme) .lang-option.is-active {
+  box-shadow: 0 0 6px rgba(55, 114, 255, 0.25);
+}
+
+/* Ensure the flags stay crisp */
+.lang-option .fi {
+  font-size: 1rem;
+  border-radius: 2px;
 }
 </style>
