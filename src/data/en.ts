@@ -87,12 +87,31 @@ export const enData: ResumeData = {
       summary: "Developed an automated methodology pipeline to detect hallucinations in large language models."
     },
     {
-      id: "grondg-kpi",
-      title: "GROND'G KPI Dashboard",
-      type: "Consulting",
-      tech: ["PowerBI", "DAX", "Power Query", "Excel"],
-      summary: "Engineered a business intelligence dashboard and data validation scripts to track organizational KPIs, including setting up the PMK Adoptie Rapportage Dashboard."
-    }
+      id: "portfolio-architecture",
+      title: "Interactive Vue.js Portfolio",
+      type: "Frontend Architecture & API Integration",
+      tech: ["Vue 3", "TypeScript", "GitHub API", "CSS Variables"],
+      description: "A reactive, dual-language portfolio application built from scratch to demonstrate frontend architecture and live data integration.",
+      sections: [
+        {
+          title: "Context & Problem",
+          body: ["Traditional resumes are static and fail to demonstrate actual coding proficiency. The goal of this project was to build a modern, interactive portfolio that acts as a live case study of my frontend architecture and data integration skills, while remaining fully compliant with standard recruiting practices (PDF export)."]
+        },
+        {
+          title: "Technical Architecture",
+          isList: true,
+          body: [
+            "Live Data Fetching: Integrated the GitHub REST API using Vue's Composition API to dynamically render the most recently updated repositories.",
+            "State Management: Implemented reactive bilingual support (English/Dutch) and a dynamic Dark/Light theme toggle using reactive Vue refs and CSS custom properties.",
+            "Print Optimization: Engineered a dedicated @media print stylesheet that automatically strips interactive UI elements and forces high-contrast light mode for ATS-friendly PDF generation."
+          ]
+        },
+        {
+          title: "Business Impact",
+          body: ["This architecture eliminates the need to maintain separate codebases for a personal website and a printable CV. By centralizing the data structure in TypeScript interfaces, the CV can be updated in a single data file and instantly deployed, streamlining personal branding and project showcasing."]
+        }
+      ]
+    },
   ],
   skills: {
     programming: [

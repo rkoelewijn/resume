@@ -72,12 +72,12 @@ export const nlData: ResumeData = {
       summary: "Een geautomatiseerde methodologie pijplijn ontwikkeld om hallucinaties in grote taalmodellen te detecteren."
     },
     {
-      id: "grondg-kpi",
-      title: "GROND'G KPI Dashboard",
-      type: "Consultancy",
-      tech: ["PowerBI", "DAX", "Power Query", "Excel"],
-      summary: "Een business intelligence dashboard en data-validatiescripts ontwikkeld om organisatorische KPIs bij te houden, inclusief het opzetten van het PMK Adoptie Rapportage Dashboard."
-    }
+      id: "portfolio-architecture",
+      title: "Interactief Vue.js Portfolio",
+      type: "Frontend Architectuur & API Integratie",
+      tech: ["Vue 3", "TypeScript", "GitHub API", "CSS Variables"],
+      summary: "Een reactieve, tweetalige portfolio-applicatie, vanaf de basis opgebouwd om frontend-architectuur en live data-integratie te demonstreren."
+    },
   ],
   skills: {
     programming: [

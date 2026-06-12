@@ -1,11 +1,12 @@
+// src/main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-
-// Add this line to import the flags globally:
-import 'flag-icons/css/flag-icons.min.css'
+import { i18n } from './i18n' 
 
 const app = createApp(App)
 
 app.use(router)
+app.use(i18n)
+
 app.mount('#app')

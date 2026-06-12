@@ -21,12 +21,19 @@ export interface Education {
   projectId?: string; 
 }
 
+export interface ProjectSection {
+  title: string;
+  body: string[]; // Array of strings (each string is a paragraph or bullet point)
+  isList?: boolean; // If true, renders the body array as a bulleted list <ul>
+}
+
 export interface Project {
   id: string;
   title: string;
   type: string;
   tech: string[];
-  summary: string;
+  description: string;
+  sections?: ProjectSection[]; // <-- New field for the detailed page content
 }
 
 export interface Skill {

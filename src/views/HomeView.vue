@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { allResumeData } from '@/data'
+import { useI18n } from 'vue-i18n' // <-- Import the hook
+import { allResumeData } from '../data'
 
-const currentLang = ref<'en' | 'nl'>('en')
-const resumeData = computed(() => allResumeData[currentLang.value])
+// 1. Initialize i18n
+const { t, locale } = useI18n()
+
+// 2. Link your existing data files directly to the i18n locale state!
+// Now, when the locale changes, your heavy data automatically swaps too.
+const resumeData = computed(() => allResumeData[locale.value as 'en' | 'nl'])
 
 // Dark Mode State
 const isDarkMode = ref(false)
 
-// Toggle Language
+// 3. Update the toggle function
 const toggleLang = () => {
-  currentLang.value = currentLang.value === 'en' ? 'nl' : 'en'
+  locale.value = locale.value === 'en' ? 'nl' : 'en'
 }
 
 // Toggle Dark Theme
@@ -61,17 +66,17 @@ onMounted(async () => {
     
     <div class="utility-bar no-print">
       <button @click="downloadPDF" class="theme-btn secondary-btn">
-        📄 {{ currentLang === 'en' ? 'Save PDF' : 'Opslaan als PDF' }}
+        📄 {{ $t('nav.savePdf') }}
       </button>
       
       <div class="right-utilities">
         <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button>
-        <button @click="toggleLang" class="theme-btn flag-btn" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-          <span :class="currentLang === 'en' ? 'fi fi-nl' : 'fi fi-gb'"></span>
-          {{ currentLang === 'en' ? 'NL' : 'EN' }}
-        </button>
+       <button @click="toggleLang" class="lang-toggle">
+  <span :class="locale === 'en' ? 'fi fi-nl' : 'fi fi-gb'"></span>
+  {{ locale === 'en' ? 'NL' : 'EN' }}
+</button>
       </div>
     </div>
 
@@ -97,7 +102,7 @@ onMounted(async () => {
     <hr />
 
 <section>
-  <h3 class="section-title">{{ currentLang === 'en' ? 'Relevant Experience' : 'Relevante Ervaring' }}</h3>
+ <h3 class="section-title">{{ $t('headers.experience') }}</h3>
   
   <div class="timeline-container">
     <div v-for="job in resumeData.relevant_experience" :key="job.company" class="timeline-item">
@@ -134,7 +139,7 @@ onMounted(async () => {
 </section>
 
 <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Education' : 'Opleiding' }}</h3>
+      <h3 class="section-title">{{ $t('headers.education') }}</h3>
       
       <div class="timeline-container">
         <div v-for="edu in resumeData.education" :key="edu.degree" class="timeline-item">
@@ -157,7 +162,7 @@ onMounted(async () => {
               <div>
                 <strong>{{ edu.degree }}</strong>
                 <span v-if="edu.gpa" class="gpa-badge"> 
-                  ({{ currentLang === 'en' ? 'GPA' : 'Gemiddelde' }}: {{ edu.gpa }})
+                  ({{ $t('labels.gpa') }}: {{ edu.gpa }})
                 </span>
                 <br />
                 {{ edu.institution }} <br />
@@ -179,55 +184,60 @@ onMounted(async () => {
           </div> </div> </div> </section>
     <hr />
 
-        <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Featured Projects' : 'Uitgelichte Projecten' }}</h3>
+<section style="margin-bottom: 3rem;">
+<h3 class="section-title">{{ $t('headers.featuredProjects') }}</h3>
+      
       <ul class="project-list">
         <li v-for="project in resumeData.projects" :key="project.id" class="project-card">
-          <strong>{{ project.title }}</strong> - <em>{{ project.type }}</em>
-          <div class="tech-tags">
-            <span v-for="tech in project.tech" :key="tech" class="tag">{{ tech }}</span>
+          <div class="project-header">
+            <strong>{{ project.title }}</strong> 
+            <span class="project-type"> - {{ project.type }}</span>
           </div>
-          <RouterLink :to="'/' + project.id" class="project-link">
-            {{ currentLang === 'en' ? 'View Project Details' : 'Bekijk Projectdetails' }} &rarr;
-          </RouterLink>
+          
+          <div class="tech-tags" style="margin: 0.8rem 0;">
+            <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
+          </div>
+          
+          <RouterLink :to="'/' + project.id" class="highlight-text">
+  {{ $t('labels.viewProject') }} &rarr;
+</RouterLink>
         </li>
       </ul>
     </section>
 
     <section>
-  <h3 class="section-title">{{ currentLang === 'en' ? 'Live GitHub Activity' : 'Recente GitHub Activiteit' }}</h3>
-  
-  <div v-if="loadingRepos" class="minor-text">Loading repositories...</div>
-  <div v-else-if="repoError" class="minor-text">Unable to load GitHub data at this time.</div>
-  
-  <div v-else class="github-grid">
-    <a 
-      v-for="repo in repos" 
-      :key="repo.id" 
-      :href="repo.html_url" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="github-card"
-    >
-      <strong>{{ repo.name }}</strong>
-      <p class="minor-text" style="margin: 0.5rem 0;">
-        {{ repo.description || (currentLang === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
-      </p>
+      <h3 class="section-title">{{ $t('headers.github') }}</h3>
       
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
-        <!-- Reusing your GPA badge styling for the programming language -->
-        <span v-if="repo.language" class="gpa-badge" style="margin-left: 0;">
-          {{ repo.language }}
-        </span>
-        <span class="minor-text" style="font-size: 0.8rem;">⭐ {{ repo.stargazers_count }}</span>
+      <div v-if="loadingRepos" class="minor-text">Loading repositories...</div>
+      <div v-else-if="repoError" class="minor-text">Unable to load GitHub data at this time.</div>
+      
+      <div v-else class="github-grid">
+        <a 
+          v-for="repo in repos" 
+          :key="repo.id" 
+          :href="repo.html_url" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="github-card"
+        >
+          <strong>{{ repo.name }}</strong>
+          <p class="minor-text" style="margin: 0.5rem 0;">
+            {{ repo.description || (currentLang === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
+          </p>
+          
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span v-if="repo.language" class="tech-tag">
+              {{ repo.language }}
+            </span>
+            <span class="minor-text" style="font-size: 0.8rem;">⭐ {{ repo.stargazers_count }}</span>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
-</section>
+    </section>
 
     <hr />
     <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Side Jobs' : 'Bijbanen' }}</h3>
+     <h3 class="section-title">{{ $t('headers.sideJobs') }}</h3>
       <ul class="compact-list">
         <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
            <div class="card-header">
@@ -544,34 +554,49 @@ a.highlight-text:hover {
   margin-bottom: 0.8rem;
 }
 
-/* Projects */
+/* Featured Projects List Styling */
 .project-list {
-  list-style: none;
+  list-style: none; /* Removes the default bullet points */
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .project-card {
-  background-color: var(--card-alt);
-  border-left: 4px solid var(--accent-yellow);
   padding: 1.2rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  /* Adds a blue accent border to the left to make it pop */
+  border-left: 4px solid var(--accent-blue); 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateX(4px); /* Slides slightly to the right on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.project-type {
   color: var(--text-main);
+  opacity: 0.8;
+  font-style: italic;
 }
 
+/* Reusable Tech Tags (Used in both Projects and GitHub sections) */
 .tech-tags {
-  margin: 0.8rem 0;
   display: flex;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.tag {
+.tech-tag {
   background-color: var(--divider);
   color: var(--text-main);
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
+  border-radius: 12px; /* Pill shape */
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
