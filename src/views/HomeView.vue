@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { allResumeData } from '@/data'
 
 const currentLang = ref<'en' | 'nl'>('en')
@@ -27,6 +27,33 @@ const toggleTheme = () => {
 const downloadPDF = () => {
   window.print()
 }
+// --- NEW GITHUB API INTEGRATION ---
+interface GithubRepo {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  language: string;
+}
+
+const repos = ref<GithubRepo[]>([]);
+const loadingRepos = ref(true);
+const repoError = ref(false);
+
+const githubUsername = 'rkoelewijn'; 
+
+onMounted(async () => {
+  try {
+    const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=3`);
+    if (!response.ok) throw new Error('Failed to fetch');
+    repos.value = await response.json();
+  } catch (e) {
+    repoError.value = true;
+  } finally {
+    loadingRepos.value = false;
+  }
+});
 </script>
 
 <template>
@@ -106,7 +133,6 @@ const downloadPDF = () => {
   </div>
 </section>
 
-    <hr />
 <section>
       <h3 class="section-title">{{ currentLang === 'en' ? 'Education' : 'Opleiding' }}</h3>
       
@@ -153,18 +179,7 @@ const downloadPDF = () => {
           </div> </div> </div> </section>
     <hr />
 
-    <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Training & Certifications' : 'Trainingen & Certificaten' }}</h3>
-      <ul class="compact-list">
-        <li v-for="course in resumeData.training" :key="course.title">
-          <strong>{{ course.title }}</strong> - {{ course.organization }} ({{ course.date }})
-        </li>
-      </ul>
-    </section>
-
-    <hr />
-
-    <section>
+        <section>
       <h3 class="section-title">{{ currentLang === 'en' ? 'Featured Projects' : 'Uitgelichte Projecten' }}</h3>
       <ul class="project-list">
         <li v-for="project in resumeData.projects" :key="project.id" class="project-card">
@@ -178,6 +193,37 @@ const downloadPDF = () => {
         </li>
       </ul>
     </section>
+
+    <section>
+  <h3 class="section-title">{{ currentLang === 'en' ? 'Live GitHub Activity' : 'Recente GitHub Activiteit' }}</h3>
+  
+  <div v-if="loadingRepos" class="minor-text">Loading repositories...</div>
+  <div v-else-if="repoError" class="minor-text">Unable to load GitHub data at this time.</div>
+  
+  <div v-else class="github-grid">
+    <a 
+      v-for="repo in repos" 
+      :key="repo.id" 
+      :href="repo.html_url" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="github-card"
+    >
+      <strong>{{ repo.name }}</strong>
+      <p class="minor-text" style="margin: 0.5rem 0;">
+        {{ repo.description || (currentLang === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
+      </p>
+      
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <!-- Reusing your GPA badge styling for the programming language -->
+        <span v-if="repo.language" class="gpa-badge" style="margin-left: 0;">
+          {{ repo.language }}
+        </span>
+        <span class="minor-text" style="font-size: 0.8rem;">⭐ {{ repo.stargazers_count }}</span>
+      </div>
+    </a>
+  </div>
+</section>
 
     <hr />
     <section>
@@ -197,7 +243,15 @@ const downloadPDF = () => {
       </ul>
     </section>
 
-    <hr /> 
+    <hr />
+    <section>
+      <h3 class="section-title">{{ currentLang === 'en' ? 'Training & Certifications' : 'Trainingen & Certificaten' }}</h3>
+      <ul class="compact-list">
+        <li v-for="course in resumeData.training" :key="course.title">
+          <strong>{{ course.title }}</strong> - {{ course.organization }} ({{ course.date }})
+        </li>
+      </ul>
+    </section>
     <section>
       <h3 class="section-title">{{ currentLang === 'en' ? 'Skills' : 'Vaardigheden' }}</h3>
       <div class="skills-grid">
@@ -627,5 +681,35 @@ a.highlight-text:hover {
 .timeline-content {
   /* Keeps your existing card styling intact */
   width: 100%;
+}
+
+.github-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.github-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  text-decoration: none;
+  color: var(--text-main);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-blue);
+}
+
+:global(.dark-theme) .github-card:hover {
+  box-shadow: 0 4px 12px rgba(55, 114, 255, 0.2);
 }
 </style>
