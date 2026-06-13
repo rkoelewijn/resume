@@ -123,6 +123,7 @@ export const enData: ResumeData = {
     {
       id: "llm-thesis",
       title: "LLM Hallucination Detection Pipeline (Cloudspeakers)",
+      category: 'data',
       type: "Academic Thesis",
       tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
       summary: "Developed an automated methodology pipeline to detect hallucinations in large language models."
@@ -130,6 +131,7 @@ export const enData: ResumeData = {
     {
       id: "portfolio-architecture",
       title: "Interactive Vue.js Portfolio",
+      category: 'web',
       type: "Frontend Architecture & API Integration",
       tech: ["Vue 3", "TypeScript", "GitHub API", "CSS Variables"],
       description: "A reactive, dual-language portfolio application built from scratch to demonstrate frontend architecture and live data integration.",
@@ -154,22 +156,4 @@ export const enData: ResumeData = {
       ]
     },
   ],
-  skills: {
-    programming: [
-      { name: "Python", level: 90 }, { name: "C++/C", level: 75 }, { name: "Java", level: 70 },
-      { name: "Functional Programming", level: 80 }, { name: "Vue.js", level: 60 }, { name: "LaTeX", level: 85 }
-    ],
-    data_science: [
-      { name: "Polars", level: 85 }, { name: "NumPy", level: 80 },
-      { name: "scikit-learn", level: 75 }, { name: "Data Analysis", level: 90 }
-    ],
-    bi_tools: [
-      { name: "PowerBI", level: 95 }, { name: "DAX", level: 85 },
-      { name: "Power Query", level: 90 }, { name: "Excel", level: 95 }
-    ],
-    core_competencies: [
-      { name: "Analytical skills", level: 95 }, { name: "Software development", level: 85 },
-      { name: "Project management", level: 75 }, { name: "Stakeholder management", level: 80 }
-    ]
-  }
 }

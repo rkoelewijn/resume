@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n' // <-- Import the hook
 import { allResumeData } from '../data'
+import { programmingSkills } from '@/data/shared'
 
 // 1. Initialize i18n
 const { t, locale } = useI18n()
@@ -48,7 +49,16 @@ const repoError = ref(false);
 
 const githubUsername = 'rkoelewijn'; 
 
+// --- SKILLS ANIMATION LOGIC ---
+const animateSkills = ref(false);
+
 onMounted(async () => {
+  // 1. Trigger the skill bars to grow 300ms after the component mounts
+  setTimeout(() => {
+    animateSkills.value = true;
+  }, 300);
+
+  // 2. Execute your GitHub fetch
   try {
     const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=3`);
     if (!response.ok) throw new Error('Failed to fetch');
@@ -58,7 +68,32 @@ onMounted(async () => {
   } finally {
     loadingRepos.value = false;
   }
+
+  
 });
+
+onMounted(() => {
+  // 1. Create the observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // If the section comes into view
+      if (entry.isIntersecting) {
+        // Add the visible class to trigger the CSS animation
+        entry.target.classList.add('is-visible');
+        
+        // Stop observing it so it only animates once per page load
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, {
+    threshold: 0.15 // Triggers when 15% of the section is visible on screen
+  });
+
+  // 2. Find all elements with the 'fade-in-section' class and observe them
+  const elements = document.querySelectorAll('.fade-in-section');
+  elements.forEach((el) => observer.observe(el));
+});
+
 </script>
 
 <template>
@@ -107,9 +142,9 @@ onMounted(async () => {
     <hr />
 
 <section>
- <h3 class="section-title">{{ $t('headers.experience') }}</h3>
+ <h3 class="section-title fade-in-section">{{ $t('headers.experience') }}</h3>
   
-  <div class="timeline-container">
+  <div class="timeline-container fade-in-section">
     <div v-for="job in resumeData.relevant_experience" :key="job.company" class="timeline-item">
       
       <div 
@@ -147,9 +182,9 @@ onMounted(async () => {
 </section>
 
 <section>
-      <h3 class="section-title">{{ $t('headers.education') }}</h3>
+      <h3 class="section-title fade-in-section">{{ $t('headers.education') }}</h3>
       
-      <div class="timeline-container">
+      <div class="timeline-container fade-in-section">
         <div v-for="edu in resumeData.education" :key="edu.degree" class="timeline-item">
           
           <div 
@@ -192,7 +227,7 @@ onMounted(async () => {
           </div> </div> </div> </section>
     <hr />
 
-<section style="margin-bottom: 3rem;">
+<section class="fade-in-section" style="margin-bottom: 3rem;">
 <h3 class="section-title">{{ $t('headers.featuredProjects') }}</h3>
       
       <ul class="project-list">
@@ -213,7 +248,7 @@ onMounted(async () => {
       </ul>
     </section>
 
-    <section>
+    <section class="fade-in-section">
       <h3 class="section-title">{{ $t('headers.github') }}</h3>
       
       <div v-if="loadingRepos" class="minor-text">Loading repositories...</div>
@@ -244,9 +279,9 @@ onMounted(async () => {
     </section>
 
     <hr />
-    <section>
+    <section class="fade-in-section">
      <h3 class="section-title">{{ $t('headers.sideJobs') }}</h3>
-      <ul class="compact-list">
+      <ul class="compact-list fade-in-section">
         <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
            <div class="card-header">
              <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
@@ -262,7 +297,7 @@ onMounted(async () => {
     </section>
 
     <hr />
-    <section>
+    <section class="fade-in-section">
       <h3 class="section-title">{{$t('headers.training' )}}</h3>
       <ul class="compact-list" style="margin-top: -1rem; margin-bottom: 2rem;">
         <li v-for="course in resumeData.training" :key="course.title">
@@ -270,65 +305,143 @@ onMounted(async () => {
         </li>
       </ul>
     </section>
-    <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Skills' : 'Vaardigheden' }}</h3>
-      <div class="skills-grid">
+    <section class="fade-in-section">
+      <h3 class="section-title"> Skills</h3>
+      <div class="isolated-skills-wrapper">
+      <div class="isolated-bars-container">
+      <div v-for="skill in programmingSkills" :key="skill.name" class="isolated-skill-row">
         
-        <div class="skill-category">
-          <h4>{{ currentLang === 'en' ? 'Programming' : 'Programmeren' }}</h4>
-          <ul>
-            <li v-for="skill in resumeData.skills.programming" :key="skill.name">
-              <div class="skill-name">{{ skill.name }}</div>
-              <div class="skill-track">
-                <div class="skill-fill bg-blue" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </li>
-          </ul>
+        <div class="isolated-skill-name">{{ skill.name }}</div>
+        
+        <div class="isolated-bar-bg">
+          <div 
+            class="isolated-bar-fill"
+            :class="'color-' + skill.category" 
+            :style="{ width: animateSkills ? skill.percentage + '%' : '0%' }"
+          >
+            <span class="isolated-bar-label" :class="{ 'isolated-show-label': animateSkills }">
+              {{ skill.level }}
+            </span>
+          </div>
         </div>
-
-        <div class="skill-category">
-          <h4>Data Science</h4>
-          <ul>
-            <li v-for="skill in resumeData.skills.data_science" :key="skill.name">
-              <div class="skill-name">{{ skill.name }}</div>
-              <div class="skill-track">
-                <div class="skill-fill bg-yellow" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h4>BI Tools</h4>
-          <ul>
-            <li v-for="skill in resumeData.skills.bi_tools" :key="skill.name">
-              <div class="skill-name">{{ skill.name }}</div>
-              <div class="skill-track">
-                <div class="skill-fill bg-blue" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h4>{{ currentLang === 'en' ? 'Core Competencies' : 'Kerncompetenties' }}</h4>
-          <ul>
-            <li v-for="skill in resumeData.skills.core_competencies" :key="skill.name">
-              <div class="skill-name">{{ skill.name }}</div>
-              <div class="skill-track">
-                <div class="skill-fill bg-dark" :style="{ width: skill.level + '%' }"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
+        
       </div>
-    </section>
-
+    </div>
   </div>
+<!-- </template> -->
+    </section>
+     </div>
 </template>
 
 <style scoped>
+/* --- CATEGORY COLORS --- */
+
+/* 1. Data & Analytics (Primary Blue) */
+.color-data {
+  background-color: var(--secondary-blue, #0056b3) !important;
+}
+
+/* 2. Web & UI (Green) */
+.color-web {
+  background-color: var(--secondary-green) !important;
+}
+
+/* 3. Systems & Formatting (Deep Navy) */
+.color-systems {
+  background-color: var(--dark-blue)!important;
+}
+
+/* Add this to your styles */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px); /* Start slightly lower so the bounce has room */
+  
+  /* The cubic-bezier is where the magic happens. 
+     The '1.4' is the overshoot value. Higher = more bounce! */
+  transition: 
+    opacity 0.3s ease-out, 
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1); 
+    
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0); 
+}
+/* --- ISOLATED SKILLS CSS --- */
+.isolated-skills-wrapper {
+  margin: 2rem 0; /* You can also reduce the 2rem to 1rem if you want less vertical space around the whole section */
+  width: 100%;
+  max-width: 600px; /* ADD THIS: Stops the bars from stretching infinitely */
+}
+
+.isolated-skills-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main, #333);
+}
+
+.isolated-bars-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.2rem !important; /* CHANGED FROM 1.2rem: Reduces the empty space between each skill */
+}
+
+/* This fixes the overlapping issue */
+.isolated-skill-row {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0rem !important;
+  align-items: flex-start !important;
+  margin-bottom: 0.6rem;
+}
+
+.isolated-skill-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-main, #333);
+}
+
+/* The faint grey track */
+.isolated-bar-bg {
+  width: 100%;
+  height: 20px !important; /* CHANGED FROM 28px: Makes the bar significantly thinner */
+  background-color: rgba(0, 0, 0, 0.08) !important; 
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* The animated blue fill */
+.isolated-bar-fill {
+  height: 100%;
+  background-color: var(--accent-blue, #0056b3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  padding-right: 12px;
+  /* The animation engine */
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
+}
+
+.isolated-bar-label {
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0;
+  /* Fades text in after the bar grows */
+  transition: opacity 0.5s ease 0.8s; 
+  margin-right: 1rem;
+}
+
+.isolated-show-label {
+  opacity: 1;
+}
+
 /* Only invert if the specific 'is-inverted' class is present */
 .company-logo.is-inverted {
   filter: invert(1) brightness(1.5);
@@ -807,5 +920,68 @@ a.highlight-text:hover {
 .lang-option .fi {
   font-size: 1rem;
   border-radius: 2px;
+}
+
+.skills-section {
+  margin: 2rem 0;
+  font-family: inherit;
+}
+
+.skills-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main, #333);
+}
+
+.bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Spacing between each bar */
+}
+
+.skill-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.skill-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-main, #333);
+}
+
+.bar-background {
+  width: 100%;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0.05); /* Very faint grey track */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: var(--accent-blue, #0056b3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Pushes label to the right side of the bar */
+  padding-right: 12px;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* Smooth, premium ease-out animation */
+}
+
+.bar-label {
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.8s; /* Fades in the text ONLY after the bar finishes growing */
+}
+
+.show-label {
+  opacity: 1;
 }
 </style>

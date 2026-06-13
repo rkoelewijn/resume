@@ -17,6 +17,9 @@ import { RouterView } from 'vue-router'
   --text-main: #080708;
   --text-muted: #666666;
   --accent-blue: #3772ff;
+  --secondary-blue: #006daa;
+  --dark-blue: #03045e;
+  --secondary-green: #307351; 
   --accent-yellow: #fdca40;
   --divider: #cee5f2;
   --card-alt: #fbfbfc;

@@ -34,3 +34,14 @@ export const assets = {
     logo: "/logos/streek.png"
   }
 }
+
+export const programmingSkills = [
+  { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
+  { name: 'DAX / M',  category: 'data', level: 'Advanced', percentage: 75 },
+  { name: 'LaTeX',  category: 'systems', level: 'Expert', percentage: 100 },
+  { name: 'C / C++',  category: 'systems', level: 'Advanced', percentage: 75 },
+  { name: 'JavaScript / TypeScript',  category: 'web', level: 'Advanced', percentage: 75 },
+  { name: 'HTML / CSS',  category: 'web', level: 'Proficient', percentage: 50 },
+  // { name: 'Java', level: 'Familiar', percentage: 25 },
+  // { name: 'Haskell', level: 'Familiar', percentage: 25 }
+];

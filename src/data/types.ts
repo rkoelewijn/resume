@@ -31,6 +31,7 @@ export interface ProjectSection {
 export interface Project {
   id: string;
   title: string;
+  category: string; 
   type: string;
   tech: string[];
   description: string;
