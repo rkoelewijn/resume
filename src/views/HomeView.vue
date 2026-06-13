@@ -70,9 +70,9 @@ onMounted(async () => {
       </button>
       
       <div class="right-utilities">
-        <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
+        <!-- <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
-        </button>
+        </button> -->
       <button @click="toggleLang" class="lang-toggle-pill">
         <div :class="['lang-option', { 'is-active': locale === 'nl' }]">
           <span class="fi fi-nl"></span>
@@ -137,7 +137,10 @@ onMounted(async () => {
             <small class="timeline">{{ job.timeline }}</small>
           </div>
         </div>
-        <p style="margin-top: 0.5rem; margin-bottom: 1.5rem;">{{ job.description }}</p>
+        <p class= "description-main-text" v-html="job.description"></p>
+        <p class="additional-text" style="margin-top: -0.8rem">
+          <em>Additonal Responsibilities</em>: {{ job.additional }}
+        </p>
       </div>
     </div>
   </div>
@@ -484,6 +487,10 @@ onMounted(async () => {
   color: var(--text-main);
 }
 
+.description-main-text{
+  color: var(--text-main); 
+}
+
 .quick-links {
   display: flex;
   gap: 1.5rem;
@@ -528,9 +535,9 @@ onMounted(async () => {
   object-fit: contain;
 }
 
-.highlight-text {
+:deep(.highlight-text) {
   color: var(--accent-blue);
-  font-weight: 600;
+  /* font-weight: 600; */
   transition: color 0.2s ease;
 }
 
@@ -667,6 +674,11 @@ a.highlight-text:hover {
   margin-left: 6px; 
 }
 
+.additional-text{
+  color: var(--text-muted);
+  font-size: 0.9rem
+}
+
 /* The vertical line */
 .timeline-container::before {
   content: '';
@@ -746,7 +758,7 @@ a.highlight-text:hover {
 .lang-toggle-pill {
   display: flex;
   align-items: center;
-  background-color: var(--card-bg); 
+  background-color: var(--card-alt); 
   border: 1px solid var(--divider);
   border-radius: 30px; 
   padding: 0; /* CHANGED: Removed the 4px padding to make it flush */

@@ -5,6 +5,7 @@ export interface Experience {
   company: string;
   timeline: string;
   description: string;
+  additional?: string; 
   logo?: string;
   companyUrl?: string; // Add this line
 }

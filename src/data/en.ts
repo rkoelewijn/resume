@@ -45,14 +45,18 @@ export const enData: ResumeData = {
       role: "Consultant",
       company: "Student Consultant",
       timeline: "Aug 2024 - present",
-      description: "Work within the Talent Experience and Business Development organizational functions to expand and maintain the professional network. Executed a project for GROND'G involving building a PowerBI dashboard for KPIs and setting up the PMK Adoptie Rapportage Dashboard."
+      description: "Worked as a <strong>Data Consultant</strong> specializing in <strong>Data Analysis, Management and Dashboarding</strong>. Delivered high-impact reporting solutions, including a <em>Power BI</em> dashboard set up to track all KPIs for <span class=\"highlight-text\">GROND'G</span> and a multi-level <em>Power BI </em> dashboard for <span class=\"highlight-text\">Irado</span> and the <span class=\"highlight-text\">Municipality of Schiedam</span> to visualize trends more clearly and facilitate easier decision-making.",
+      additional: "Contributed to the Talent Experience team by assisting with talent acquisition and candidate"
+
+    
     },
     {
       ...assets.thalia,
       role: "Secretary (Board Member)",
       company: "Study Association Thalia",
       timeline: "Sep 2024 - Sep 2025",
-      description: "Board member of the Computing Science study association. Responsible for writing newsletters, taking minutes, and managing all information channels."
+      description: "Served as a <strong>Board Member</strong> for the <span class=\"highlight-text\">Computing Science study association</span> in Nijmegen. Responsibilities included authoring newsletters, taking official board minutes, and <strong>managing</strong> all internal <strong>information channels</strong>.",
+      additional: "Contributed directly to the Partner, Events, Design, and Board Application committees."
     }
   ],
   side_jobs: [
