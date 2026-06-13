@@ -203,11 +203,12 @@ onMounted(() => {
           <div class="timeline-content">
             <div class="card-header">
               <img 
-                v-if="edu.logoLight" 
-                :src="isDarkMode && edu.logoDark ? edu.logoDark : edu.logoLight" 
+                v-if="edu.logo" 
+                :src="edu.logo" 
                 :alt="edu.institution + ' logo'" 
-                :class="['company-logo', { 'is-inverted': isDarkMode && !edu.logoDark }]" 
+                class="company-logo" 
               />
+              <div>
               <div>
                 <strong>{{ edu.degree }}</strong>
                 <span v-if="edu.gpa" class="gpa-badge"> 
