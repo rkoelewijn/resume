@@ -263,8 +263,8 @@ onMounted(async () => {
 
     <hr />
     <section>
-      <h3 class="section-title">{{ currentLang === 'en' ? 'Training & Certifications' : 'Trainingen & Certificaten' }}</h3>
-      <ul class="compact-list">
+      <h3 class="section-title">{{$t('headers.training' )}}</h3>
+      <ul class="compact-list" style="margin-top: -1rem; margin-bottom: 2rem;">
         <li v-for="course in resumeData.training" :key="course.title">
           <strong>{{ course.title }}</strong> - {{ course.organization }} ({{ course.date }})
         </li>

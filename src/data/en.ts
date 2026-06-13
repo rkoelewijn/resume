@@ -77,10 +77,47 @@ export const enData: ResumeData = {
   ],
   // ... (training, projects, and skills remain exactly the same)
   training: [
-    { title: "Operating Model Practitioner", organization: "Capgemini", date: "March 2026" },
-    { title: "Core training - Basic consultancy skills", organization: "Student Consultant", date: "Ongoing" },
-    { title: "Project- and Stakeholder management Training", organization: "Student Consultant", date: "Ongoing" },
-    { title: "C2 Cambridge English", organization: "Cambridge Assessment", date: "Achieved" }
+    {
+      title: "Structured Slides & Analysis",
+      organization: "Student Consultant", 
+      date: "May 2026"
+    },
+    {
+      title: "Change Management for Digital Processes in the Age of AI",
+      organization: "&Samhoud", 
+      date: "May 2026"
+    },
+    {
+      title: "Operating Model & Capability Thinking",
+      organization: "Capgemini Invent", 
+      date: "Mar 2026"
+    },
+    // {
+    //   title: "BHV",
+    //   // organization: "Student Consultant", 
+    //   date: "Mar 2026"
+    // },
+    {
+      title: "Effective PowerPoints",
+      organization: "Student Consultant", 
+      date: "Feb 2026"
+    },
+    {
+      title: "Project- en Stakeholdermanagement Training",
+      organization: "Student Consultant", 
+      date: "Oct 2025"
+    },
+    {
+      title: "Core Training - Basic Consultancy Skills",
+      organization: "Student Consultant", 
+      date: "Aug 2024"
+    },
+    { 
+      title: "C2 Cambridge English", 
+      organization: "Cambridge Assessment", 
+      date: "Dec 2021" 
+    }
+
   ],
   projects: [
     {

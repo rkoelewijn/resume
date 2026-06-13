@@ -12,7 +12,8 @@ const messages = {
       education: 'Education',
       featuredProjects: 'Featured Projects',
       github: 'Live GitHub Activity',
-      sideJobs: 'Side Jobs' // <-- Added
+      sideJobs: 'Side Jobs', // <-- Added
+      training: 'Training & Certificates'
     },
     labels: {
       at: 'at',

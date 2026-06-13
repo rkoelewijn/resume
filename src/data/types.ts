@@ -42,6 +42,12 @@ export interface Skill {
   level: number;
 }
 
+export interface Training{
+  title: string; 
+  organization?: string; 
+  date?: string; 
+}
+
 export interface ResumeData {
   basics: {
     name: string;
@@ -56,7 +62,7 @@ export interface ResumeData {
   education: Education[];
   relevant_experience: Experience[];
   side_jobs: Experience[];
-  training: { title: string; organization: string; date: string }[];
+  training: Training[]; 
   projects: Project[];
   skills: {
     programming: Skill[];
