@@ -25,6 +25,23 @@ import { RouterView } from 'vue-router'
   --card-alt: #fbfbfc;
 }
 
+/* Add to main.css or base.css */
+
+.color-data {
+  background-color: var(--secondary-blue, #0056b3) !important;
+  color: white; /* Added to ensure text inside the badge is always readable */
+}
+
+.color-web {
+  background-color: var(--secondary-green) !important; 
+  color: white;
+}
+
+.color-systems {
+  background-color: var(--dark-blue) !important; 
+  color: white;
+}
+
 /* Dark Theme Variables */
 .dark-theme {
   --bg-gradient: linear-gradient(135deg, #080708 0%, #1a1b26 100%);

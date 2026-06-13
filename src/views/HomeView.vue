@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n' // <-- Import the hook
 import { allResumeData } from '../data'
-import { programmingSkills } from '@/data/shared'
+import { programmingSkills, categorizedSkills, sharedBasics } from '@/data/shared'
 
 // 1. Initialize i18n
 const { t, locale } = useI18n()
@@ -100,15 +100,15 @@ onMounted(() => {
   <div v-if="resumeData && resumeData.basics" class="resume-wrapper">
     
     <div class="utility-bar no-print">
-      <button @click="downloadPDF" class="theme-btn secondary-btn">
-        📄 {{ $t('nav.savePdf') }}
+      <button @click="downloadPDF" class="theme-btn secondary-btn" disabled>
+        {{ $t('nav.savePdf') }}
       </button>
       
       <div class="right-utilities">
         <!-- <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button> -->
-      <button @click="toggleLang" class="lang-toggle-pill">
+      <button @click="toggleLang" class="lang-toggle-pill" disabled>
         <div :class="['lang-option', { 'is-active': locale === 'nl' }]">
           <span class="fi fi-nl"></span>
         </div>
@@ -126,10 +126,16 @@ onMounted(() => {
           <h1>{{ resumeData.basics.name }}</h1>
           <h2>{{ resumeData.basics.title }}</h2>
           <div class="quick-links no-print">
-            <a :href="'mailto:' + resumeData.basics.email">✉️ Contact</a>
-            <a :href="resumeData.basics.github" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
-            <a :href="resumeData.basics.linkedin" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
-          </div>
+          <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <font-awesome-icon :icon="['fab', 'linkedin']" />
+          </a>
+           <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
+            <font-awesome-icon :icon="['fab', 'github']" />
+          </a>
+          <a :href="'mailto:' + sharedBasics.email" title="Contact">
+            <font-awesome-icon icon="envelope" />
+          </a>
+        </div>
         </div>
         
         <div class="photo-container">
@@ -214,13 +220,14 @@ onMounted(() => {
             </div>
             
             <div class="education-details" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+              <p v-if="edu.summary" class="description-main-text">{{ edu.summary }}</p>
               <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
-              <p v-if="edu.courses" class="minor-text"><em>{{ currentLang === 'en' ? 'Key Courses:' : 'Relevante Vakken:' }}</em> {{ edu.courses }}</p>
+              <p v-if="edu.courses" class="minor-text"><em>Highlighted Courses:</em> {{ edu.courses }}</p>
               <p v-if="edu.details" class="minor-text">{{ edu.details }}</p>
               
               <div v-if="edu.projectId" style="margin-top: 0.5rem;">
                 <RouterLink :to="'/' + edu.projectId" class="highlight-text" style="font-size: 0.85rem;">
-                  {{ currentLang === 'en' ? 'View Thesis Project' : 'Bekijk Thesis Project' }} &rarr;
+                  View Bachelor's Thesis &rarr;
                 </RouterLink>
               </div>
             </div> 
@@ -228,25 +235,29 @@ onMounted(() => {
     <hr />
 
 <section class="fade-in-section" style="margin-bottom: 3rem;">
-<h3 class="section-title">{{ $t('headers.featuredProjects') }}</h3>
+  <h3 class="section-title">{{ $t('headers.featuredProjects') }}</h3>
       
-      <ul class="project-list">
-        <li v-for="project in resumeData.projects" :key="project.id" class="project-card">
-          <div class="project-header">
-            <strong>{{ project.title }}</strong> 
-            <span class="project-type"> - {{ project.type }}</span>
-          </div>
-          
-          <div class="tech-tags" style="margin: 0.8rem 0;">
-            <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
-          </div>
-          
-          <RouterLink :to="'/' + project.id" class="highlight-text">
-  {{ $t('labels.viewProject') }} &rarr;
-</RouterLink>
-        </li>
-      </ul>
-    </section>
+  <ul class="project-list">
+<li 
+  v-for="project in resumeData.projects" 
+  :key="project.id" 
+  class="project-card"
+  :class="'border-' + project.category"
+>      
+      <div class="project-header">
+        <strong>{{ project.title }}</strong> 
+      </div>
+      
+      <div class="tech-tags" style="margin: 0.8rem 0;">
+        <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
+      </div>
+      
+      <RouterLink :to="'/' + project.id" class="highlight-text">
+        {{ $t('labels.viewProject') }} &rarr;
+      </RouterLink>
+    </li>
+  </ul>
+</section>
 
     <section class="fade-in-section">
       <h3 class="section-title">{{ $t('headers.github') }}</h3>
@@ -294,12 +305,13 @@ onMounted(() => {
            </div>
         </li>
       </ul>
+    
     </section>
+        <hr />
 
-    <hr />
     <section class="fade-in-section">
       <h3 class="section-title">{{$t('headers.training' )}}</h3>
-      <ul class="compact-list" style="margin-top: -1rem; margin-bottom: 2rem;">
+      <ul class="compact-list" >
         <li v-for="course in resumeData.training" :key="course.title">
           <strong>{{ course.title }}</strong> - {{ course.organization }} ({{ course.date }})
         </li>
@@ -329,26 +341,135 @@ onMounted(() => {
     </div>
   </div>
 <!-- </template> -->
-    </section>
-     </div>
+ <div class="additional-skills-grid fade-in-section">
+  
+  <div 
+    v-for="category in categorizedSkills" 
+    :key="category.title" 
+    class="skill-category-block"
+  >
+    <h4 class="category-title">{{ category.title }}</h4>
+    <ul class="category-list">
+      <li v-for="item in category.items" :key="item.area" class="category-list-item">
+        <span class="skill-area">{{ item.area }}:</span> 
+        <span class="skill-tech">{{ item.technologies }}</span>
+      </li>
+    </ul>
+  </div>
+  
+</div>
+</section>
+</div>
+
+<section class="contact-section fade-in-section" style="margin: 2rem 0 2rem;">
+  <h3 class="section-title" style="margin-top: -1rem;">Let's Connect</h3>
+  <div class="contact-links">
+    <a :href="'mailto:'+ sharedBasics.email" class="contact-button">Send me an email</a>
+    <a :href="sharedBasics.linkedin" target="_blank" class="contact-button secondary">View LinkedIn</a>
+  </div>
+</section>
+
 </template>
 
 <style scoped>
-/* --- CATEGORY COLORS --- */
 
-/* 1. Data & Analytics (Primary Blue) */
-.color-data {
-  background-color: var(--secondary-blue, #0056b3) !important;
+.contact-section {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--card-bg, #f9f9f9);
+  border-radius: 12px;
+  border: 1px solid var(--divider, #eee);
 }
 
-/* 2. Web & UI (Green) */
-.color-web {
-  background-color: var(--secondary-green) !important;
+.contact-text {
+  max-width: 600px;
+  margin: 1rem auto 2rem;
+  color: var(--text-muted, #666);
+  line-height: 1.6;
 }
 
-/* 3. Systems & Formatting (Deep Navy) */
-.color-systems {
-  background-color: var(--dark-blue)!important;
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.contact-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+/* Primary Email Button (matches your main accent) */
+.contact-button {
+  background-color: var(--accent-blue, #0056b3);
+  color: white;
+}
+
+/* Secondary LinkedIn Button */
+.contact-button.secondary {
+  background-color: transparent;
+  border: 2px solid var(--accent-blue, #0056b3);
+  color: var(--accent-blue, #0056b3);
+}
+
+.contact-button:hover {
+  opacity: 0.8;
+}
+
+/* --- ADDITIONAL SKILLS GRID --- */
+.additional-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Defaults to single column for mobile */
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--divider, #eee); /* A subtle line separating it from the bar chart */
+}
+
+/* Switches to two columns on larger screens */
+@media (min-width: 768px) {
+  .additional-skills-grid {
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+.skill-category-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-main, #333);
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.category-list-item {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.skill-area {
+  font-weight: 600;
+  color: var(--text-main, #333);
+}
+
+.skill-tech {
+  color: var(--text-muted, #666);
+  margin-left: 4px;
 }
 
 /* Add this to your styles */
@@ -529,22 +650,24 @@ onMounted(() => {
 /* Updated Quick Links as pill-shaped tags */
 .quick-links {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  /* gap: 1rem; */
+  /* margin-bottom: 1.5rem; */
 }
 
 .quick-links a {
-  background-color: var(--divider);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  /* background-color: var(--divider); */
+  /* padding: 0.4rem 0.8rem; */
+  /* border-radius: 10px; */
+  margin-right: -1rem;
+  margin-bottom: -3rem;
+  font-size: 1.5rem;
   transition: all 0.2s ease;
-  color: var(--text-main);
+  color: var(--text-muted);
 }
 
 .quick-links a:hover {
-  background-color: var(--accent-blue);
-  color: white;
+  /* background-color: var(--accent-blue); */
+  color: var(--accent-yellow);
 }
 
 /* Header Content with Negative Gap */
@@ -614,8 +737,8 @@ onMounted(() => {
 .section-title {
   color: var(--text-main);
   border-bottom: 3px solid var(--divider);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  /* padding-bottom: 0.5rem; */
+  /* margin-bottom: 1.5rem; */
   display: inline-block;
 }
 
@@ -678,14 +801,14 @@ a.highlight-text:hover {
 .compact-item {
   margin-bottom: 0.8rem;
 }
-
-/* Featured Projects List Styling */
 .project-list {
-  list-style: none; /* Removes the default bullet points */
-  padding: 0;
+  list-style: none;
+  padding: 0 !important; /* Forces the removal of the default 40px left-indent on HTML lists */
+  margin-left: 0 !important; 
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.2rem;
+  width: 100%; /* Ensures the list container takes full width */
 }
 
 .project-card {
@@ -693,21 +816,26 @@ a.highlight-text:hover {
   border: 1px solid var(--divider);
   border-radius: 8px;
   background-color: var(--card-bg);
-  /* Adds a blue accent border to the left to make it pop */
-  border-left: 4px solid var(--accent-blue); 
+  
+  /* Set the border structure, but let the dynamic class handle the color */
+  border-left-width: 4px; 
+  border-left-style: solid; 
+  
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .project-card:hover {
-  transform: translateX(4px); /* Slides slightly to the right on hover */
+  transform: translateX(4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.project-type {
-  color: var(--text-main);
-  opacity: 0.8;
-  font-style: italic;
-}
+/* --- DYNAMIC BORDER CLASSES --- */
+.border-data { border-left-color: var(--secondary-blue, #0056b3) !important; }
+.border-web { border-left-color:var(--secondary-green) !important; }
+.border-systems { border-left-color: var(--dark-blue) !important; }
 
 /* Reusable Tech Tags (Used in both Projects and GitHub sections) */
 .tech-tags {

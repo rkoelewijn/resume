@@ -6,19 +6,21 @@ export const enData: ResumeData = {
   basics: {
     ...sharedBasics,
     location: "Nijmegen, Gelderland, Netherlands",
-    summary: "Fourth-year Computing Science student at Radboud University specializing in Data & Software Science. Experienced in data analysis, dashboarding, and software development.",
+    summary: "Fourth-year Computing Science student at Radboud University and Data Consultant specializing in Data & Software Science. Focused on bridging the gap between complex data architecture and actionable business strategy. Experienced in translating raw data into scalable solutions by utilizing expertise in Python, business intelligence, and full-stack frameworks to build robust analytics tools and dynamic dashboards.",
   },
   education: [
     {
       degree: "MSc Data Science & AI",
       institution: "Radboud University",
       timeline: "2026 - Present",
+      summary: "As a specialization within Computing Science, this program focuses on transforming real-world datasets into insights and software tools. It balances machine learning, probabilistic modeling, and information retrieval with practical development, emphasizing the design and programming of custom algorithms. Alongside the technical implementation, the coursework addresses data privacy, legal regulations, and societal impact, preparing graduates to build responsible data solutions for organizations.",
       logoLight: assets.radboud.logoLight,
     },
       {
       degree: "MSc Information Sciences",
       institution: "Radboud University",
       timeline: "2026 - Present",
+      summary: "Taught in collaboration with the Nijmegen School of Management, this program focuses on the alignment between technology and business strategy. It covers how to translate data infrastructure into practical corporate solutions by combining software and systems knowledge with management principles. The curriculum focuses on enterprise architecture, information security, and governance, preparing graduates to manage digital transformation and IT implementation within organizations.",
       logoLight: assets.radboud.logoLight,
     },
     {
@@ -26,10 +28,11 @@ export const enData: ResumeData = {
       degree: "BSc Computing Science (Specialization: Data & Software Science)",
       institution: "Radboud University",
       timeline: "Sep 2022 - July 2026",
+      summary: "The Bachelor's program at Radboud University bridges strict mathematical logic with practical software engineering, focusing on how information is structurally represented, processed, and secured. Rather than just teaching code syntax, the curriculum covers the architectural foundations of large-scale software systems, data modeling, network infrastructure, and cyber security protocols.",
       gpa: assets.radboud.gpa,
       projectId: assets.radboud.projectId,
-      minor: "Bedrijfskunde (Business Administration)",
-      courses: "Data Analysis, Intro to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Information Systems, Information Modelling and Databases",
+      minor: "Business Administration",
+      courses: "Data Analysis, Introduction to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Big Data, Information Modelling and Databases, Software Engineering",
       details: "Conducted thesis research on detecting hallucinations in LLMs."
     },
     {

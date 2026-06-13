@@ -14,6 +14,7 @@ export interface Education {
   degree: string;
   institution: string;
   timeline: string;
+  summary?: string; 
   logo?: string;
   minor?: string;
   courses?: string;
