@@ -232,7 +232,7 @@ onMounted(() => {
                 </RouterLink>
               </div>
             </div> 
-          </div> </div> </div> </section>
+          </div> </div> </div> </div></section>
     <hr />
 
 <section class="fade-in-section" style="margin-bottom: 3rem;">
