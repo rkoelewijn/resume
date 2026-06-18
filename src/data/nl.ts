@@ -68,15 +68,17 @@ export const nlData: ResumeData = {
       id: "llm-thesis",
       title: "LLM Hallucinatie Detectie Pijplijn (Cloudspeakers)",
       type: "Academische Scriptie",
+      category: 'data',
       tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
-      summary: "Een geautomatiseerde methodologie pijplijn ontwikkeld om hallucinaties in grote taalmodellen te detecteren."
+      description: "Een geautomatiseerde methodologie pijplijn ontwikkeld om hallucinaties in grote taalmodellen te detecteren."
     },
     {
       id: "portfolio-architecture",
       title: "Interactief Vue.js Portfolio",
       type: "Frontend Architectuur & API Integratie",
+      category: 'web',
       tech: ["Vue 3", "TypeScript", "GitHub API", "CSS Variables"],
-      summary: "Een reactieve, tweetalige portfolio-applicatie, vanaf de basis opgebouwd om frontend-architectuur en live data-integratie te demonstreren."
+      description: "Een reactieve, tweetalige portfolio-applicatie, vanaf de basis opgebouwd om frontend-architectuur en live data-integratie te demonstreren."
     },
   ],
   skills: {

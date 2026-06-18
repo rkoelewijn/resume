@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import allResumeData from '@/resumeData.json'
+import { en } from '@/data/en' // Adjust the path if your data folder is different
 
-// We will pull the specific project data from your JSON so the title and tech stack stay synced
-const projectData = allResumeData.en.projects.find(p => p.id === 'llm-thesis')
+// Fix the missing file AND the 'p' type error at the same time:
+const projectData = en.projects.find((p: any) => p.id === 'llm-thesis')
 </script>
 
 <template>

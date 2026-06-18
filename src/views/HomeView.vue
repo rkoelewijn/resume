@@ -163,10 +163,10 @@ onMounted(() => {
       <div class="timeline-content">
         <div class="card-header">
           <img 
-            v-if="job.logoLight" 
-            :src="isDarkMode && job.logoDark ? job.logoDark : job.logoLight" 
+            v-if="job.logo" 
+            :src="job.logo" 
             :alt="job.company + ' logo'" 
-            :class="['company-logo', { 'is-inverted': isDarkMode && !job.logoDark }]" 
+            class="company-logo" 
           />
           <div>
             <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 

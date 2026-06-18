@@ -129,7 +129,7 @@ export const enData: ResumeData = {
       category: 'data',
       type: "Academic Thesis",
       tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
-      summary: "Developed an automated methodology pipeline to detect hallucinations in large language models."
+      description: "Developed an automated methodology pipeline to detect hallucinations in large language models."
     },
     {
       id: "portfolio-architecture",
