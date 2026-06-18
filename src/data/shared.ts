@@ -12,13 +12,11 @@ export const sharedBasics = {
 
 export const assets = {
   studentConsultant: {
-    logoLight: "/logos/sc_logo.jpg",
-    logoDark: "/logos/sc_logo_dark.png",
+    logo: "/logos/sc_logo.jpg",
     companyUrl: "https://student-consultant.nl/"
   },
   thalia: {
-    logoLight: "/logos/thalia_black.png",
-    logoDark: "/logos/thalia_white.png",
+    logo: "/logos/thalia_black.png",
     companyUrl: "https://thalia.nu/"
   },
   tapasia: {
