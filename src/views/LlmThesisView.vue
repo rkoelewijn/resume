@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { en } from '@/data/en' // Adjust the path if your data folder is different
+import { enData } from '@/data/en' // Adjust the path if your data folder is different
 
 // Fix the missing file AND the 'p' type error at the same time:
-const projectData = en.projects.find((p: any) => p.id === 'llm-thesis')
+const projectData = enData.projects.find((p: any) => p.id === 'llm-thesis')
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const projectData = en.projects.find((p: any) => p.id === 'llm-thesis')
     <article style="line-height: 1.8; color: #333;">
       <h3>Project Overview</h3>
       <p>
-        {{ projectData.summary }}
+        {{ projectData.description }}
       </p>
 
       <h3>The Problem</h3>

@@ -169,7 +169,7 @@ onMounted(() => {
             class="company-logo" 
           />
           <div>
-            <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 
+            <strong>{{ job.role }}</strong> {{ locale === 'en' ? 'at' : 'bij' }} 
             <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">
               {{ job.company }}
             </a>
@@ -277,7 +277,7 @@ onMounted(() => {
         >
           <strong>{{ repo.name }}</strong>
           <p class="minor-text" style="margin: 0.5rem 0;">
-            {{ repo.description || (currentLang === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
+            {{ repo.description || (locale === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
           </p>
           
           <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -298,7 +298,7 @@ onMounted(() => {
            <div class="card-header">
              <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
              <div>
-               <strong>{{ job.role }}</strong> {{ currentLang === 'en' ? 'at' : 'bij' }} 
+               <strong>{{ job.role }}</strong> {{ locale === 'en' ? 'at' : 'bij' }} 
                <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
                <span v-else>{{ job.company }}</span> 
                <span class="timeline">({{ job.timeline }})</span>

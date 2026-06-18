@@ -60,13 +60,14 @@ export interface ResumeData {
     phone: string;
     summary: string;
     location: string;
+    photo?: string; 
   };
   education: Education[];
   relevant_experience: Experience[];
   side_jobs: Experience[];
   training: Training[]; 
   projects: Project[];
-  skills: {
+  skills?: {
     programming: Skill[];
     data_science: Skill[];
     bi_tools: Skill[];
