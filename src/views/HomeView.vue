@@ -219,7 +219,7 @@ onMounted(() => {
                 <small class="timeline">{{ edu.timeline }}</small>
               </div>
             </div>
-            
+            </div>
             <div class="education-details" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
               <p v-if="edu.summary" class="description-main-text">{{ edu.summary }}</p>
               <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
@@ -232,7 +232,7 @@ onMounted(() => {
                 </RouterLink>
               </div>
             </div> 
-          </div> </div> </div> </div></section>
+          </div> </div> </div></section>
     <hr />
 
 <section class="fade-in-section" style="margin-bottom: 3rem;">
