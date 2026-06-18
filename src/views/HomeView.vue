@@ -242,7 +242,7 @@ onMounted(() => {
 <li 
   v-for="project in resumeData.projects" 
   :key="project.id" 
-  class="project-card"
+  class="card"
   :class="'border-' + project.category"
 >      
       <div class="project-header">
@@ -273,7 +273,7 @@ onMounted(() => {
           :href="repo.html_url" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="github-card"
+          class="card"
         >
           <strong>{{ repo.name }}</strong>
           <p class="minor-text" style="margin: 0.5rem 0;">
@@ -365,8 +365,8 @@ onMounted(() => {
 <section class="contact-section fade-in-section" style="margin: 2rem 0 2rem;">
   <h3 class="section-title" style="margin-top: -1rem;">Let's Connect</h3>
   <div class="contact-links">
-    <a :href="'mailto:'+ sharedBasics.email" class="contact-button">Send me an email</a>
-    <a :href="sharedBasics.linkedin" target="_blank" class="contact-button secondary">View LinkedIn</a>
+    <a :href="'mailto:'+ sharedBasics.email" class="btn">Send me an email</a>
+    <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">View LinkedIn</a>
   </div>
 </section>
 
@@ -395,30 +395,6 @@ onMounted(() => {
   justify-content: center;
 }
 
-.contact-button {
-  padding: 0.8rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: opacity 0.2s;
-}
-
-/* Primary Email Button (matches your main accent) */
-.contact-button {
-  background-color: var(--accent-blue, #0056b3);
-  color: white;
-}
-
-/* Secondary LinkedIn Button */
-.contact-button.secondary {
-  background-color: transparent;
-  border: 2px solid var(--accent-blue, #0056b3);
-  color: var(--accent-blue, #0056b3);
-}
-
-.contact-button:hover {
-  opacity: 0.8;
-}
 
 /* --- ADDITIONAL SKILLS GRID --- */
 .additional-skills-grid {
@@ -473,24 +449,6 @@ onMounted(() => {
   margin-left: 4px;
 }
 
-/* Add this to your styles */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(30px); /* Start slightly lower so the bounce has room */
-  
-  /* The cubic-bezier is where the magic happens. 
-     The '1.4' is the overshoot value. Higher = more bounce! */
-  transition: 
-    opacity 0.3s ease-out, 
-    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1); 
-    
-  will-change: opacity, transform;
-}
-
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0); 
-}
 /* --- ISOLATED SKILLS CSS --- */
 .isolated-skills-wrapper {
   margin: 2rem 0; /* You can also reduce the 2rem to 1rem if you want less vertical space around the whole section */
@@ -579,114 +537,6 @@ onMounted(() => {
   transition: background-color 0.3s ease;
 }
 
-/* Utility Bar */
-.utility-bar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
-.right-utilities {
-  display: flex;
-  gap: 0.8rem;
-}
-
-/* Buttons */
-.theme-btn {
-  background-color: var(--accent-blue);
-  color: #ffffff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.theme-btn:hover {
-  background-color: var(--accent-yellow);
-  color: #080708;
-  transform: translateY(-1px);
-}
-
-.secondary-btn {
-  background-color: var(--card-alt);
-  color: var(--text-main);
-  border: 1px solid var(--divider);
-}
-
-.secondary-btn:hover {
-  background-color: var(--divider);
-  color: var(--text-main);
-}
-
-.icon-btn {
-  padding: 0.6rem;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Header & Typography */
-.header-section {
-  margin-bottom: 2rem;
-  /* Retaining the clean border accent */
-  border-left: 5px solid var(--accent-blue);
-  padding-left: 1.5rem;
-}
-
-.header-section h1 {
-  /* Gradient text removed, returning to solid primary color */
-  color: var(--accent-blue);
-  font-size: 2.5rem;
-  margin-bottom: 0.2rem;
-}
-
-.header-section h2 {
-  color: var(--text-main);
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-/* Updated Quick Links as pill-shaped tags */
-.quick-links {
-  display: flex;
-  /* gap: 1rem; */
-  /* margin-bottom: 1.5rem; */
-}
-
-.quick-links a {
-  /* background-color: var(--divider); */
-  /* padding: 0.4rem 0.8rem; */
-  /* border-radius: 10px; */
-  margin-right: -1rem;
-  margin-bottom: -3rem;
-  font-size: 1.5rem;
-  transition: all 0.2s ease;
-  color: var(--text-muted);
-}
-
-.quick-links a:hover {
-  /* background-color: var(--accent-blue); */
-  color: var(--accent-yellow);
-}
-
-/* Header Content with Negative Gap */
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: -2rem; 
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.text-side {
-  flex: 1;
-  position: relative;
-  z-index: 2;
-}
-
 .photo-container {
   flex-shrink: 0;
   width: 220px;
@@ -720,28 +570,7 @@ onMounted(() => {
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
   }
 }
-.summary-text {
-  color: var(--text-main);
-}
 
-.description-main-text{
-  color: var(--text-main); 
-}
-
-.quick-links {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.section-title {
-  color: var(--text-main);
-  border-bottom: 3px solid var(--divider);
-  /* padding-bottom: 0.5rem; */
-  /* margin-bottom: 1.5rem; */
-  display: inline-block;
-}
 
 /* Experience & Lists */
 .experience-card {
@@ -812,47 +641,14 @@ a.highlight-text:hover {
   width: 100%; /* Ensures the list container takes full width */
 }
 
-.project-card {
-  padding: 1.2rem;
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  
-  /* Set the border structure, but let the dynamic class handle the color */
-  border-left-width: 4px; 
-  border-left-style: solid; 
-  
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 
-.project-card:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
 
 /* --- DYNAMIC BORDER CLASSES --- */
 .border-data { border-left-color: var(--secondary-blue, #0056b3) !important; }
 .border-web { border-left-color:var(--secondary-green) !important; }
 .border-systems { border-left-color: var(--dark-blue) !important; }
 
-/* Reusable Tech Tags (Used in both Projects and GitHub sections) */
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
 
-.tech-tag {
-  background-color: var(--divider);
-  color: var(--text-main);
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px; /* Pill shape */
-  font-size: 0.75rem;
-  font-weight: 600;
-}
 
 .project-link {
   display: inline-block;
@@ -974,82 +770,9 @@ a.highlight-text:hover {
   margin-top: 1rem;
 }
 
-.github-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  text-decoration: none;
-  color: var(--text-main);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 
-.github-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent-blue);
-}
 
-:global(.dark-theme) .github-card:hover {
-  box-shadow: 0 4px 12px rgba(55, 114, 255, 0.2);
-}
-/* Language Toggle Track */
-.lang-toggle-pill {
-  display: flex;
-  align-items: center;
-  background-color: var(--card-alt); 
-  border: 1px solid var(--divider);
-  border-radius: 30px; 
-  padding: 0; /* CHANGED: Removed the 4px padding to make it flush */
-  cursor: pointer;
-  transition: all 0.2s ease;
-  outline: none;
-  font-family: inherit;
-  overflow: hidden; /* Ensures the active highlight respects the parent's rounded corners */
-}
 
-.lang-toggle-pill:hover {
-  background-color: var(--divider);
-  transform: translateY(-1px);
-}
-
-/* Individual Language Options */
-.lang-option {
-  flex: 1; /* NEW: Forces both options to be exactly the same width (50%) */
-  display: flex;
-  justify-content: center; /* Centers the content since it's now wider */
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 0.9rem; /* Slightly increased padding since the parent padding is gone */
-  border-radius: 30px; /* Matches the parent border-radius */
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.5; 
-}
-
-/* The Active Highlight State */
-.lang-option.is-active {
-  background-color: var(--accent-blue); 
-  opacity: 1;
-  /* Switched to a standard centered box-shadow since it now touches the edges */
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15); 
-}
-
-/* Dark mode adjustments */
-:global(.dark-theme) .lang-option.is-active {
-  box-shadow: 0 0 6px rgba(55, 114, 255, 0.25);
-}
-
-/* Ensure the flags stay crisp */
-.lang-option .fi {
-  font-size: 1rem;
-  border-radius: 2px;
-}
 
 .skills-section {
   margin: 2rem 0;
@@ -1061,12 +784,6 @@ a.highlight-text:hover {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-main, #333);
-}
-
-.bars-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem; /* Spacing between each bar */
 }
 
 .skill-track {

@@ -8,6 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'; // For the contact icon
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import './assets/main.css'
 
 library.add(faGithub, faLinkedin, faInstagram, faEnvelope);
 
