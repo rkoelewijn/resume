@@ -179,7 +179,7 @@ onMounted(() => {
           </div>
         </div>
         <p class= "description-main-text" v-html="job.description"></p>
-        <p class="additional-text" style="margin-top: -0.8rem">
+        <p class="secondary-text" style="margin-top: -0.8rem">
           <em>Additonal Responsibilities</em>: {{ job.additional }}
         </p>
       </div>
@@ -223,8 +223,8 @@ onMounted(() => {
             <div class="education-details" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
               <p v-if="edu.summary" class="description-main-text">{{ edu.summary }}</p>
               <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
-              <p v-if="edu.courses" class="minor-text"><em>Highlighted Courses:</em> {{ edu.courses }}</p>
-              <p v-if="edu.details" class="minor-text">{{ edu.details }}</p>
+              <p v-if="edu.courses" class="secondary-text"><em>Highlighted Courses:</em> {{ edu.courses }}</p>
+              <p v-if="edu.details" class="secondary-text">{{ edu.details }}</p>
               
               <div v-if="edu.projectId" style="margin-top: 0.5rem;">
                 <RouterLink :to="'/' + edu.projectId" class="highlight-text" style="font-size: 0.85rem;">
@@ -263,8 +263,8 @@ onMounted(() => {
     <section class="fade-in-section">
       <h3 class="section-title">{{ $t('headers.github') }}</h3>
       
-      <div v-if="loadingRepos" class="minor-text">Loading repositories...</div>
-      <div v-else-if="repoError" class="minor-text">Unable to load GitHub data at this time.</div>
+      <div v-if="loadingRepos" class="secondary-text">Loading repositories...</div>
+      <div v-else-if="repoError" class="secondary-text">Unable to load GitHub data at this time.</div>
       
       <div v-else class="github-grid">
         <a 
@@ -276,7 +276,7 @@ onMounted(() => {
           class="card"
         >
           <strong>{{ repo.name }}</strong>
-          <p class="minor-text" style="margin: 0.5rem 0;">
+          <p class="secondary-text" style="margin: 0.5rem 0;">
             {{ repo.description || (locale === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
           </p>
           
@@ -284,7 +284,7 @@ onMounted(() => {
             <span v-if="repo.language" class="tech-tag">
               {{ repo.language }}
             </span>
-            <span class="minor-text" style="font-size: 0.8rem;">⭐ {{ repo.stargazers_count }}</span>
+            <span class="secondary-text" style="font-size: 0.8rem;">⭐ {{ repo.stargazers_count }}</span>
           </div>
         </a>
       </div>
@@ -614,11 +614,6 @@ a.highlight-text:hover {
 .timeline {
   color: var(--text-muted);
   font-weight: 500;
-}
-
-.minor-text {
-  margin: 0.2rem 0;
-  color: var(--text-muted);
 }
 
 .compact-list {

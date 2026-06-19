@@ -57,6 +57,11 @@ hr {
   margin: 2.5rem 0;
 }
 
+.secondary-text{ 
+  color: var(--text-muted);
+  font-size: 0.9rem
+}
+
 /* Fade In Animation */
 .fade-in-section {
   opacity: 0;
@@ -261,48 +266,6 @@ hr {
 }
 
 .card-interactive:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent-blue);
-}
-
-
-
-.project-card {
-  padding: 1.2rem;
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  
-  /* Set the border structure, but let the dynamic class handle the color */
-  border-left-width: 4px; 
-  border-left-style: solid; 
-  
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.project-card:hover {
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.github-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-  border: 1px solid var(--divider);
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  text-decoration: none;
-  color: var(--text-main);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.github-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: var(--accent-blue);
