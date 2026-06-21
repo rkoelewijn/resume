@@ -29,6 +29,12 @@ const toggleTheme = () => {
   }
 }
 
+// Create a filtered list of just the featured projects
+const featuredProjects = computed(() => {
+  const featuredIds = ['portfolio-architecture', 'verbelco-waterweb']; // Add your actual IDs here
+  return resumeData.value.projects.filter(p => featuredIds.includes(p.id));
+});
+
 // Trigger Print to PDF
 const downloadPDF = () => {
   window.print()
@@ -240,11 +246,11 @@ onMounted(() => {
       
   <ul class="project-list">
 <li 
-  v-for="project in resumeData.projects" 
+  v-for="project in featuredProjects" 
   :key="project.id" 
   class="card"
   :class="'border-' + project.category"
->      
+> 
       <div class="project-header">
         <strong>{{ project.title }}</strong> 
       </div>

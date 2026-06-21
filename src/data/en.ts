@@ -128,7 +128,7 @@ export const enData: ResumeData = {
       title: "LLM Hallucination Detection Pipeline (Cloudspeakers)",
       category: 'data',
       type: "Academic Thesis",
-      tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
+      tech: ["Python", "scikit-learn", "Machine Learning", "NumPy", "LaTeX"],
       description: "Developed an automated methodology pipeline to detect hallucinations in large language models."
     },
     {
@@ -163,7 +163,7 @@ export const enData: ResumeData = {
       title: "Verbelco Waterweb Validation Project",
       category: 'data',
       type: "Software Engineering Project",
-      tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
+      tech: ["Python", "Polars", "NumPy", "Git", "Outlier Detection"],
       description: "Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes",
       sections: [
         {

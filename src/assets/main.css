@@ -1,4 +1,4 @@
-* Base Light Theme Variables */
+/* Base Light Theme Variables */
 :root {
   --bg-gradient: linear-gradient(135deg, #e6e8e6 0%, #cee5f2 100%);
   --card-bg: #ffffff;
