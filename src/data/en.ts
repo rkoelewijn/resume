@@ -158,5 +158,35 @@ export const enData: ResumeData = {
         }
       ]
     },
+     {
+      id: "verbelco-waterweb",
+      title: "Verbelco Waterweb Validation Project",
+      category: 'data',
+      type: "Software Engineering Project",
+      tech: ["Python", "scikit-learn", "Polars", "NumPy", "LaTeX"],
+      description: "Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes",
+      sections: [
+        {
+          title: "Project Overview",
+          body: ["Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes."]
+        },
+        {
+          title: "Key Features & Contributions:",
+          isList: true,
+          body: [
+            "Dual Interface Design: Built both a Command Line Interface (CLI) for automated batch processing and a local web-based UI for interactive data analysis.",
+            "Validation Engine: Engineered a robust validation pipeline where users can toggle specific validation methods on or off. The system cross-references measurement data against external technical specification files to flag anomalies.",
+            "Interactive Data Visualization: Integrated a dynamic graphing module in the web UI that visualizes the validated results, allowing users to zoom, filter, and change the axes to better understand data trends and pinpoint errors.",
+            "Configuration Management: Implemented a flexible .toml configuration system, allowing users to easily adjust the parameters of the validation methods without altering the core codebase.",
+            "Modern Tooling: Utilized uv for fast, reproducible Python environment management and dependency resolution, ensuring a smooth handoff and easy installation for future developers or clients."
+          ]
+        },
+        {
+          title: "Business Impact",
+          body: ["The application significantly reduces the manual overhead required to verify water level data. By providing both a programmatic CLI for data pipelines and an intuitive visual dashboard for end-users, the tool bridges the gap between complex data engineering and accessible business intelligence."]
+        }
+      ]
+
+    },
   ],
 }
