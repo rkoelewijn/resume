@@ -233,12 +233,12 @@ hr {
 
 .card{
   padding: 1.2rem;
-  border: 1px solid var(--divider);
+  border: 2px solid var(--divider);
   border-radius: 8px;
   background-color: var(--card-bg);
   
   /* Set the border structure, but let the dynamic class handle the color */
-  border-left-width: 4px; 
+  border-left-width: 6px; 
   border-left-style: solid; 
   
   transition: transform 0.2s ease, box-shadow 0.2s ease;

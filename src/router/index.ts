@@ -17,7 +17,17 @@ const router = createRouter({
       name: 'project-detail',
       component: ProjectDetailView
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // If the user clicks the browser's Back/Forward button, remember where they were
+    if (savedPosition) {
+      return savedPosition
+    } 
+    // Otherwise, always scroll to the very top of the new page
+    else {
+      return { top: 0 }
+    }
+  }
 })
 
 export default router

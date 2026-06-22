@@ -25,7 +25,7 @@ export const assets = {
   },
   radboud: {
     logoLight: "/logos/radboud_logo.png",
-    projectId: "llm-thesis", // Match this to your project object ID
+    projectId: "bsc-thesis", // Match this to your project object ID
     gpa: "7.1/10"
   },
   streek: {

@@ -258,6 +258,10 @@ onMounted(() => {
       <div class="tech-tags" style="margin: 0.8rem 0;">
         <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
       </div>
+
+      <div class="additional-text">
+        <span v-for="description in project.description" :key="description" class="additional-text">{{ description }}</span>
+      </div>
       
       <RouterLink :to="'/' + project.id" class="highlight-text">
         {{ $t('labels.viewProject') }} &rarr;
