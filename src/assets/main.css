@@ -317,11 +317,6 @@ hr {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.15); 
 }
 
-/* Dark mode adjustments */
-:global(.dark-theme) .lang-option.is-active {
-  box-shadow: 0 0 6px rgba(55, 114, 255, 0.25);
-}
-
 /* Ensure the flags stay crisp */
 .lang-option .fi {
   font-size: 1rem;
