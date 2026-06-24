@@ -283,7 +283,7 @@ onMounted(() => {
           :href="repo.html_url" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="card"
+          class="card-interactive"
         >
           <strong>{{ repo.name }}</strong>
           <p class="secondary-text" style="margin: 0.5rem 0;">

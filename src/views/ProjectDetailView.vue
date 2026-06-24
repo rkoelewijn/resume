@@ -18,18 +18,18 @@ const project = computed(() => {
 </script>
 
 <template>
-  <main class="resume-container">
+  <main class="project-wrap">
     
     <nav style="margin-bottom: 2rem;">
       <RouterLink to="/" class="highlight-text" style="font-weight: bold;">
         &larr; {{ $t('nav.backToResume') }}
       </RouterLink>
     </nav>
-
+    
     <div v-if="project">
       <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--divider); padding-bottom: 1.5rem;">
         <h1 class="section-title" style="margin-bottom: 0.5rem;">{{ project.title }}</h1>
-        <p class="minor-text" style="font-size: 1.1rem; font-style: italic;">{{ project.type }}</p>
+        <p class="secondary-text" style="font-size: 1.1rem; font-style: italic;">{{ project.type }}</p>
         
         <div class="tech-tags" style="margin-top: 1rem;">
           <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
@@ -57,27 +57,28 @@ const project = computed(() => {
 
     <div v-else style="text-align: center; padding: 4rem 0;">
       <h2>Project Not Found</h2>
-      <p class="minor-text" style="margin-top: 1rem;">The project you are looking for does not exist or has been removed.</p>
+      <p class="secondary-text" style="margin-top: 1rem;">The project you are looking for does not exist or has been removed.</p>
     </div>
 
   </main>
 </template>
 
 <style scoped>
-/* Resuses your existing tech-tag styles for consistency */
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+
+.project-page {
+  --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
+  
+  /* If the wrapper doesn't stretch full height, you can force the background here */
+  background: var(--bg-gradient);
+  min-height: 100vh;
 }
 
-.tech-tag {
-  background-color: var(--divider);
-  color: var(--text-main);
-  padding: 0.2rem 0.6rem;
+.project-wrap {
+  background-color: var(--card-bg);
+  padding: 3rem;
   border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  box-shadow: 0 8px 16px rgba(8, 7, 8, 0.05);
+  transition: background-color 0.3s ease;
 }
 
 /* Print optimization */
