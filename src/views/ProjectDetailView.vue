@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { getResumeData } from '@/data'
@@ -15,6 +15,14 @@ const project = computed(() => {
   const currentData = getResumeData(locale.value)
   return currentData.projects.find(p => p.id === projectId)
 })
+
+const isLangTransitioning = ref(false)
+watch(locale, () => {
+  isLangTransitioning.value = true
+  setTimeout(() => {
+    isLangTransitioning.value = false
+  }, 280)
+})
 </script>
 
 <template>
@@ -26,40 +34,41 @@ const project = computed(() => {
       </RouterLink>
     </nav>
     
-    <div v-if="project">
-      <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--divider); padding-bottom: 1.5rem;">
-        <h1 class="section-title" style="margin-bottom: 0.5rem;">{{ project.title }}</h1>
-        <p class="secondary-text" style="font-size: 1.1rem; font-style: italic;">{{ project.type }}</p>
-        
-        <div class="tech-tags" style="margin-top: 1rem;">
-          <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
-        </div>
-      </header>
-
-      <section class="project-body">
-        <div v-for="(section, index) in project.sections" :key="index" style="margin-bottom: 2rem;">
-          <h3 style="color: var(--accent-blue); margin-bottom: 0.8rem;">{{ section.title }}</h3>
+    <div :class="{ 'lang-crossfade': isLangTransitioning }">
+      <div v-if="project">
+        <header style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--divider); padding-bottom: 1.5rem;">
+          <h1 class="section-title" style="margin-bottom: 0.5rem;">{{ project.title }}</h1>
+          <p class="secondary-text" style="font-size: 1.1rem; font-style: italic;">{{ project.type }}</p>
           
-          <ul v-if="section.isList" style="padding-left: 1.5rem; color: var(--text-main);">
-            <li v-for="(item, i) in section.body" :key="i" style="margin-bottom: 0.5rem; line-height: 1.6;">
-              {{ item }}
-            </li>
-          </ul>
-          
-          <template v-else>
-            <p v-for="(paragraph, i) in section.body" :key="i" style="margin-bottom: 0.8rem; line-height: 1.6; color: var(--text-main);">
-              {{ paragraph }}
-            </p>
-          </template>
-        </div>
-      </section>
-    </div>
+          <div class="tech-tags" style="margin-top: 1rem;">
+            <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
+          </div>
+        </header>
 
-    <div v-else style="text-align: center; padding: 4rem 0;">
-      <h2>Project Not Found</h2>
-      <p class="secondary-text" style="margin-top: 1rem;">The project you are looking for does not exist or has been removed.</p>
-    </div>
+        <section class="project-body">
+          <div v-for="(section, index) in project.sections" :key="index" style="margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-blue); margin-bottom: 0.8rem;">{{ section.title }}</h3>
+            
+            <ul v-if="section.isList" style="padding-left: 1.5rem; color: var(--text-main);">
+              <li v-for="(item, i) in section.body" :key="i" style="margin-bottom: 0.5rem; line-height: 1.6;">
+                {{ item }}
+              </li>
+            </ul>
+            
+            <template v-else>
+              <p v-for="(paragraph, i) in section.body" :key="i" style="margin-bottom: 0.8rem; line-height: 1.6; color: var(--text-main);">
+                {{ paragraph }}
+              </p>
+            </template>
+          </div>
+        </section>
+      </div>
 
+      <div v-else style="text-align: center; padding: 4rem 0;">
+        <h2>Project Not Found</h2>
+        <p class="secondary-text" style="margin-top: 1rem;">The project you are looking for does not exist or has been removed.</p>
+      </div>
+    </div>
   </main>
 </template>
 

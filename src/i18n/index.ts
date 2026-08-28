@@ -29,15 +29,26 @@ export const i18n = createI18n({
   messages
 })
 
-// Helper to switch language and persist preference
+// Helper to switch language and persist preference with smooth transition
 export const setLanguage = (localeCode: string) => {
   if (SUPPORTED_LOCALES.some(l => l.code === localeCode)) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (i18n.global.locale as any).value = localeCode
-    try {
-      localStorage.setItem(LOCALE_STORAGE_KEY, localeCode)
-    } catch (e) {
-      // Ignore localStorage errors
+    const updateLocale = () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (i18n.global.locale as any).value = localeCode
+      try {
+        localStorage.setItem(LOCALE_STORAGE_KEY, localeCode)
+      } catch (e) {
+        // Ignore localStorage errors
+      }
+    }
+
+    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (document as any).startViewTransition(() => {
+        updateLocale()
+      })
+    } else {
+      updateLocale()
     }
   }
 }

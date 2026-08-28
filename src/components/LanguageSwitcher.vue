@@ -57,16 +57,26 @@ const { locale } = useI18n()
   background-color: rgba(55, 114, 255, 0.08);
 }
 
+.lang-option:active {
+  transform: scale(0.96);
+}
+
 .lang-option.is-active {
   background-color: var(--accent-blue, #3772ff);
   color: #ffffff;
-  box-shadow: 0 2px 6px rgba(55, 114, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(55, 114, 255, 0.35);
+  transform: scale(1.02);
 }
 
 .lang-option .fi {
   font-size: 0.95rem;
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease;
+}
+
+.lang-option:hover .fi {
+  transform: scale(1.1);
 }
 
 .lang-label {

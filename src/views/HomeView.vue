@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getResumeData } from '@/data'
 import { programmingSkills, categorizedSkills, sharedBasics } from '@/data/shared'
@@ -72,32 +72,40 @@ onMounted(async () => {
   } finally {
     loadingRepos.value = false;
   }
-
-  
 });
 
+const observeFadeSections = () => {
+  const elements = document.querySelectorAll('.fade-in-section');
+  elements.forEach((el) => {
+    el.classList.add('is-visible');
+  });
+};
+
 onMounted(() => {
-  // 1. Create the observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      // If the section comes into view
       if (entry.isIntersecting) {
-        // Add the visible class to trigger the CSS animation
         entry.target.classList.add('is-visible');
-        
-        // Stop observing it so it only animates once per page load
         observer.unobserve(entry.target); 
       }
     });
   }, {
-    threshold: 0.15 // Triggers when 15% of the section is visible on screen
+    threshold: 0.15
   });
 
-  // 2. Find all elements with the 'fade-in-section' class and observe them
   const elements = document.querySelectorAll('.fade-in-section');
   elements.forEach((el) => observer.observe(el));
 });
 
+// Non-destructive transition state on language change
+const isLangTransitioning = ref(false);
+
+watch(locale, () => {
+  isLangTransitioning.value = true;
+  setTimeout(() => {
+    isLangTransitioning.value = false;
+  }, 280);
+});
 </script>
 
 <template>
@@ -117,52 +125,54 @@ onMounted(() => {
       </div>
     </div>
 
-    <header class="header-section">
-      <div class="header-content">
-        <div class="text-side">
-          <h1>{{ resumeData.basics.name }}</h1>
-          <h2>{{ resumeData.basics.title }}</h2>
+    <!-- Non-destructive Language Cross-Fade Body -->
+    <div class="resume-main-body" :class="{ 'lang-crossfade': isLangTransitioning }">
+      <header class="header-section">
+        <div class="header-content">
+          <div class="text-side">
+            <h1>{{ resumeData.basics.name }}</h1>
+            <h2>{{ resumeData.basics.title }}</h2>
 
-          <!-- Interactive Quick Links (Screen Only) -->
-          <div class="quick-links no-print">
-            <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-              <font-awesome-icon :icon="['fab', 'linkedin']" />
-            </a>
-            <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
-              <font-awesome-icon :icon="['fab', 'github']" />
-            </a>
-            <a :href="'mailto:' + sharedBasics.email" title="Contact">
-              <font-awesome-icon icon="envelope" />
-            </a>
+            <!-- Interactive Quick Links (Screen Only) -->
+            <div class="quick-links no-print">
+              <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <font-awesome-icon :icon="['fab', 'linkedin']" />
+              </a>
+              <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <font-awesome-icon :icon="['fab', 'github']" />
+              </a>
+              <a :href="'mailto:' + sharedBasics.email" title="Contact">
+                <font-awesome-icon icon="envelope" />
+              </a>
+            </div>
+          </div>
+          
+          <div class="photo-container">
+             <img v-if="resumeData.basics.photo" :src="resumeData.basics.photo" alt="Ruben Koelewijn" class="profile-photo" />
           </div>
         </div>
-        
-        <div class="photo-container">
-           <img v-if="resumeData.basics.photo" :src="resumeData.basics.photo" alt="Ruben Koelewijn" class="profile-photo" />
+
+        <p class="summary-text">{{ resumeData.basics.summary }}</p>
+
+        <!-- Printable Contact Info Row (Print Only - Underneath Summary & Centered) -->
+        <div class="print-contact-info print-only">
+          <span v-if="sharedBasics.email" class="print-contact-item">
+            <font-awesome-icon icon="envelope" class="print-contact-icon" /> {{ sharedBasics.email }}
+          </span>
+          <span v-if="sharedBasics.phone" class="print-contact-item">
+            <span class="print-contact-symbol">☎</span> {{ sharedBasics.phone }}
+          </span>
+          <span v-if="resumeData.basics.location" class="print-contact-item">
+            <span class="print-contact-symbol">📍</span> {{ resumeData.basics.location }}
+          </span>
+          <span v-if="sharedBasics.linkedin" class="print-contact-item">
+            <font-awesome-icon :icon="['fab', 'linkedin']" class="print-contact-icon" /> linkedin.com/in/ruben-koelewijn
+          </span>
+          <span v-if="sharedBasics.github" class="print-contact-item">
+            <font-awesome-icon :icon="['fab', 'github']" class="print-contact-icon" /> github.com/rkoelewijn
+          </span>
         </div>
-      </div>
-
-      <p class="summary-text">{{ resumeData.basics.summary }}</p>
-
-      <!-- Printable Contact Info Row (Print Only - Underneath Summary & Centered) -->
-      <div class="print-contact-info print-only">
-        <span v-if="sharedBasics.email" class="print-contact-item">
-          <font-awesome-icon icon="envelope" class="print-contact-icon" /> {{ sharedBasics.email }}
-        </span>
-        <span v-if="sharedBasics.phone" class="print-contact-item">
-          <span class="print-contact-symbol">☎</span> {{ sharedBasics.phone }}
-        </span>
-        <span v-if="resumeData.basics.location" class="print-contact-item">
-          <span class="print-contact-symbol">📍</span> {{ resumeData.basics.location }}
-        </span>
-        <span v-if="sharedBasics.linkedin" class="print-contact-item">
-          <font-awesome-icon :icon="['fab', 'linkedin']" class="print-contact-icon" /> linkedin.com/in/ruben-koelewijn
-        </span>
-        <span v-if="sharedBasics.github" class="print-contact-item">
-          <font-awesome-icon :icon="['fab', 'github']" class="print-contact-icon" /> github.com/rkoelewijn
-        </span>
-      </div>
-    </header>
+      </header>
 
     <hr />
 
@@ -272,9 +282,7 @@ onMounted(() => {
         <span v-for="tech in project.tech" :key="tech" class="tech-tag">{{ tech }}</span>
       </div>
 
-      <div class="additional-text">
-        <span v-for="description in project.description" :key="description" class="additional-text">{{ description }}</span>
-      </div>
+      <p class="additional-text">{{ project.description }}</p>
 
       <RouterLink :to="'/' + project.id" class="highlight-text">
         {{ $t('labels.viewProject') }} &rarr;
@@ -383,15 +391,16 @@ onMounted(() => {
   
 </div>
 </section>
-</div>
-
-<section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;">
-  <h3 class="section-title" style="margin-top: -1rem;">{{ $t('headers.connect') }}</h3>
-  <div class="contact-links">
-    <a :href="'mailto:'+ sharedBasics.email" class="btn">{{ $t('labels.sendEmail') }}</a>
-    <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">{{ $t('labels.viewLinkedIn') }}</a>
+    </div>
   </div>
-</section>
+
+  <section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;">
+    <h3 class="section-title" style="margin-top: -1rem;">{{ $t('headers.connect') }}</h3>
+    <div class="contact-links">
+      <a :href="'mailto:'+ sharedBasics.email" class="btn">{{ $t('labels.sendEmail') }}</a>
+      <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">{{ $t('labels.viewLinkedIn') }}</a>
+    </div>
+  </section>
 
 </template>
 

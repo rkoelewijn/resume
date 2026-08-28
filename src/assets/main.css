@@ -385,12 +385,43 @@ p,
 }
 
 /* ==========================================================================
+   LANGUAGE CROSS-FADE TRANSITION & VIEW TRANSITIONS
+   ========================================================================== */
+.lang-crossfade {
+  animation: langCrossfadeAnim 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes langCrossfadeAnim {
+  0% {
+    opacity: 0.45;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
    PRINT STYLESHEET (ATS & Print-to-PDF Optimization)
    ========================================================================== */
 @media print {
   @page {
     size: A4 portrait;
     margin: 10mm 12mm;
+  }
+
+  /* Reset all transitions in print */
+  .lang-crossfade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   *, *::before, *::after {
