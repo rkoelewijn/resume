@@ -135,13 +135,11 @@ hr {
 /* Header & Typography */
 .header-section {
   margin-bottom: 2rem;
-  /* Retaining the clean border accent */
   border-left: 5px solid var(--accent-blue);
   padding-left: 1.5rem;
 }
 
 .header-section h1 {
-  /* Gradient text removed, returning to solid primary color */
   color: var(--accent-blue);
   font-size: 2.5rem;
   margin-bottom: 0.2rem;
@@ -153,35 +151,29 @@ hr {
   margin-bottom: 1rem;
 }
 
-/* Updated Quick Links as pill-shaped tags */
+/* Quick Links */
 .quick-links {
   display: flex;
-  /* gap: 1rem; */
-  /* margin-bottom: 1.5rem; */
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
 }
 
 .quick-links a {
-  /* background-color: var(--divider); */
-  /* padding: 0.4rem 0.8rem; */
-  /* border-radius: 10px; */
-  margin-right: -1rem;
-  margin-bottom: -3rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   transition: all 0.2s ease;
   color: var(--text-muted);
 }
 
 .quick-links a:hover {
-  /* background-color: var(--accent-blue); */
   color: var(--accent-yellow);
 }
 
-/* Header Content with Negative Gap */
+/* Header Content */
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: -2rem; 
   margin-bottom: 1.5rem;
   position: relative;
 }
@@ -192,30 +184,18 @@ hr {
   z-index: 2;
 }
 
-.summary-text {
+.summary-text,
+.description-main-text {
   color: var(--text-main);
-}
-
-.description-main-text{
-  color: var(--text-main); 
-}
-
-.quick-links {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
 }
 
 .section-title {
   color: var(--text-main);
   border-bottom: 3px solid var(--divider);
-  /* padding-bottom: 0.5rem; */
-  /* margin-bottom: 1.5rem; */
   display: inline-block;
 }
 
-/* Reusable Tech Tags (Used in both Projects and GitHub sections) */
+/* Reusable Tech Tags */
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
@@ -226,21 +206,18 @@ hr {
   background-color: var(--divider);
   color: var(--text-main);
   padding: 0.2rem 0.6rem;
-  border-radius: 12px; /* Pill shape */
+  border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.card{
+.card {
   padding: 1.2rem;
   border: 2px solid var(--divider);
   border-radius: 8px;
   background-color: var(--card-bg);
-  
-  /* Set the border structure, but let the dynamic class handle the color */
   border-left-width: 6px; 
   border-left-style: solid; 
-  
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -252,8 +229,8 @@ hr {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.card-interactive{
-   display: flex;
+.card-interactive {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
@@ -265,56 +242,10 @@ hr {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-interactive:hover{
+.card-interactive:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: var(--accent-blue);
-}
-
-
-
-/* Language Toggle Track */
-.lang-toggle-pill {
-  display: flex;
-  align-items: center;
-  background-color: var(--card-alt); 
-  border: 1px solid var(--divider);
-  border-radius: 30px; 
-  padding: 0; /* CHANGED: Removed the 4px padding to make it flush */
-  cursor: pointer;
-  transition: all 0.2s ease;
-  outline: none;
-  font-family: inherit;
-  overflow: hidden; /* Ensures the active highlight respects the parent's rounded corners */
-}
-
-.lang-toggle-pill:hover {
-  background-color: var(--divider);
-  transform: translateY(-1px);
-}
-
-/* Individual Language Options */
-.lang-option {
-  flex: 1; /* NEW: Forces both options to be exactly the same width (50%) */
-  display: flex;
-  justify-content: center; /* Centers the content since it's now wider */
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 0.9rem; /* Slightly increased padding since the parent padding is gone */
-  border-radius: 30px; /* Matches the parent border-radius */
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-main);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.5; 
-}
-
-/* The Active Highlight State */
-.lang-option.is-active {
-  background-color: var(--accent-blue); 
-  opacity: 1;
-  /* Switched to a standard centered box-shadow since it now touches the edges */
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15); 
 }
 
 /* Save PDF Button Styling */
@@ -457,8 +388,7 @@ p,
   .no-print,
   .utility-bar,
   .quick-links,
-  .contact-section,
-  .lang-toggle-pill {
+  .contact-section {
     display: none !important;
   }
 
@@ -631,10 +561,12 @@ p,
   }
 
   .timeline-dot {
+    left: 1px !important;
+    transform: translateX(-50%) !important;
     top: 1.1rem !important;
     width: 10px !important;
     height: 10px !important;
-    border: 2px solid #ffffff !important;
+    border: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }

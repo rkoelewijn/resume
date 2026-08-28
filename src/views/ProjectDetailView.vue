@@ -73,15 +73,6 @@ watch(locale, () => {
 </template>
 
 <style scoped>
-
-.project-page {
-  --bg-gradient: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
-  
-  /* If the wrapper doesn't stretch full height, you can force the background here */
-  background: var(--bg-gradient);
-  min-height: 100vh;
-}
-
 .project-wrap {
   background-color: var(--card-bg);
   padding: 3rem;

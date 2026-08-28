@@ -405,7 +405,7 @@ watch(locale, () => {
 </template>
 
 <style scoped>
-
+/* Contact Section */
 .contact-section {
   text-align: center;
   padding: 3rem;
@@ -414,31 +414,22 @@ watch(locale, () => {
   border: 1px solid var(--divider, #eee);
 }
 
-.contact-text {
-  max-width: 600px;
-  margin: 1rem auto 2rem;
-  color: var(--text-muted, #666);
-  line-height: 1.6;
-}
-
 .contact-links {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-
 /* --- ADDITIONAL SKILLS GRID --- */
 .additional-skills-grid {
   display: grid;
-  grid-template-columns: 1fr; /* Defaults to single column for mobile */
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--divider, #eee); /* A subtle line separating it from the bar chart */
+  border-top: 1px solid var(--divider, #eee);
 }
 
-/* Switches to two columns on larger screens */
 @media (min-width: 768px) {
   .additional-skills-grid {
     grid-template-columns: 1fr 1fr; 
@@ -481,32 +472,24 @@ watch(locale, () => {
   margin-left: 4px;
 }
 
-/* --- ISOLATED SKILLS CSS --- */
+/* --- ISOLATED SKILLS BAR CHART --- */
 .isolated-skills-wrapper {
-  margin: 2rem 0; /* You can also reduce the 2rem to 1rem if you want less vertical space around the whole section */
+  margin: 2rem 0;
   width: 100%;
-  max-width: 600px; /* ADD THIS: Stops the bars from stretching infinitely */
-}
-
-.isolated-skills-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-main, #333);
+  max-width: 600px;
 }
 
 .isolated-bars-container {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.2rem !important; /* CHANGED FROM 1.2rem: Reduces the empty space between each skill */
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-/* This fixes the overlapping issue */
 .isolated-skill-row {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0rem !important;
-  align-items: flex-start !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
   margin-bottom: 0.6rem;
 }
 
@@ -516,16 +499,14 @@ watch(locale, () => {
   color: var(--text-main, #333);
 }
 
-/* The faint grey track */
 .isolated-bar-bg {
   width: 100%;
-  height: 20px !important; /* CHANGED FROM 28px: Makes the bar significantly thinner */
-  background-color: rgba(0, 0, 0, 0.08) !important; 
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.08); 
   border-radius: 4px;
   overflow: hidden;
 }
 
-/* The animated blue fill */
 .isolated-bar-fill {
   height: 100%;
   background-color: var(--accent-blue, #0056b3);
@@ -534,7 +515,6 @@ watch(locale, () => {
   align-items: center;
   justify-content: flex-end; 
   padding-right: 12px;
-  /* The animation engine */
   transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); 
 }
 
@@ -545,7 +525,6 @@ watch(locale, () => {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   opacity: 0;
-  /* Fades text in after the bar grows */
   transition: opacity 0.5s ease 0.8s; 
   margin-right: 1rem;
 }
@@ -554,13 +533,7 @@ watch(locale, () => {
   opacity: 1;
 }
 
-/* Only invert if the specific 'is-inverted' class is present */
-.company-logo.is-inverted {
-  filter: invert(1) brightness(1.5);
-}
-
-
-/* Main Container */
+/* Resume Main Container & Header Photo */
 .resume-wrapper {
   background-color: var(--card-bg);
   padding: 3rem;
@@ -587,7 +560,6 @@ watch(locale, () => {
   box-shadow: 0 4px 12px rgba(8, 7, 8, 0.15);
 }
 
-/* Responsive adjustment for screens smaller than 768px */
 @media screen and (max-width: 768px) {
   .header-content {
     flex-direction: column-reverse;
@@ -597,18 +569,12 @@ watch(locale, () => {
     width: 180px;
     height: 180px;
     margin-bottom: 1rem;
-    /* Change fade to vertical for mobile */
     mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%);
   }
 }
 
-
-/* Experience & Lists */
-.experience-card {
-  margin-bottom: 1.5rem;
-}
-
+/* Experience, Side Jobs & Card Headers */
 .card-header {
   display: flex;
   align-items: center;
@@ -635,7 +601,6 @@ watch(locale, () => {
 
 :deep(.highlight-text) {
   color: var(--accent-blue);
-  /* font-weight: 600; */
   transition: color 0.2s ease;
 }
 
@@ -658,93 +623,35 @@ a.highlight-text:hover {
 .compact-item {
   margin-bottom: 0.8rem;
 }
+
 .project-list {
   list-style: none;
-  padding: 0 !important; /* Forces the removal of the default 40px left-indent on HTML lists */
+  padding: 0 !important;
   margin-left: 0 !important; 
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  width: 100%; /* Ensures the list container takes full width */
+  width: 100%;
 }
 
-
-
-/* --- DYNAMIC BORDER CLASSES --- */
+/* Border Accent Colors */
 .border-data { border-left-color: var(--secondary-blue, #0056b3) !important; }
-.border-web { border-left-color:var(--secondary-green) !important; }
+.border-web { border-left-color: var(--secondary-green) !important; }
 .border-systems { border-left-color: var(--dark-blue) !important; }
 
-
-
-.project-link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--accent-blue);
-}
-
-/* Skills */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
-
-.skill-category h4 {
-  margin-bottom: 1rem;
-  color: var(--text-main);
-}
-
-.skill-category ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skill-category li {
-  margin-bottom: 1rem;
-}
-
-.skill-name {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-  color: var(--text-main);
-}
-
-.skill-track {
-  width: 100%;
-  background-color: var(--divider);
-  border-radius: 6px;
-  height: 8px;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  border-radius: 6px;
-}
-
-.bg-blue { background-color: var(--accent-blue); }
-.bg-yellow { background-color: var(--accent-yellow); }
-/* Let the dark bar dynamically flip to a light bar in dark mode for contrast */
-.bg-dark { background-color: var(--text-main); } 
-
+/* Timeline Component */
 .timeline-container {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* This creates the vertical line */
   margin-left: 6px; 
 }
 
-.additional-text{
+.additional-text {
   color: var(--text-muted);
-  font-size: 0.9rem
+  font-size: 0.9rem;
 }
 
-/* The vertical line */
 .timeline-container::before {
   content: '';
   position: absolute;
@@ -752,41 +659,39 @@ a.highlight-text:hover {
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: var(--divider); /* Uses your existing theme variable */
+  background-color: var(--divider);
 }
 
 .timeline-item {
   position: relative;
-  padding-left: 30px; /* Space for the line and dot */
-  padding-bottom: 2rem; /* Spacing between entries */
+  padding-left: 30px;
+  padding-bottom: 2rem;
 }
 
 .timeline-dot {
   position: absolute;
-  left: -5px;
-  top: 1.5rem; /* Updated as requested */
+  left: 1px;
+  transform: translateX(-50%);
+  top: 1.5rem;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 2px solid var(--bg-color);
+  border: none;
   z-index: 1;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Past roles (Blue) */
 .timeline-dot.is-past {
   background-color: var(--divider);
   box-shadow: 0 0 8px 2px var(--divider);
 }
 
-/* Current roles (Yellow) */
 .timeline-dot.is-current {
   background-color: var(--accent-blue);
   box-shadow: 0 0 8px 2px var(--accent-blue);
 }
 
 .timeline-content {
-  /* Keeps your existing card styling intact */
   width: 100%;
 }
 
@@ -795,66 +700,5 @@ a.highlight-text:hover {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
-}
-
-
-
-
-
-.skills-section {
-  margin: 2rem 0;
-  font-family: inherit;
-}
-
-.skills-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-main, #333);
-}
-
-.skill-track {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.skill-name {
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--text-main, #333);
-}
-
-.bar-background {
-  width: 100%;
-  height: 28px;
-  background-color: rgba(0, 0, 0, 0.05); /* Very faint grey track */
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background-color: var(--accent-blue, #0056b3);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Pushes label to the right side of the bar */
-  padding-right: 12px;
-  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* Smooth, premium ease-out animation */
-}
-
-.bar-label {
-  color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.5s ease 0.8s; /* Fades in the text ONLY after the bar finishes growing */
-}
-
-.show-label {
-  opacity: 1;
 }
 </style>
