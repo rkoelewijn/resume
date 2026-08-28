@@ -37,7 +37,10 @@ const featuredProjects = computed(() => {
 
 // Trigger Print to PDF
 const downloadPDF = () => {
-  window.print()
+  animateSkills.value = true
+  setTimeout(() => {
+    window.print()
+  }, 50)
 }
 // --- NEW GITHUB API INTEGRATION ---
 interface GithubRepo {
@@ -106,15 +109,16 @@ onMounted(() => {
   <div v-if="resumeData && resumeData.basics" class="resume-wrapper">
     
     <div class="utility-bar no-print">
-      <button @click="downloadPDF" class="theme-btn secondary-btn" disabled>
-        {{ $t('nav.savePdf') }}
+      <button @click="downloadPDF" class="theme-btn secondary-btn save-pdf-btn" :title="$t('nav.savePdf')">
+        <font-awesome-icon icon="file-pdf" class="pdf-btn-icon" />
+        <span>{{ $t('nav.savePdf') }}</span>
       </button>
       
       <div class="right-utilities">
         <!-- <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button> -->
-      <button @click="toggleLang" class="lang-toggle-pill" disabled>
+      <button @click="toggleLang" class="lang-toggle-pill">
         <div :class="['lang-option', { 'is-active': locale === 'nl' }]">
           <span class="fi fi-nl"></span>
         </div>
@@ -131,24 +135,46 @@ onMounted(() => {
         <div class="text-side">
           <h1>{{ resumeData.basics.name }}</h1>
           <h2>{{ resumeData.basics.title }}</h2>
+
+          <!-- Interactive Quick Links (Screen Only) -->
           <div class="quick-links no-print">
-          <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-            <font-awesome-icon :icon="['fab', 'linkedin']" />
-          </a>
-           <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
-            <font-awesome-icon :icon="['fab', 'github']" />
-          </a>
-          <a :href="'mailto:' + sharedBasics.email" title="Contact">
-            <font-awesome-icon icon="envelope" />
-          </a>
-        </div>
+            <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <font-awesome-icon :icon="['fab', 'linkedin']" />
+            </a>
+            <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <font-awesome-icon :icon="['fab', 'github']" />
+            </a>
+            <a :href="'mailto:' + sharedBasics.email" title="Contact">
+              <font-awesome-icon icon="envelope" />
+            </a>
+          </div>
         </div>
         
         <div class="photo-container">
            <img v-if="resumeData.basics.photo" :src="resumeData.basics.photo" alt="Ruben Koelewijn" class="profile-photo" />
         </div>
       </div>
+
       <p class="summary-text">{{ resumeData.basics.summary }}</p>
+
+      <!-- Printable Contact Info Row (Print Only - Underneath Summary & Centered) -->
+      <div class="print-contact-info print-only">
+        <span v-if="sharedBasics.email" class="print-contact-item">
+          <font-awesome-icon icon="envelope" class="print-contact-icon" /> {{ sharedBasics.email }}
+        </span>
+        <span v-if="sharedBasics.phone" class="print-contact-item">
+          <span class="print-contact-symbol">☎</span> {{ sharedBasics.phone }}
+        </span>
+        <span v-if="resumeData.basics.location" class="print-contact-item">
+          <span class="print-contact-symbol">📍</span> {{ resumeData.basics.location }}
+        </span>
+        <span v-if="sharedBasics.linkedin" class="print-contact-item">
+          <font-awesome-icon :icon="['fab', 'linkedin']" class="print-contact-icon" /> linkedin.com/in/ruben-koelewijn
+        </span>
+        <span v-if="sharedBasics.github" class="print-contact-item">
+          <font-awesome-icon :icon="['fab', 'github']" class="print-contact-icon" /> github.com/rkoelewijn
+        </span>
+      </div>
     </header>
 
     <hr />
@@ -232,7 +258,7 @@ onMounted(() => {
               <p v-if="edu.courses" class="secondary-text"><em>Highlighted Courses:</em> {{ edu.courses }}</p>
               <p v-if="edu.details" class="secondary-text">{{ edu.details }}</p>
               
-              <div v-if="edu.projectId" style="margin-top: 0.5rem;">
+              <div v-if="edu.projectId" class="no-print" style="margin-top: 0.5rem;">
                 <RouterLink :to="'/' + edu.projectId" class="highlight-text" style="font-size: 0.85rem;">
                   View Bachelor's Thesis &rarr;
                 </RouterLink>
@@ -241,16 +267,16 @@ onMounted(() => {
           </div> </div> </div></section>
     <hr />
 
-<section class="fade-in-section" style="margin-bottom: 3rem;">
+<section class="fade-in-section no-print" style="margin-bottom: 3rem;">
   <h3 class="section-title">{{ $t('headers.featuredProjects') }}</h3>
       
   <ul class="project-list">
-<li 
-  v-for="project in featuredProjects" 
-  :key="project.id" 
-  class="card"
-  :class="'border-' + project.category"
-> 
+    <li 
+      v-for="project in featuredProjects" 
+      :key="project.id" 
+      class="card"
+      :class="'border-' + project.category"
+    > 
       <div class="project-header">
         <strong>{{ project.title }}</strong> 
       </div>
@@ -262,7 +288,7 @@ onMounted(() => {
       <div class="additional-text">
         <span v-for="description in project.description" :key="description" class="additional-text">{{ description }}</span>
       </div>
-      
+
       <RouterLink :to="'/' + project.id" class="highlight-text">
         {{ $t('labels.viewProject') }} &rarr;
       </RouterLink>
@@ -270,7 +296,7 @@ onMounted(() => {
   </ul>
 </section>
 
-    <section class="fade-in-section">
+    <section class="fade-in-section no-print">
       <h3 class="section-title">{{ $t('headers.github') }}</h3>
       
       <div v-if="loadingRepos" class="secondary-text">Loading repositories...</div>
@@ -300,7 +326,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <hr />
+    <hr class="no-print" />
     <section class="fade-in-section">
      <h3 class="section-title">{{ $t('headers.sideJobs') }}</h3>
       <ul class="compact-list fade-in-section">
@@ -340,7 +366,7 @@ onMounted(() => {
           <div 
             class="isolated-bar-fill"
             :class="'color-' + skill.category" 
-            :style="{ width: animateSkills ? skill.percentage + '%' : '0%' }"
+            :style="{ width: animateSkills ? skill.percentage + '%' : '0%', '--skill-pct': skill.percentage + '%' }"
           >
             <span class="isolated-bar-label" :class="{ 'isolated-show-label': animateSkills }">
               {{ skill.level }}
@@ -372,7 +398,7 @@ onMounted(() => {
 </section>
 </div>
 
-<section class="contact-section fade-in-section" style="margin: 2rem 0 2rem;">
+<section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;">
   <h3 class="section-title" style="margin-top: -1rem;">Let's Connect</h3>
   <div class="contact-links">
     <a :href="'mailto:'+ sharedBasics.email" class="btn">Send me an email</a>
@@ -566,7 +592,7 @@ onMounted(() => {
 }
 
 /* Responsive adjustment for screens smaller than 768px */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .header-content {
     flex-direction: column-reverse;
     text-align: center;

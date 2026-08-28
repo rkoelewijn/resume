@@ -317,8 +317,420 @@ hr {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.15); 
 }
 
-/* Ensure the flags stay crisp */
-.lang-option .fi {
-  font-size: 1rem;
-  border-radius: 2px;
+/* Save PDF Button Styling */
+.save-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.1rem;
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  color: var(--text-main);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
+
+.save-pdf-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  background-color: var(--card-alt);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(55, 114, 255, 0.15);
+}
+
+.pdf-btn-icon {
+  color: var(--accent-blue);
+  font-size: 1.05rem;
+}
+
+/* Visibility Utilities for Screen vs Print */
+.print-only {
+  display: none !important;
+}
+
+/* Print Contact Information Row */
+.print-contact-info {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin: 0.8rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.print-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.print-contact-icon,
+.print-contact-symbol {
+  color: var(--accent-blue);
+}
+
+/* Text Justification */
+p, 
+.summary-text, 
+.description-main-text, 
+.secondary-text, 
+.additional-text, 
+.education-details p, 
+.timeline-content p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ==========================================================================
+   PRINT STYLESHEET (ATS & Print-to-PDF Optimization)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+    line-height: 1.35 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .resume-wrapper {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+  }
+
+  /* Hide interactive / web-only elements */
+  .no-print,
+  .utility-bar,
+  .quick-links,
+  .contact-section,
+  .lang-toggle-pill {
+    display: none !important;
+  }
+
+  /* Header Section: Name & Title Centered, Picture on Right */
+  .header-section {
+    border-left: 4px solid #3772ff !important;
+    padding-left: 1rem !important;
+    margin-bottom: 0.8rem !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .header-content {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-bottom: 0.6rem !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .text-side {
+    flex: 1 !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .header-section h1 {
+    font-size: 1.85rem !important;
+    margin-bottom: 0.15rem !important;
+    color: #03045e !important;
+    text-align: center !important;
+  }
+
+  .header-section h2 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.25rem !important;
+    color: #333333 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+
+  /* Profile Photo for Print */
+  .photo-container {
+    width: 125px !important;
+    height: 125px !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+
+  .profile-photo {
+    width: 125px !important;
+    height: 125px !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    object-fit: cover !important;
+  }
+
+  /* Centered Contact Details (Print Only - Under Summary) */
+  .print-only,
+  .print-contact-info {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.4rem 1.2rem !important;
+    font-size: 8.5pt !important;
+    color: #333333 !important;
+    margin: 0.6rem auto 0 auto !important;
+    width: 100% !important;
+  }
+
+  .print-contact-item {
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  /* Justified Paragraphs and Descriptions */
+  p, 
+  .summary-text, 
+  .description-main-text, 
+  .secondary-text, 
+  .additional-text, 
+  .education-details p, 
+  .timeline-content p,
+  .card p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+  }
+
+  .summary-text {
+    font-size: 8.8pt !important;
+    line-height: 1.35 !important;
+    color: #222222 !important;
+    margin-top: 0.4rem !important;
+  }
+
+  /* Bypass scroll / fade animations completely */
+  .fade-in-section {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
+  }
+
+  /* Section Titles & Dividers */
+  hr {
+    border-top: 1px solid #d0d7de !important;
+    margin: 0.8rem 0 !important;
+  }
+
+  .section-title {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #03045e !important;
+    border-bottom: 2px solid #cee5f2 !important;
+    padding-bottom: 0.2rem !important;
+    margin-bottom: 0.6rem !important;
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+    text-align: left !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Page Break Hygiene */
+  section {
+    break-inside: auto;
+  }
+
+  .timeline-item,
+  .card,
+  .card-interactive,
+  .skill-category-block,
+  .isolated-skill-row,
+  .compact-item,
+  .project-list li,
+  .github-grid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  h1, h2, h3, h4, .section-title, .card-header {
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Timeline items */
+  .timeline-container {
+    margin-left: 4px !important;
+  }
+
+  .timeline-container::before {
+    background-color: #d0d7de !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .timeline-item {
+    padding-left: 24px !important;
+    padding-bottom: 0.8rem !important;
+  }
+
+  .timeline-dot {
+    top: 1.1rem !important;
+    width: 10px !important;
+    height: 10px !important;
+    border: 2px solid #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .timeline-dot.is-current {
+    background-color: #3772ff !important;
+    box-shadow: none !important;
+  }
+
+  .timeline-dot.is-past {
+    background-color: #a0aec0 !important;
+    box-shadow: none !important;
+  }
+
+  .company-logo {
+    width: 32px !important;
+    height: 32px !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  .company-logo-small {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Cards & Lists */
+  .card {
+    border: 1px solid #d0d7de !important;
+    border-left-width: 4px !important;
+    padding: 0.7rem 0.9rem !important;
+    margin-bottom: 0.5rem !important;
+    background-color: #fcfcfd !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .card-interactive {
+    border: 1px solid #d0d7de !important;
+    padding: 0.6rem 0.8rem !important;
+    background-color: #fcfcfd !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Tech tags */
+  .tech-tags {
+    gap: 0.3rem !important;
+    margin: 0.35rem 0 !important;
+  }
+
+  .tech-tag {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 0.12rem 0.45rem !important;
+    font-size: 7.5pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Skills & Progress Bars */
+  .isolated-skills-wrapper {
+    margin: 0.6rem 0 !important;
+    max-width: 100% !important;
+  }
+
+  .isolated-bar-bg {
+    background-color: #e2e8f0 !important;
+    height: 15px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .isolated-bar-fill {
+    width: var(--skill-pct, 100%) !important;
+    height: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .isolated-bar-label {
+    opacity: 1 !important;
+    font-size: 7pt !important;
+    color: #ffffff !important;
+    margin-right: 0.5rem !important;
+  }
+
+  .color-data {
+    background-color: #006daa !important;
+  }
+
+  .color-web {
+    background-color: #307351 !important;
+  }
+
+  .color-systems {
+    background-color: #03045e !important;
+  }
+
+  .border-data { border-left-color: #006daa !important; }
+  .border-web { border-left-color: #307351 !important; }
+  .border-systems { border-left-color: #03045e !important; }
+
+  /* Additional Skills Grid */
+  .additional-skills-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.8rem 1.5rem !important;
+    margin-top: 0.8rem !important;
+    padding-top: 0.6rem !important;
+    border-top: 1px solid #e2e8f0 !important;
+  }
+
+  .category-title {
+    font-size: 9pt !important;
+    margin-bottom: 0.25rem !important;
+    color: #03045e !important;
+    text-align: left !important;
+  }
+
+  .category-list-item {
+    font-size: 8pt !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Links in Print: Clean, non-blue, unlinked display */
+  a, a:visited, a:hover, a:active {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}

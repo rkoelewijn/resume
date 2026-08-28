@@ -6,11 +6,11 @@ import { i18n } from './i18n'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'; // For the contact icon
+import { faEnvelope, faFilePdf } from '@fortawesome/free-solid-svg-icons'; // For the contact & PDF icons
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import './assets/main.css'
 
-library.add(faGithub, faLinkedin, faInstagram, faEnvelope);
+library.add(faGithub, faLinkedin, faInstagram, faEnvelope, faFilePdf);
 
 
 import 'flag-icons/css/flag-icons.min.css'
