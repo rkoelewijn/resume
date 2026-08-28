@@ -1,57 +1,45 @@
 // src/i18n/index.ts
 import { createI18n } from 'vue-i18n'
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE, LOCALE_STORAGE_KEY } from './config'
+import en from './locales/en'
+import nl from './locales/nl'
 
-const messages = {
-  en: {
-    nav: { 
-      backToResume: 'Back to Resume',
-      savePdf: 'Save PDF' 
-    },
-    headers: {
-      experience: 'Relevant Experience',
-      education: 'Education',
-      featuredProjects: 'Featured Projects',
-      github: 'Live GitHub Activity',
-      sideJobs: 'Side Jobs', // <-- Added
-      training: 'Training & Certificates'
-    },
-    labels: {
-      at: 'at',
-      gpa: 'GPA',
-      keyCourses: 'Key Courses:',
-      viewProject: 'View Project Details',
-      viewThesis: 'View Thesis Project', // <-- Added
-      loading: 'Loading repositories...',
-      noDescription: 'No description provided.'
+const messages: Record<string, typeof en> = {
+  en,
+  nl
+}
+
+// Function to detect initial locale
+const getInitialLocale = (): string => {
+  try {
+    const saved = localStorage.getItem(LOCALE_STORAGE_KEY)
+    if (saved && SUPPORTED_LOCALES.some(l => l.code === saved)) {
+      return saved
     }
-  },
-  nl: {
-    nav: { 
-      backToResume: 'Terug naar CV',
-      savePdf: 'Opslaan als PDF' 
-    },
-    headers: {
-      experience: 'Relevante Ervaring',
-      education: 'Opleiding',
-      featuredProjects: 'Uitgelichte Projecten',
-      github: 'Recente GitHub Activiteit',
-      sideJobs: 'Bijbanen' // <-- Added
-    },
-    labels: {
-      at: 'bij',
-      gpa: 'Gemiddelde',
-      keyCourses: 'Relevante Vakken:',
-      viewProject: 'Bekijk Projectdetails',
-      viewThesis: 'Bekijk Thesis Project', // <-- Added
-      loading: 'Repositories laden...',
-      noDescription: 'Geen beschrijving beschikbaar.'
+  } catch (e) {
+    // LocalStorage may be unavailable (e.g. private browsing)
+  }
+  return DEFAULT_LOCALE
+}
+
+export const i18n = createI18n({
+  legacy: false, // Enables Composition API
+  locale: getInitialLocale(),
+  fallbackLocale: DEFAULT_LOCALE,
+  messages
+})
+
+// Helper to switch language and persist preference
+export const setLanguage = (localeCode: string) => {
+  if (SUPPORTED_LOCALES.some(l => l.code === localeCode)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (i18n.global.locale as any).value = localeCode
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, localeCode)
+    } catch (e) {
+      // Ignore localStorage errors
     }
   }
 }
 
-export const i18n = createI18n({
-  legacy: false, // Essential: This enables the Composition API
-  locale: 'en',  // Default language
-  fallbackLocale: 'en',
-  messages
-})
+export * from './config'

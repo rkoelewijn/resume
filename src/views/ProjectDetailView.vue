@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { allResumeData } from '../data'
+import { getResumeData } from '@/data'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -10,9 +10,9 @@ const { t, locale } = useI18n()
 // 1. Grab the dynamic ID from the URL (e.g., 'portfolio-architecture')
 const projectId = route.params.id as string
 
-// 2. Find the matching project in your data
+// 2. Find the matching project in your data dynamically with safe fallback
 const project = computed(() => {
-  const currentData = allResumeData[locale.value as 'en' | 'nl']
+  const currentData = getResumeData(locale.value)
   return currentData.projects.find(p => p.id === projectId)
 })
 </script>

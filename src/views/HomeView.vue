@@ -1,23 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n' // <-- Import the hook
-import { allResumeData } from '../data'
+import { useI18n } from 'vue-i18n'
+import { getResumeData } from '@/data'
 import { programmingSkills, categorizedSkills, sharedBasics } from '@/data/shared'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 
 // 1. Initialize i18n
 const { t, locale } = useI18n()
 
-// 2. Link your existing data files directly to the i18n locale state!
-// Now, when the locale changes, your heavy data automatically swaps too.
-const resumeData = computed(() => allResumeData[locale.value as 'en' | 'nl'])
+// 2. Link data dynamically to current locale with safe fallback
+const resumeData = computed(() => getResumeData(locale.value))
 
 // Dark Mode State
 const isDarkMode = ref(false)
-
-// 3. Update the toggle function
-const toggleLang = () => {
-  locale.value = locale.value === 'en' ? 'nl' : 'en'
-}
 
 // Toggle Dark Theme
 const toggleTheme = () => {
@@ -118,15 +113,7 @@ onMounted(() => {
         <!-- <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button> -->
-      <button @click="toggleLang" class="lang-toggle-pill">
-        <div :class="['lang-option', { 'is-active': locale === 'nl' }]">
-          <span class="fi fi-nl"></span>
-        </div>
-        
-        <div :class="['lang-option', { 'is-active': locale === 'en' }]">
-          <span class="fi fi-gb"></span>
-        </div>
-      </button>
+        <LanguageSwitcher />
       </div>
     </div>
 
@@ -201,7 +188,7 @@ onMounted(() => {
             class="company-logo" 
           />
           <div>
-            <strong>{{ job.role }}</strong> {{ locale === 'en' ? 'at' : 'bij' }} 
+            <strong>{{ job.role }}</strong> {{ $t('labels.at') }} 
             <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">
               {{ job.company }}
             </a>
@@ -212,7 +199,7 @@ onMounted(() => {
         </div>
         <p class= "description-main-text" v-html="job.description"></p>
         <p class="secondary-text" style="margin-top: -0.8rem">
-          <em>Additonal Responsibilities</em>: {{ job.additional }}
+          <em>{{ $t('labels.additionalResponsibilities') }}</em>: {{ job.additional }}
         </p>
       </div>
     </div>
@@ -254,13 +241,13 @@ onMounted(() => {
             </div>
             <div class="education-details" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
               <p v-if="edu.summary" class="description-main-text">{{ edu.summary }}</p>
-              <p v-if="edu.minor" class="minor-text"><em>Minor:</em> {{ edu.minor }}</p>
-              <p v-if="edu.courses" class="secondary-text"><em>Highlighted Courses:</em> {{ edu.courses }}</p>
+              <p v-if="edu.minor" class="minor-text"><em>{{ $t('labels.minor') }}</em> {{ edu.minor }}</p>
+              <p v-if="edu.courses" class="secondary-text"><em>{{ $t('labels.keyCourses') }}</em> {{ edu.courses }}</p>
               <p v-if="edu.details" class="secondary-text">{{ edu.details }}</p>
               
               <div v-if="edu.projectId" class="no-print" style="margin-top: 0.5rem;">
                 <RouterLink :to="'/' + edu.projectId" class="highlight-text" style="font-size: 0.85rem;">
-                  View Bachelor's Thesis &rarr;
+                  {{ $t('labels.viewThesis') }} &rarr;
                 </RouterLink>
               </div>
             </div> 
@@ -299,7 +286,7 @@ onMounted(() => {
     <section class="fade-in-section no-print">
       <h3 class="section-title">{{ $t('headers.github') }}</h3>
       
-      <div v-if="loadingRepos" class="secondary-text">Loading repositories...</div>
+      <div v-if="loadingRepos" class="secondary-text">{{ $t('labels.loading') }}</div>
       <div v-else-if="repoError" class="secondary-text">Unable to load GitHub data at this time.</div>
       
       <div v-else class="github-grid">
@@ -313,7 +300,7 @@ onMounted(() => {
         >
           <strong>{{ repo.name }}</strong>
           <p class="secondary-text" style="margin: 0.5rem 0;">
-            {{ repo.description || (locale === 'en' ? 'No description provided.' : 'Geen beschrijving beschikbaar.') }}
+            {{ repo.description || $t('labels.noDescription') }}
           </p>
           
           <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -334,7 +321,7 @@ onMounted(() => {
            <div class="card-header">
              <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
              <div>
-               <strong>{{ job.role }}</strong> {{ locale === 'en' ? 'at' : 'bij' }} 
+               <strong>{{ job.role }}</strong> {{ $t('labels.at') }} 
                <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
                <span v-else>{{ job.company }}</span> 
                <span class="timeline">({{ job.timeline }})</span>
@@ -355,7 +342,7 @@ onMounted(() => {
       </ul>
     </section>
     <section class="fade-in-section">
-      <h3 class="section-title"> Skills</h3>
+      <h3 class="section-title">{{ $t('headers.skills') }}</h3>
       <div class="isolated-skills-wrapper">
       <div class="isolated-bars-container">
       <div v-for="skill in programmingSkills" :key="skill.name" class="isolated-skill-row">
@@ -399,10 +386,10 @@ onMounted(() => {
 </div>
 
 <section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;">
-  <h3 class="section-title" style="margin-top: -1rem;">Let's Connect</h3>
+  <h3 class="section-title" style="margin-top: -1rem;">{{ $t('headers.connect') }}</h3>
   <div class="contact-links">
-    <a :href="'mailto:'+ sharedBasics.email" class="btn">Send me an email</a>
-    <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">View LinkedIn</a>
+    <a :href="'mailto:'+ sharedBasics.email" class="btn">{{ $t('labels.sendEmail') }}</a>
+    <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">{{ $t('labels.viewLinkedIn') }}</a>
   </div>
 </section>
 
