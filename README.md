@@ -8,11 +8,11 @@ Designed to serve as both an engaging online portfolio showcase and a single-sou
 
 ## ✨ Features
 
-- **📄 ATS-Friendly PDF Export**: Built-in "Save PDF" feature with a custom `@media print` stylesheet that automatically formats contact credentials, justifies typography, renders skill bars with exact print colors, and strips interactive web-only widgets.
-- **🌐 Bilingual Support (i18n)**: Instant language toggle between English (`en`) and Dutch (`nl`) using `vue-i18n` with synchronized data models.
-- **💼 Interactive Case Studies & Projects**: Dynamic routing for in-depth project breakdowns with structured categories and tech stacks.
-- **📊 Live GitHub Activity**: Real-time GitHub API integration fetching recent repositories and showcase statistics.
-- **🎨 Modern Design System**: Responsive CSS architecture with smooth micro-animations, customizable theme variables, and FontAwesome icons.
+- **ATS-Friendly PDF Export**: Built-in "Save PDF" feature with a custom `@media print` stylesheet that automatically formats contact credentials, justifies typography, renders skill bars with exact print colors, and strips interactive web-only widgets.
+- **Bilingual Support (i18n)**: Instant language toggle between English (`en`) and Dutch (`nl`) using `vue-i18n` with synchronized data models.
+- **Interactive Case Studies & Projects**: Dynamic routing for in-depth project breakdowns with structured categories and tech stacks.
+- **Live GitHub Activity**: Real-time GitHub API integration fetching recent repositories and showcase statistics.
+- **Modern Design System**: Responsive CSS architecture with smooth micro-animations, customizable theme variables, and FontAwesome icons.
 
 ---
 
