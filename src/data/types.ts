@@ -50,6 +50,23 @@ export interface Training{
   date?: string; 
 }
 
+export interface CategorizedSkillItem {
+  area: string;
+  technologies: string;
+}
+
+export interface SkillCategory {
+  title: string;
+  items: CategorizedSkillItem[];
+}
+
+export interface ProgrammingSkill {
+  name: string;
+  category: string;
+  level: string;
+  percentage: number;
+}
+
 export interface ResumeData {
   basics: {
     name: string;
@@ -67,6 +84,8 @@ export interface ResumeData {
   side_jobs: Experience[];
   training: Training[]; 
   projects: Project[];
+  programming_skills?: ProgrammingSkill[];
+  categorized_skills?: SkillCategory[];
   skills?: {
     programming: Skill[];
     data_science: Skill[];

@@ -223,4 +223,46 @@ export const enData: ResumeData = {
 
     },
   ],
+  programming_skills: [
+    { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
+    { name: 'DAX / M',  category: 'data', level: 'Advanced', percentage: 75 },
+    { name: 'LaTeX',  category: 'systems', level: 'Expert', percentage: 100 },
+    { name: 'C / C++',  category: 'systems', level: 'Advanced', percentage: 75 },
+    { name: 'JavaScript / TypeScript',  category: 'web', level: 'Advanced', percentage: 75 },
+    { name: 'HTML / CSS',  category: 'web', level: 'Proficient', percentage: 50 },
+  ],
+  categorized_skills: [
+    {
+      title: 'Data Science & Analytics',
+      items: [
+        { area: 'Data Modeling & Processing', technologies: 'Polars, NumPy' },
+        { area: 'Machine Learning', technologies: 'scikit-learn, Anomaly Detection, LLM Evaluation' },
+        { area: 'Business Intelligence', technologies: 'Power BI' },
+        { area: 'Development & Infrastructure', technologies: 'Git, Linux / UNIX (Bash)' },
+        { area: 'Spreadsheet Analytics', technologies: 'Excel' }
+      ]
+    },
+    {
+      title: 'Consulting & Business',
+      items: [
+        { area: 'Project Execution', technologies: 'Stakeholder Management, Requirements Gathering, Project Management' },
+        { area: 'Corporate Communication', technologies: 'PowerPoint, Executive Reporting' },
+        { area: 'Operations', technologies: 'Talent Acquisition Workflows' }
+      ]
+    },
+    {
+      title: 'Creative Skills',
+      items: [
+        { area: 'Video Production', technologies: 'Adobe Premiere Pro' },
+        { area: 'Graphic Design', technologies: 'Adobe Illustrator, Adobe Photoshop' }
+      ]
+    },
+    {
+      title: 'Languages',
+      items: [
+        { area: 'Dutch', technologies: 'Native' },
+        { area: 'English', technologies: 'C2 Cambridge Level' }
+      ]
+    }
+  ]
 }

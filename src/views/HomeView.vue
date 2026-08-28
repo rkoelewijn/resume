@@ -345,7 +345,7 @@ onMounted(() => {
       <h3 class="section-title">{{ $t('headers.skills') }}</h3>
       <div class="isolated-skills-wrapper">
       <div class="isolated-bars-container">
-      <div v-for="skill in programmingSkills" :key="skill.name" class="isolated-skill-row">
+      <div v-for="skill in (resumeData.programming_skills || programmingSkills)" :key="skill.name" class="isolated-skill-row">
         
         <div class="isolated-skill-name">{{ skill.name }}</div>
         
@@ -368,7 +368,7 @@ onMounted(() => {
  <div class="additional-skills-grid fade-in-section">
   
   <div 
-    v-for="category in categorizedSkills" 
+    v-for="category in (resumeData.categorized_skills || categorizedSkills)" 
     :key="category.title" 
     class="skill-category-block"
   >
