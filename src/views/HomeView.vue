@@ -498,8 +498,9 @@ watch(locale, () => {
 }
 
 .isolated-bar-label {
+  font-family: var(--font-mono);
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -589,7 +590,16 @@ a.highlight-text:hover {
 
 .timeline {
   color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 500;
+}
+
+.gpa-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-blue);
 }
 
 .compact-list {

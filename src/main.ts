@@ -8,6 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFilePdf } from '@fortawesome/free-solid-svg-icons'; // For the contact & PDF icons
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import '@fontsource-variable/inter'
+import '@fontsource-variable/fira-code'
 import './assets/main.css'
 import { useTheme } from './composables/useTheme'
 
