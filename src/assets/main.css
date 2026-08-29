@@ -2,6 +2,7 @@
 :root {
   --bg-gradient: linear-gradient(135deg, #e6e8e6 0%, #cee5f2 100%);
   --card-bg: #ffffff;
+  --card-alt: #fbfbfc;
   --text-main: #080708;
   --text-muted: #666666;
   --accent-blue: #3772ff;
@@ -10,7 +11,27 @@
   --secondary-green: #307351; 
   --accent-yellow: #fdca40;
   --divider: #cee5f2;
-  --card-alt: #fbfbfc;
+  --bar-bg: rgba(0, 0, 0, 0.08);
+  --shadow-color: rgba(8, 7, 8, 0.05);
+}
+
+/* Dark Theme Variables */
+:root.dark-theme,
+body.dark-theme,
+[data-theme='dark'] {
+  --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #111827 100%);
+  --card-bg: #1e293b;
+  --card-alt: #0f172a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-blue: #60a5fa;
+  --secondary-blue: #38bdf8;
+  --dark-blue: #a5b4fc;
+  --secondary-green: #34d399;
+  --accent-yellow: #fbbf24;
+  --divider: #334155;
+  --bar-bg: rgba(255, 255, 255, 0.12);
+  --shadow-color: rgba(0, 0, 0, 0.35);
 }
 
 .color-data {

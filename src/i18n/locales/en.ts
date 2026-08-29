@@ -3,7 +3,8 @@
 export default {
   nav: {
     backToResume: 'Back to Resume',
-    savePdf: 'Save PDF'
+    savePdf: 'Save PDF',
+    toggleTheme: 'Toggle Dark/Light Mode'
   },
   headers: {
     experience: 'Relevant Experience',

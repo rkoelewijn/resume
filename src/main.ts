@@ -9,11 +9,14 @@ import { faGithub, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-
 import { faEnvelope, faFilePdf } from '@fortawesome/free-solid-svg-icons'; // For the contact & PDF icons
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import './assets/main.css'
+import { useTheme } from './composables/useTheme'
 
 library.add(faGithub, faLinkedin, faInstagram, faEnvelope, faFilePdf);
 
-
 import 'flag-icons/css/flag-icons.min.css'
+
+// Initialize theme preference
+useTheme().initTheme()
 
 const app = createApp(App)
 // Register the component globally

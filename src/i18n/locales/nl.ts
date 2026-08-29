@@ -3,7 +3,8 @@
 export default {
   nav: {
     backToResume: 'Terug naar CV',
-    savePdf: 'Opslaan als PDF'
+    savePdf: 'Opslaan als PDF',
+    toggleTheme: 'Donkere/Lichte modus wisselen'
   },
   headers: {
     experience: 'Relevante Ervaring',

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { getResumeData } from '@/data'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
 
 const route = useRoute()
 const { t, locale } = useI18n()
@@ -28,11 +30,16 @@ watch(locale, () => {
 <template>
   <main class="project-wrap">
     
-    <nav style="margin-bottom: 2rem;">
-      <RouterLink to="/" class="highlight-text" style="font-weight: bold;">
+    <div class="detail-nav-bar no-print">
+      <RouterLink to="/" class="highlight-text back-link">
         &larr; {{ $t('nav.backToResume') }}
       </RouterLink>
-    </nav>
+
+      <div class="right-utilities">
+        <ThemeToggle />
+        <LanguageSwitcher />
+      </div>
+    </div>
     
     <div :class="{ 'lang-crossfade': isLangTransitioning }">
       <div v-if="project">
@@ -77,13 +84,36 @@ watch(locale, () => {
   background-color: var(--card-bg);
   padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(8, 7, 8, 0.05);
+  box-shadow: 0 8px 16px var(--shadow-color, rgba(8, 7, 8, 0.05));
   transition: background-color 0.3s ease;
+}
+
+.detail-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.back-link {
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.right-utilities {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 /* Print optimization */
 @media print {
-  nav {
+  .detail-nav-bar,
+  .no-print {
     display: none !important;
   }
 }

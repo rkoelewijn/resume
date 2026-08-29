@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getResumeData } from '@/data'
 import { programmingSkills, categorizedSkills, sharedBasics } from '@/data/shared'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import ThemeToggle from '@/components/ThemeToggle.vue'
 
 // 1. Initialize i18n
 const { t, locale } = useI18n()
@@ -11,24 +12,11 @@ const { t, locale } = useI18n()
 // 2. Link data dynamically to current locale with safe fallback
 const resumeData = computed(() => getResumeData(locale.value))
 
-// Dark Mode State
-const isDarkMode = ref(false)
-
-// Toggle Dark Theme
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-  if (isDarkMode.value) {
-    document.body.classList.add('dark-theme')
-  } else {
-    document.body.classList.remove('dark-theme')
-  }
-}
-
 // Create a filtered list of just the featured projects
 const featuredProjects = computed(() => {
-  const featuredIds = ['portfolio-architecture', 'verbelco-waterweb']; // Add your actual IDs here
-  return resumeData.value.projects.filter(p => featuredIds.includes(p.id));
-});
+  const featuredIds = ['portfolio-architecture', 'verbelco-waterweb']
+  return resumeData.value.projects.filter(p => featuredIds.includes(p.id))
+})
 
 // Trigger Print to PDF
 const downloadPDF = () => {
@@ -37,75 +25,68 @@ const downloadPDF = () => {
     window.print()
   }, 50)
 }
-// --- NEW GITHUB API INTEGRATION ---
+
+// --- GITHUB API INTEGRATION ---
 interface GithubRepo {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  stargazers_count: number;
-  language: string;
+  id: number
+  name: string
+  description: string
+  html_url: string
+  stargazers_count: number
+  language: string
 }
 
-const repos = ref<GithubRepo[]>([]);
-const loadingRepos = ref(true);
-const repoError = ref(false);
+const repos = ref<GithubRepo[]>([])
+const loadingRepos = ref(true)
+const repoError = ref(false)
 
-const githubUsername = 'rkoelewijn'; 
+const githubUsername = 'rkoelewijn'
 
-// --- SKILLS ANIMATION LOGIC ---
-const animateSkills = ref(false);
+// --- SKILLS ANIMATION & INTERSECTION OBSERVER LOGIC ---
+const animateSkills = ref(false)
 
 onMounted(async () => {
-  // 1. Trigger the skill bars to grow 300ms after the component mounts
+  // 1. Trigger skill bar animation
   setTimeout(() => {
-    animateSkills.value = true;
-  }, 300);
+    animateSkills.value = true
+  }, 300)
 
-  // 2. Execute your GitHub fetch
-  try {
-    const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=3`);
-    if (!response.ok) throw new Error('Failed to fetch');
-    repos.value = await response.json();
-  } catch (e) {
-    repoError.value = true;
-  } finally {
-    loadingRepos.value = false;
-  }
-});
-
-const observeFadeSections = () => {
-  const elements = document.querySelectorAll('.fade-in-section');
-  elements.forEach((el) => {
-    el.classList.add('is-visible');
-  });
-};
-
-onMounted(() => {
+  // 2. Observe fade-in sections
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); 
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
       }
-    });
+    })
   }, {
     threshold: 0.15
-  });
+  })
 
-  const elements = document.querySelectorAll('.fade-in-section');
-  elements.forEach((el) => observer.observe(el));
-});
+  const elements = document.querySelectorAll('.fade-in-section')
+  elements.forEach((el) => observer.observe(el))
+
+  // 3. Execute GitHub fetch
+  try {
+    const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=3`)
+    if (!response.ok) throw new Error('Failed to fetch')
+    repos.value = await response.json()
+  } catch (e) {
+    repoError.value = true
+  } finally {
+    loadingRepos.value = false
+  }
+})
 
 // Non-destructive transition state on language change
-const isLangTransitioning = ref(false);
+const isLangTransitioning = ref(false)
 
 watch(locale, () => {
-  isLangTransitioning.value = true;
+  isLangTransitioning.value = true
   setTimeout(() => {
-    isLangTransitioning.value = false;
-  }, 280);
-});
+    isLangTransitioning.value = false
+  }, 280)
+})
 </script>
 
 <template>
@@ -118,9 +99,7 @@ watch(locale, () => {
       </button>
       
       <div class="right-utilities">
-        <!-- <button @click="toggleTheme" class="theme-btn icon-btn" title="Toggle Dark Mode">
-          {{ isDarkMode ? '☀️' : '🌙' }}
-        </button> -->
+        <ThemeToggle />
         <LanguageSwitcher />
       </div>
     </div>
@@ -502,7 +481,7 @@ watch(locale, () => {
 .isolated-bar-bg {
   width: 100%;
   height: 20px;
-  background-color: rgba(0, 0, 0, 0.08); 
+  background-color: var(--bar-bg, rgba(0, 0, 0, 0.08)); 
   border-radius: 4px;
   overflow: hidden;
 }
@@ -538,7 +517,7 @@ watch(locale, () => {
   background-color: var(--card-bg);
   padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(8, 7, 8, 0.05);
+  box-shadow: 0 8px 16px var(--shadow-color, rgba(8, 7, 8, 0.05));
   transition: background-color 0.3s ease;
 }
 

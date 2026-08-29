@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProjectDetailView from '../views/ProjectDetailView.vue' // <-- Import the new dynamic view
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,14 +6,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     // The `:id` syntax tells Vue Router to capture whatever is in the URL 
     // and pass it to the component as route.params.id
     {
       path: '/:id',
       name: 'project-detail',
-      component: ProjectDetailView
+      component: () => import('../views/ProjectDetailView.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
