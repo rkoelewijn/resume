@@ -28,10 +28,10 @@ watch(locale, () => {
 </script>
 
 <template>
-  <main class="project-wrap">
+  <div class="project-wrap">
     
-    <div class="detail-nav-bar no-print">
-      <RouterLink to="/" class="highlight-text back-link">
+    <div class="detail-nav-bar no-print" role="toolbar" aria-label="Navigation and utilities">
+      <RouterLink to="/" class="highlight-text back-link" aria-label="Return to resume home page">
         &larr; {{ $t('nav.backToResume') }}
       </RouterLink>
 
@@ -76,7 +76,7 @@ watch(locale, () => {
         <p class="secondary-text" style="margin-top: 1rem;">The project you are looking for does not exist or has been removed.</p>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <style scoped>

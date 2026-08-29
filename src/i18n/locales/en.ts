@@ -4,7 +4,8 @@ export default {
   nav: {
     backToResume: 'Back to Resume',
     savePdf: 'Save PDF',
-    toggleTheme: 'Toggle Dark/Light Mode'
+    toggleTheme: 'Toggle Dark/Light Mode',
+    skipToContent: 'Skip to main content'
   },
   headers: {
     experience: 'Relevant Experience',

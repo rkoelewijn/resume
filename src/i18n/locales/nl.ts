@@ -4,7 +4,8 @@ export default {
   nav: {
     backToResume: 'Terug naar CV',
     savePdf: 'Opslaan als PDF',
-    toggleTheme: 'Donkere/Lichte modus wisselen'
+    toggleTheme: 'Donkere/Lichte modus wisselen',
+    skipToContent: 'Direct naar inhoud'
   },
   headers: {
     experience: 'Relevante Ervaring',

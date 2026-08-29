@@ -92,9 +92,9 @@ watch(locale, () => {
 <template>
   <div v-if="resumeData && resumeData.basics" class="resume-wrapper">
     
-    <div class="utility-bar no-print">
-      <button @click="downloadPDF" class="theme-btn secondary-btn save-pdf-btn" :title="$t('nav.savePdf')">
-        <font-awesome-icon icon="file-pdf" class="pdf-btn-icon" />
+    <div class="utility-bar no-print" role="toolbar" aria-label="Resume utilities">
+      <button @click="downloadPDF" class="theme-btn secondary-btn save-pdf-btn" :title="$t('nav.savePdf')" :aria-label="$t('nav.savePdf')">
+        <font-awesome-icon icon="file-pdf" class="pdf-btn-icon" aria-hidden="true" />
         <span>{{ $t('nav.savePdf') }}</span>
       </button>
       
@@ -113,15 +113,15 @@ watch(locale, () => {
             <h2>{{ resumeData.basics.title }}</h2>
 
             <!-- Interactive Quick Links (Screen Only) -->
-            <div class="quick-links no-print">
-              <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <font-awesome-icon :icon="['fab', 'linkedin']" />
+            <div class="quick-links no-print" role="navigation" aria-label="Social and contact links">
+              <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Visit LinkedIn profile (opens in new tab)">
+                <font-awesome-icon :icon="['fab', 'linkedin']" aria-hidden="true" />
               </a>
-              <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub">
-                <font-awesome-icon :icon="['fab', 'github']" />
+              <a :href="sharedBasics.github" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="Visit GitHub profile (opens in new tab)">
+                <font-awesome-icon :icon="['fab', 'github']" aria-hidden="true" />
               </a>
-              <a :href="'mailto:' + sharedBasics.email" title="Contact">
-                <font-awesome-icon icon="envelope" />
+              <a :href="'mailto:' + sharedBasics.email" title="Contact" aria-label="Send email to Ruben Koelewijn">
+                <font-awesome-icon icon="envelope" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -373,14 +373,13 @@ watch(locale, () => {
     </div>
   </div>
 
-  <section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;">
-    <h3 class="section-title" style="margin-top: -1rem;">{{ $t('headers.connect') }}</h3>
+  <section class="contact-section fade-in-section no-print" style="margin: 2rem 0 2rem;" aria-labelledby="connect-heading">
+    <h3 id="connect-heading" class="section-title" style="margin-top: -1rem;">{{ $t('headers.connect') }}</h3>
     <div class="contact-links">
-      <a :href="'mailto:'+ sharedBasics.email" class="btn">{{ $t('labels.sendEmail') }}</a>
-      <a :href="sharedBasics.linkedin" target="_blank" class="secondary-btn">{{ $t('labels.viewLinkedIn') }}</a>
+      <a :href="'mailto:'+ sharedBasics.email" class="btn" aria-label="Send email to Ruben Koelewijn">{{ $t('labels.sendEmail') }}</a>
+      <a :href="sharedBasics.linkedin" target="_blank" rel="noopener noreferrer" class="secondary-btn" aria-label="View LinkedIn profile (opens in new tab)">{{ $t('labels.viewLinkedIn') }}</a>
     </div>
   </section>
-
 </template>
 
 <style scoped>

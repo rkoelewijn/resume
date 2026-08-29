@@ -378,6 +378,195 @@ p,
 }
 
 /* ==========================================================================
+   ACCESSIBILITY: SKIP LINK & FOCUS INDICATORS (WCAG 2.1 AA)
+   ========================================================================== */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  background: var(--accent-blue);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 99999;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.secondary-btn:focus-visible,
+.save-pdf-btn:focus-visible,
+.lang-option:focus-visible,
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Mobile & Tablet Polish)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .resume-wrapper,
+  .project-wrap {
+    padding: 1.75rem 1.25rem;
+    border-radius: 10px;
+  }
+
+  .utility-bar {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .header-section {
+    padding-left: 1rem;
+    border-left-width: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .header-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .header-section h2 {
+    font-size: 1.05rem;
+  }
+
+  .quick-links {
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .quick-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.35rem;
+  }
+
+  .timeline-container {
+    margin-left: 4px;
+  }
+
+  .timeline-item {
+    padding-left: 22px;
+    padding-bottom: 1.5rem;
+  }
+
+  .timeline-dot {
+    left: 1px;
+    top: 1.3rem;
+    width: 10px;
+    height: 10px;
+  }
+
+  .company-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-header {
+    gap: 0.75rem;
+  }
+
+  .github-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-section {
+    padding: 2rem 1.25rem;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact-links .btn,
+  .contact-links .secondary-btn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.75rem 1.2rem;
+  }
+
+  .detail-nav-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0.85rem 0.5rem;
+  }
+
+  .resume-wrapper,
+  .project-wrap {
+    padding: 1.25rem 0.85rem;
+    border-radius: 8px;
+  }
+
+  .header-section h1 {
+    font-size: 1.65rem;
+  }
+
+  .header-section h2 {
+    font-size: 0.95rem;
+  }
+
+  .save-pdf-btn {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .right-utilities {
+    gap: 0.5rem;
+  }
+
+  .card {
+    padding: 1rem 0.85rem;
+  }
+
+  .card-interactive {
+    padding: 0.85rem;
+  }
+
+  .tech-tags {
+    gap: 0.3rem;
+  }
+
+  .tech-tag {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+  }
+}
+
+/* ==========================================================================
    PRINT STYLESHEET (ATS & Print-to-PDF Optimization)
    ========================================================================== */
 @media print {

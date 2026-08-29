@@ -11,15 +11,21 @@ const messages: Record<string, typeof en> = {
 
 // Function to detect initial locale
 const getInitialLocale = (): string => {
+  let detectedLocale = DEFAULT_LOCALE
   try {
     const saved = localStorage.getItem(LOCALE_STORAGE_KEY)
     if (saved && SUPPORTED_LOCALES.some(l => l.code === saved)) {
-      return saved
+      detectedLocale = saved
     }
   } catch (e) {
     // LocalStorage may be unavailable (e.g. private browsing)
   }
-  return DEFAULT_LOCALE
+
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = detectedLocale
+  }
+
+  return detectedLocale
 }
 
 export const i18n = createI18n({
@@ -35,6 +41,9 @@ export const setLanguage = (localeCode: string) => {
     const updateLocale = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (i18n.global.locale as any).value = localeCode
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = localeCode
+      }
       try {
         localStorage.setItem(LOCALE_STORAGE_KEY, localeCode)
       } catch (e) {
