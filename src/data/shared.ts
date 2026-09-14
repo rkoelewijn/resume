@@ -19,64 +19,57 @@ export const assets = {
     logo: "/logos/thalia_black.png",
     companyUrl: "https://thalia.nu/"
   },
-  tapasia: {
-  },
-  albertHeijn: {
-  },
   radboud: {
     logoLight: "/logos/radboud_logo.png",
     projectId: "bsc-thesis", // Match this to your project object ID
     gpa: "7.1/10"
-  },
-  streek: {
-    logo: "/logos/streek.png"
   }
 }
 
 export const programmingSkills = [
   { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
-  { name: 'DAX / M',  category: 'data', level: 'Advanced', percentage: 75 },
-  { name: 'LaTeX',  category: 'systems', level: 'Expert', percentage: 100 },
-  { name: 'C / C++',  category: 'systems', level: 'Advanced', percentage: 75 },
-  { name: 'JavaScript / TypeScript',  category: 'web', level: 'Advanced', percentage: 75 },
-  { name: 'HTML / CSS',  category: 'web', level: 'Proficient', percentage: 50 },
-  // { name: 'Java', level: 'Familiar', percentage: 25 },
-  // { name: 'Haskell', level: 'Familiar', percentage: 25 }
+  { name: 'DAX / Power Query (M)', category: 'data', level: 'Advanced', percentage: 85 },
+  { name: 'SQL', category: 'data', level: 'Advanced', percentage: 80 },
+  { name: 'C / C++', category: 'systems', level: 'Advanced', percentage: 75 },
+  { name: 'LaTeX', category: 'systems', level: 'Advanced', percentage: 75 },
+  { name: 'JavaScript / TypeScript', category: 'web', level: 'Proficient', percentage: 70 },
+  { name: 'HTML / CSS', category: 'web', level: 'Proficient', percentage: 60 }
 ];
 
 export const categorizedSkills = [
   {
-    title: 'Data Science & Analytics',
+    title: 'Data Science & Machine Learning',
     items: [
-      { area: 'Data Modeling & Processing', technologies: 'Polars, NumPy' },
-      { area: 'Machine Learning', technologies: 'scikit-learn, Anomaly Detection, LLM Evaluation' },
-      { area: 'Business Intelligence', technologies: 'Power BI' },
-      { area: 'Development & Infrastructure', technologies: 'Git, Linux / UNIX (Bash)' },
-      { area: 'Spreadsheet Analytics', technologies:  'Excel' }
+      { area: 'Data Processing & Modeling', technologies: 'Polars, NumPy, Pandas' },
+      { area: 'Machine Learning & AI', technologies: 'scikit-learn, LLM Evaluation, Natural Language Inference (NLI), Outlier Detection' }
     ]
   },
   {
-    title: 'Consulting & Business',
+    title: 'Business Intelligence & Analytics',
     items: [
-      // { area: 'Strategic Advisory', technologies: 'Operating Model Design, Change Management' },
-      { area: 'Project Execution', technologies: 'Stakeholder Management, Requirements Gathering, Project Management' },
-      { area: 'Corporate Communication', technologies: 'PowerPoint, Executive Reporting' },
-      { area: 'Operations', technologies: 'Talent Acquisition Workflows' }
+      { area: 'BI & Dashboarding', technologies: 'Power BI, DAX, Power Query (M), KPI Frameworks, Data Modeling' },
+      { area: 'Spreadsheet Analytics', technologies: 'Advanced Excel' }
     ]
   },
   {
-    title: 'Creative Skills',
+    title: 'Software & Systems Engineering',
     items: [
-      { area: 'Video Production', technologies: 'Adobe Premiere Pro' },
-      { area: 'Graphic Design', technologies: 'Adobe Illustrator, Adobe Photoshop' },
-      // { area: 'Live Audio / Performance', technologies: 'Live DJ Mixing' }
+      { area: 'Core Languages', technologies: 'Python, C / C++, TypeScript, JavaScript, SQL' },
+      { area: 'Tools & Infrastructure', technologies: 'Git, Linux / UNIX (Bash), REST APIs, uv, LaTeX' }
+    ]
+  },
+  {
+    title: 'Consulting & Strategy',
+    items: [
+      { area: 'Project Execution', technologies: 'Stakeholder Management, Requirements Gathering, Agile Delivery' },
+      { area: 'Executive Communication', technologies: 'Executive Reporting, PowerPoint, Client Presentations' }
     ]
   },
   {
     title: 'Languages',
     items: [
       { area: 'Dutch', technologies: 'Native' },
-      { area: 'English', technologies: 'C2 Cambridge Level' }
+      { area: 'English', technologies: 'C2 Cambridge Proficiency' }
     ]
   }
 ];

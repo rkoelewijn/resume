@@ -572,7 +572,7 @@ button:focus-visible,
 @media print {
   @page {
     size: A4 portrait;
-    margin: 10mm 12mm;
+    margin: 8mm 10mm;
   }
 
   /* Reset all transitions in print */
@@ -597,8 +597,8 @@ button:focus-visible,
     width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
-    font-size: 9pt !important;
-    line-height: 1.35 !important;
+    font-size: 8.8pt !important;
+    line-height: 1.32 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -612,94 +612,78 @@ button:focus-visible,
     max-width: 100% !important;
   }
 
-  /* Hide interactive / web-only elements */
+  /* Hide interactive / web-only elements, photo & skill bars in print */
   .no-print,
+  .skip-link,
   .utility-bar,
   .quick-links,
-  .contact-section {
+  .contact-section,
+  .photo-container,
+  .isolated-skills-wrapper {
     display: none !important;
   }
 
-  /* Header Section: Name & Title Centered, Picture on Right */
+  /* Header Section: Clean left-aligned professional header for ATS parsing */
   .header-section {
     border-left: 4px solid #3772ff !important;
-    padding-left: 1rem !important;
-    margin-bottom: 0.8rem !important;
+    padding-left: 0.9rem !important;
+    margin-bottom: 0.6rem !important;
+    text-align: left !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
   .header-content {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    text-align: center !important;
-    margin-bottom: 0.6rem !important;
-    gap: 1.5rem !important;
+    display: block !important;
+    margin-bottom: 0.35rem !important;
     width: 100% !important;
   }
 
   .text-side {
-    flex: 1 !important;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
   }
 
   .header-section h1 {
-    font-size: 1.85rem !important;
-    margin-bottom: 0.15rem !important;
+    font-size: 1.75rem !important;
+    margin-bottom: 0.1rem !important;
     color: #03045e !important;
-    text-align: center !important;
+    text-align: left !important;
   }
 
   .header-section h2 {
-    font-size: 1.05rem !important;
-    margin-bottom: 0.25rem !important;
+    font-size: 1rem !important;
+    margin-bottom: 0.2rem !important;
     color: #333333 !important;
     font-weight: 600 !important;
-    text-align: center !important;
+    text-align: left !important;
   }
 
-  /* Profile Photo for Print */
-  .photo-container {
-    width: 125px !important;
-    height: 125px !important;
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-    flex-shrink: 0 !important;
-    margin: 0 !important;
-  }
-
-  .profile-photo {
-    width: 125px !important;
-    height: 125px !important;
-    border-radius: 10px !important;
-    box-shadow: none !important;
-    object-fit: cover !important;
-  }
-
-  /* Centered Contact Details (Print Only - Under Summary) */
+  /* Contact Details in Print: Neatly aligned */
   .print-only,
   .print-contact-info {
     display: flex !important;
     flex-wrap: wrap !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: center !important;
-    text-align: center !important;
-    gap: 0.4rem 1.2rem !important;
-    font-size: 8.5pt !important;
+    text-align: left !important;
+    gap: 0.3rem 1rem !important;
+    font-size: 8.2pt !important;
     color: #333333 !important;
-    margin: 0.6rem auto 0 auto !important;
+    margin: 0.4rem 0 0 0 !important;
     width: 100% !important;
   }
 
   .print-contact-item {
     display: inline-flex !important;
     align-items: center !important;
+    gap: 0.25rem !important;
+  }
+
+  .print-contact-icon,
+  .print-contact-symbol {
+    color: #3772ff !important;
   }
 
   /* Justified Paragraphs and Descriptions */
@@ -716,10 +700,10 @@ button:focus-visible,
   }
 
   .summary-text {
-    font-size: 8.8pt !important;
-    line-height: 1.35 !important;
+    font-size: 8.5pt !important;
+    line-height: 1.32 !important;
     color: #222222 !important;
-    margin-top: 0.4rem !important;
+    margin-top: 0.35rem !important;
   }
 
   /* Bypass scroll / fade animations completely */
@@ -733,16 +717,16 @@ button:focus-visible,
   /* Section Titles & Dividers */
   hr {
     border-top: 1px solid #d0d7de !important;
-    margin: 0.8rem 0 !important;
+    margin: 0.6rem 0 !important;
   }
 
   .section-title {
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
     font-weight: 700 !important;
     color: #03045e !important;
     border-bottom: 2px solid #cee5f2 !important;
-    padding-bottom: 0.2rem !important;
-    margin-bottom: 0.6rem !important;
+    padding-bottom: 0.15rem !important;
+    margin-bottom: 0.45rem !important;
     break-after: avoid-page !important;
     page-break-after: avoid !important;
     text-align: left !important;
@@ -759,7 +743,6 @@ button:focus-visible,
   .card,
   .card-interactive,
   .skill-category-block,
-  .isolated-skill-row,
   .compact-item,
   .project-list li,
   .github-grid {
@@ -784,16 +767,16 @@ button:focus-visible,
   }
 
   .timeline-item {
-    padding-left: 24px !important;
-    padding-bottom: 0.8rem !important;
+    padding-left: 22px !important;
+    padding-bottom: 0.65rem !important;
   }
 
   .timeline-dot {
     left: 1px !important;
     transform: translateX(-50%) !important;
-    top: 1.1rem !important;
-    width: 10px !important;
-    height: 10px !important;
+    top: 1.05rem !important;
+    width: 9px !important;
+    height: 9px !important;
     border: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -810,22 +793,22 @@ button:focus-visible,
   }
 
   .company-logo {
-    width: 32px !important;
-    height: 32px !important;
+    width: 28px !important;
+    height: 28px !important;
     border: 1px solid #e2e8f0 !important;
   }
 
   .company-logo-small {
-    width: 18px !important;
-    height: 18px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
 
   /* Cards & Lists */
   .card {
     border: 1px solid #d0d7de !important;
     border-left-width: 4px !important;
-    padding: 0.7rem 0.9rem !important;
-    margin-bottom: 0.5rem !important;
+    padding: 0.6rem 0.8rem !important;
+    margin-bottom: 0.4rem !important;
     background-color: #fcfcfd !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -833,7 +816,7 @@ button:focus-visible,
 
   .card-interactive {
     border: 1px solid #d0d7de !important;
-    padding: 0.6rem 0.8rem !important;
+    padding: 0.5rem 0.7rem !important;
     background-color: #fcfcfd !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -841,88 +824,82 @@ button:focus-visible,
 
   /* Tech tags */
   .tech-tags {
-    gap: 0.3rem !important;
-    margin: 0.35rem 0 !important;
+    gap: 0.25rem !important;
+    margin: 0.25rem 0 !important;
   }
 
   .tech-tag {
     background-color: #f1f5f9 !important;
     color: #1e293b !important;
     border: 1px solid #cbd5e1 !important;
-    padding: 0.12rem 0.45rem !important;
+    padding: 0.1rem 0.4rem !important;
     font-family: var(--font-mono) !important;
-    font-size: 7.5pt !important;
+    font-size: 7.2pt !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* Skills & Progress Bars */
-  .isolated-skills-wrapper {
-    margin: 0.6rem 0 !important;
-    max-width: 100% !important;
-  }
-
-  .isolated-bar-bg {
-    background-color: #e2e8f0 !important;
-    height: 15px !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .isolated-bar-fill {
-    width: var(--skill-pct, 100%) !important;
-    height: 100% !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .isolated-bar-label {
-    opacity: 1 !important;
-    font-size: 7pt !important;
-    color: #ffffff !important;
-    margin-right: 0.5rem !important;
-  }
-
-  .color-data {
-    background-color: #006daa !important;
-  }
-
-  .color-web {
-    background-color: #307351 !important;
-  }
-
-  .color-systems {
-    background-color: #03045e !important;
-  }
-
+  /* Border Accents in Print */
   .border-data { border-left-color: #006daa !important; }
   .border-web { border-left-color: #307351 !important; }
   .border-systems { border-left-color: #03045e !important; }
 
-  /* Additional Skills Grid */
+  /* Categorized Skills Grid in Print (Clean 2-Column Matrix) */
   .additional-skills-grid {
+    display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 0.8rem 1.5rem !important;
-    margin-top: 0.8rem !important;
-    padding-top: 0.6rem !important;
+    gap: 0.45rem 1.2rem !important;
+    margin-top: 0.4rem !important;
+    padding-top: 0.4rem !important;
     border-top: 1px solid #e2e8f0 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .skill-category-block {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    margin-bottom: 0.3rem !important;
   }
 
   .category-title {
-    font-size: 9pt !important;
-    margin-bottom: 0.25rem !important;
+    font-size: 8.5pt !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.15rem !important;
     color: #03045e !important;
     text-align: left !important;
   }
 
+  .category-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.1rem !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   .category-list-item {
-    font-size: 8pt !important;
+    font-size: 7.8pt !important;
     line-height: 1.25 !important;
   }
 
-  /* Links in Print: Clean, non-blue, unlinked display */
+  .skill-area {
+    font-weight: 600 !important;
+    color: #111111 !important;
+  }
+
+  .skill-tech {
+    color: #333333 !important;
+  }
+
+  /* Links in Print: Clean, non-blue, unlinked display without appended URLs */
   a, a:visited, a:hover, a:active {
     color: inherit !important;
     text-decoration: none !important;
+  }
+
+  a[href]:after {
+    content: "" !important;
   }
 }

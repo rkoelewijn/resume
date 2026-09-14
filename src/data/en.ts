@@ -6,21 +6,21 @@ export const enData: ResumeData = {
   basics: {
     ...sharedBasics,
     location: "Nijmegen, Gelderland, Netherlands",
-    summary: "Master student Data Science & AI and Information Sciences at Radboud University and Data Consultant. Focused on bridging the gap between complex data architecture and actionable business strategy. Experienced in translating raw data into scalable solutions by utilizing expertise in Python, machine learning, business intelligence, and full-stack frameworks to build robust analytics tools and dynamic dashboards.",
+    summary: "Master student Data Science & AI and Information Sciences at Radboud University and Data Consultant. Focused on translating complex data architectures into strategic executive insights and scalable data solutions. Experienced in end-to-end data architecture, enterprise Power BI dashboarding (DAX, Power Query), and machine learning in Python.",
   },
   education: [
     {
       degree: "MSc Data Science & AI",
       institution: "Radboud University",
       timeline: "2026 - Present",
-      summary: "As a specialization within Computing Science, this program focuses on transforming real-world datasets into insights and software tools. It balances machine learning, probabilistic modeling, and information retrieval with practical development, emphasizing the design and programming of custom algorithms. Alongside the technical implementation, the coursework addresses data privacy, legal regulations, and societal impact, preparing graduates to build responsible data solutions for organizations.",
+      summary: "Focus: Machine Learning, Probabilistic Modeling, Advanced Algorithm Design, Responsible AI & Data Governance.",
       logo: assets.radboud.logoLight,
     },
     {
       degree: "MSc Information Sciences",
       institution: "Radboud University",
       timeline: "2026 - Present",
-      summary: "Taught in collaboration with the Nijmegen School of Management, this program focuses on the alignment between technology and business strategy. It covers how to translate data infrastructure into practical corporate solutions by combining software and systems knowledge with management principles. The curriculum focuses on enterprise architecture, information security, and governance, preparing graduates to manage digital transformation and IT implementation within organizations.",
+      summary: "Focus: Enterprise Architecture, IT Governance, Strategic Business-IT Alignment & Digital Transformation.",
       logo: assets.radboud.logoLight,
     },
     {
@@ -28,57 +28,33 @@ export const enData: ResumeData = {
       degree: "BSc Computing Science (Specialization: Data & Software Science)",
       institution: "Radboud University",
       timeline: "Sep 2022 - July 2026",
-      summary: "The Bachelor's program at Radboud University bridges strict mathematical logic with practical software engineering, focusing on how information is structurally represented, processed, and secured. Rather than just teaching code syntax, the curriculum covers the architectural foundations of large-scale software systems, data modeling, network infrastructure, and cyber security protocols.",
+      summary: "Foundations in software architecture, data modeling, large-scale systems, and algorithmic engineering.",
       gpa: assets.radboud.gpa,
       projectId: assets.radboud.projectId,
       minor: "Business Administration",
-      courses: "Data Analysis, Introduction to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Big Data, Information Modelling and Databases, Software Engineering",
-      details: "Conducted thesis research on detecting hallucinations in LLMs."
-    },
-    {
-      ...assets.streek,
-      degree: "Gymnasium NT/NG",
-      institution: "CSG Het Streek Lyceum",
-      timeline: "Sep 2016 - Jul 2022"
+      courses: "Data Analysis, Artificial Intelligence, Algorithms and Data Structures, Data Mining, Big Data, Information Modelling and Databases, Software Engineering",
+      details: "Bachelor's Thesis: Developed and evaluated machine learning models in Python for hallucination detection in LLMs using a hybrid NLI and Knowledge Graph pipeline (MusicBrainz), achieving a 100% error detection rate (recall) and 0.86 F1-score."
     }
   ],
   relevant_experience: [
     {
       ...assets.studentConsultant,
-      role: "Consultant",
+      role: "Data Consultant",
       company: "Student Consultant",
       timeline: "Aug 2024 - present",
-      description: "Worked as a <strong>Data Consultant</strong> specializing in <strong>Data Analysis, Management and Dashboarding</strong>. Delivered high-impact reporting solutions, including a <em>Power BI</em> dashboard set up to track all KPIs for <span class=\"highlight-text\">GROND'G</span> and a multi-level <em>Power BI </em> dashboard for <span class=\"highlight-text\">Irado</span> and the <span class=\"highlight-text\">Municipality of Schiedam</span> to visualize trends more clearly and facilitate easier decision-making.",
-      additional: "Contributed to the Talent Experience team by assisting with talent acquisition and candidate"
-
-
+      description: "Architected and deployed scalable <strong>Power BI dashboards</strong> for public and private sector clients (e.g., <span class=\"highlight-text\">Municipality of Schiedam</span>, <span class=\"highlight-text\">Irado</span>, and <span class=\"highlight-text\">GROND'G</span>), transforming complex multi-source datasets via <em>Power Query</em> and advanced <em>DAX calculations</em> into strategic executive reporting tools.",
+      additional: "Automated data workflows and reporting pipelines to accelerate decision-making; supported the Talent Experience team with talent acquisition."
     },
     {
       ...assets.thalia,
       role: "Secretary (Board Member)",
       company: "Study Association Thalia",
       timeline: "Sep 2024 - Sep 2025",
-      description: "Served as a <strong>Board Member</strong> for the <span class=\"highlight-text\">Computing Science study association</span> in Nijmegen. Responsibilities included authoring newsletters, taking official board minutes, and <strong>managing</strong> all internal <strong>information channels</strong>.",
-      additional: "Contributed directly to the Partner, Events, Design, and Board Application committees."
+      description: "Directed internal and external communication strategy for <strong>800+ members</strong> and coordinated 4 strategic committees (including Partners and Events). Led cross-functional student teams in organizing large-scale events, boosting stakeholder engagement and ensuring seamless operational execution.",
+      additional: "Managed corporate partner relations, documentation governance, and information channel optimizations across the association."
     }
   ],
-  side_jobs: [
-    {
-      ...assets.tapasia,
-      role: "Gastheer",
-      company: "TapAsia",
-      timeline: "Apr 2021 - Jun 2025",
-      description: "Welcoming guests, managing the waiting staff, and fixing problems that occur during shifts."
-    },
-    {
-      ...assets.albertHeijn,
-      role: "Retail Stock Clerk",
-      company: "Albert Heijn",
-      timeline: "Mar 2019 - Apr 2021",
-      description: "Restocking shelves, ensuring the shopping environment is clean and organized, and assisting customers with finding their products."
-    }
-  ],
-  // ... (training, projects, and skills remain exactly the same)
+  side_jobs: [],
   training: [
     {
       title: "Structured Slides & Analysis",
@@ -95,11 +71,6 @@ export const enData: ResumeData = {
       organization: "Capgemini Invent",
       date: "Mar 2026"
     },
-    // {
-    //   title: "BHV",
-    //   // organization: "Student Consultant", 
-    //   date: "Mar 2026"
-    // },
     {
       title: "Effective PowerPoints",
       organization: "Student Consultant",
@@ -120,7 +91,6 @@ export const enData: ResumeData = {
       organization: "Cambridge Assessment",
       date: "Dec 2021"
     }
-
   ],
   projects: [
     {
@@ -140,7 +110,7 @@ export const enData: ResumeData = {
           isList: true,
           body: [
             "Data Collection & Processing: The pipeline uses a Corpus Builder to scrape event data from the Doornroosje music venue website to build a structured evaluation corpus. A Claims Decomposer then utilizes spaCy dependency parsing to extract atomic claims from the generated summaries without invoking expensive NLI inference.",
-            "NLI Baseline Evaluation: A cross-lingual XLM-RoBERTa NLI model evaluates the semantic consistency between source content and the generated summaries. It specifically evaluates intrinsic hallucinations, tracking errors defined strictly as direct contradictions of the provided source metadata and explicitly excluding external factual additions.  ",
+            "NLI Baseline Evaluation: A cross-lingual XLM-RoBERTa NLI model evaluates the semantic consistency between source content and the generated summaries. It specifically evaluates intrinsic hallucinations, tracking errors defined strictly as direct contradictions of the provided source metadata and explicitly excluding external factual additions.",
             "Hybrid Knowledge Graph Verification: To detect extrinsic hallucinations, the NLI reasoning is combined with non-parametric fact verification using the MusicBrainz API.",
             "Pipeline Control: An interactive Master Control CLI supports sequential end-to-end execution of the pipeline, while a test mode toggle enables fast dry-runs for debugging and development."
           ]
@@ -151,8 +121,8 @@ export const enData: ResumeData = {
           body: [
             "Perfect Recall: Utilizing a strict min-pooling aggregation strategy, the pipeline achieved a 100% Error Detection Rate with zero false negatives.",
             "Overall Metrics: The system recorded an F1-Score of 0.8615 and an Overall Accuracy of 80.85% at the sentence level.",
-            "Knowledge Graph Interventions:The integration of the MusicBrainz database successfully resolved extrinsic hallucinations, providing deterministic overrides for 5 atomic claims related to artists' geographic origins.",
-            "THe sensitivity Trade-off: The zero-tolerance min-pooling approach resulted in a 47.37% false positive rate, as the highly conservative model occasionally flagged verifiable claims as intrinsic contradictions due to minor lexical differences."
+            "Knowledge Graph Interventions: The integration of the MusicBrainz database successfully resolved extrinsic hallucinations, providing deterministic overrides for 5 atomic claims related to artists' geographic origins.",
+            "Sensitivity Trade-off: The zero-tolerance min-pooling approach resulted in a 47.37% false positive rate, as the highly conservative model occasionally flagged verifiable claims as intrinsic contradictions due to minor lexical differences."
           ]
         },
         {
@@ -198,14 +168,14 @@ export const enData: ResumeData = {
       category: 'data',
       type: "Software Engineering Project",
       tech: ["Python", "Polars", "NumPy", "Git", "Outlier Detection"],
-      description: "Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes",
+      description: "Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes.",
       sections: [
         {
           title: "Project Overview",
           body: ["Developed a full-stack data validation application designed to clean, verify, and visualize water level measurement data for Verbelco. The tool processes raw measurement inputs through a pipeline of configurable validation methods, including static rules that dynamically adjust based on the technical specifications of the measurement tubes."]
         },
         {
-          title: "Key Features & Contributions:",
+          title: "Key Features & Contributions",
           isList: true,
           body: [
             "Dual Interface Design: Built both a Command Line Interface (CLI) for automated batch processing and a local web-based UI for interactive data analysis.",
@@ -220,48 +190,51 @@ export const enData: ResumeData = {
           body: ["The application significantly reduces the manual overhead required to verify water level data. By providing both a programmatic CLI for data pipelines and an intuitive visual dashboard for end-users, the tool bridges the gap between complex data engineering and accessible business intelligence."]
         }
       ]
-
-    },
+    }
   ],
   programming_skills: [
     { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
-    { name: 'DAX / M', category: 'data', level: 'Advanced', percentage: 75 },
-    { name: 'LaTeX', category: 'systems', level: 'Expert', percentage: 100 },
+    { name: 'DAX / Power Query (M)', category: 'data', level: 'Advanced', percentage: 85 },
+    { name: 'SQL', category: 'data', level: 'Advanced', percentage: 80 },
     { name: 'C / C++', category: 'systems', level: 'Advanced', percentage: 75 },
-    { name: 'JavaScript / TypeScript', category: 'web', level: 'Advanced', percentage: 75 },
-    { name: 'HTML / CSS', category: 'web', level: 'Proficient', percentage: 50 },
+    { name: 'LaTeX', category: 'systems', level: 'Advanced', percentage: 75 },
+    { name: 'JavaScript / TypeScript', category: 'web', level: 'Proficient', percentage: 70 },
+    { name: 'HTML / CSS', category: 'web', level: 'Proficient', percentage: 60 }
   ],
   categorized_skills: [
     {
-      title: 'Data Science & Analytics',
+      title: 'Data Science & Machine Learning',
       items: [
-        { area: 'Data Modeling & Processing', technologies: 'Polars, NumPy' },
-        { area: 'Machine Learning', technologies: 'scikit-learn, Anomaly Detection, LLM Evaluation' },
-        { area: 'Business Intelligence', technologies: 'Power BI' },
-        { area: 'Development & Infrastructure', technologies: 'Git, Linux / UNIX (Bash)' },
-        { area: 'Spreadsheet Analytics', technologies: 'Excel' }
+        { area: 'Data Processing & Modeling', technologies: 'Polars, NumPy, Pandas' },
+        { area: 'Machine Learning & AI', technologies: 'scikit-learn, LLM Evaluation, Natural Language Inference (NLI), Outlier Detection' }
       ]
     },
     {
-      title: 'Consulting & Business',
+      title: 'Business Intelligence & Analytics',
       items: [
-        { area: 'Project Execution', technologies: 'Stakeholder Management, Requirements Gathering, Project Management' },
-        { area: 'Corporate Communication', technologies: 'PowerPoint, Executive Reporting' },
-        { area: 'Operations', technologies: 'Talent Acquisition Workflows' }
+        { area: 'BI & Dashboarding', technologies: 'Power BI, DAX, Power Query (M), KPI Frameworks, Data Modeling' },
+        { area: 'Spreadsheet Analytics', technologies: 'Advanced Excel' }
       ]
     },
     {
-      title: 'Creative Skills',
+      title: 'Software & Systems Engineering',
       items: [
-        { area: 'Video Production', technologies: 'Adobe Premiere Pro' },
-        { area: 'Graphic Design', technologies: 'Adobe Illustrator, Adobe Photoshop' }
+        { area: 'Core Languages', technologies: 'Python, C / C++, TypeScript, JavaScript, SQL' },
+        { area: 'Tools & Infrastructure', technologies: 'Git, Linux / UNIX (Bash), REST APIs, uv, LaTeX' }
+      ]
+    },
+    {
+      title: 'Consulting & Strategy',
+      items: [
+        { area: 'Project Execution', technologies: 'Stakeholder Management, Requirements Gathering, Agile Delivery' },
+        { area: 'Executive Communication', technologies: 'Executive Reporting, PowerPoint, Client Presentations' }
       ]
     },
     {
       title: 'Languages',
       items: [
         { area: 'Dutch', technologies: 'Native' },
-        { area: 'English', technologies: 'C2 Cambridge Level' }
+        { area: 'English', technologies: 'C2 Cambridge Proficiency' }
       ]
     }
   ]

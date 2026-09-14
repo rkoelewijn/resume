@@ -186,8 +186,8 @@ watch(locale, () => {
             <small class="timeline">{{ job.timeline }}</small>
           </div>
         </div>
-        <p class= "description-main-text" v-html="job.description"></p>
-        <p class="secondary-text" style="margin-top: -0.8rem">
+        <p class="description-main-text" v-html="job.description"></p>
+        <p v-if="job.additional" class="secondary-text" style="margin-top: -0.8rem">
           <em>{{ $t('labels.additionalResponsibilities') }}</em>: {{ job.additional }}
         </p>
       </div>
@@ -300,76 +300,74 @@ watch(locale, () => {
       </div>
     </section>
 
-    <hr class="no-print" />
-    <section class="fade-in-section">
-     <h3 class="section-title">{{ $t('headers.sideJobs') }}</h3>
-      <ul class="compact-list fade-in-section">
-        <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
-           <div class="card-header">
-             <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
-             <div>
-               <strong>{{ job.role }}</strong> {{ $t('labels.at') }} 
-               <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
-               <span v-else>{{ job.company }}</span> 
-               <span class="timeline">({{ job.timeline }})</span>
+    <template v-if="resumeData.side_jobs && resumeData.side_jobs.length > 0">
+      <hr class="no-print" />
+      <section class="fade-in-section">
+        <h3 class="section-title">{{ $t('headers.sideJobs') }}</h3>
+        <ul class="compact-list fade-in-section">
+          <li v-for="job in resumeData.side_jobs" :key="job.company" class="compact-item">
+             <div class="card-header">
+               <img v-if="job.logo" :src="job.logo" :alt="job.company + ' logo'" class="company-logo-small" />
+               <div>
+                 <strong>{{ job.role }}</strong> {{ $t('labels.at') }} 
+                 <a v-if="job.companyUrl" :href="job.companyUrl" target="_blank" rel="noopener noreferrer" class="highlight-text">{{ job.company }}</a>
+                 <span v-else>{{ job.company }}</span> 
+                 <span class="timeline">({{ job.timeline }})</span>
+               </div>
              </div>
-           </div>
-        </li>
-      </ul>
-    
-    </section>
-        <hr />
+          </li>
+        </ul>
+      </section>
+    </template>
+
+    <hr />
 
     <section class="fade-in-section">
-      <h3 class="section-title">{{$t('headers.training' )}}</h3>
-      <ul class="compact-list" >
+      <h3 class="section-title">{{ $t('headers.training') }}</h3>
+      <ul class="compact-list">
         <li v-for="course in resumeData.training" :key="course.title">
           <strong>{{ course.title }}</strong> - {{ course.organization }} ({{ course.date }})
         </li>
       </ul>
     </section>
+
     <section class="fade-in-section">
       <h3 class="section-title">{{ $t('headers.skills') }}</h3>
-      <div class="isolated-skills-wrapper">
-      <div class="isolated-bars-container">
-      <div v-for="skill in (resumeData.programming_skills || programmingSkills)" :key="skill.name" class="isolated-skill-row">
-        
-        <div class="isolated-skill-name">{{ skill.name }}</div>
-        
-        <div class="isolated-bar-bg">
-          <div 
-            class="isolated-bar-fill"
-            :class="'color-' + skill.category" 
-            :style="{ width: animateSkills ? skill.percentage + '%' : '0%', '--skill-pct': skill.percentage + '%' }"
-          >
-            <span class="isolated-bar-label" :class="{ 'isolated-show-label': animateSkills }">
-              {{ skill.level }}
-            </span>
+      <div class="isolated-skills-wrapper no-print">
+        <div class="isolated-bars-container">
+          <div v-for="skill in (resumeData.programming_skills || programmingSkills)" :key="skill.name" class="isolated-skill-row">
+            <div class="isolated-skill-name">{{ skill.name }}</div>
+            <div class="isolated-bar-bg">
+              <div 
+                class="isolated-bar-fill"
+                :class="'color-' + skill.category" 
+                :style="{ width: animateSkills ? skill.percentage + '%' : '0%', '--skill-pct': skill.percentage + '%' }"
+              >
+                <span class="isolated-bar-label" :class="{ 'isolated-show-label': animateSkills }">
+                  {{ skill.level }}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        
       </div>
-    </div>
-  </div>
-<!-- </template> -->
- <div class="additional-skills-grid fade-in-section">
-  
-  <div 
-    v-for="category in (resumeData.categorized_skills || categorizedSkills)" 
-    :key="category.title" 
-    class="skill-category-block"
-  >
-    <h4 class="category-title">{{ category.title }}</h4>
-    <ul class="category-list">
-      <li v-for="item in category.items" :key="item.area" class="category-list-item">
-        <span class="skill-area">{{ item.area }}:</span> 
-        <span class="skill-tech">{{ item.technologies }}</span>
-      </li>
-    </ul>
-  </div>
-  
-</div>
-</section>
+
+      <div class="additional-skills-grid fade-in-section">
+        <div 
+          v-for="category in (resumeData.categorized_skills || categorizedSkills)" 
+          :key="category.title" 
+          class="skill-category-block"
+        >
+          <h4 class="category-title">{{ category.title }}</h4>
+          <ul class="category-list">
+            <li v-for="item in category.items" :key="item.area" class="category-list-item">
+              <span class="skill-area">{{ item.area }}:</span> 
+              <span class="skill-tech">{{ item.technologies }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
     </div>
   </div>
 

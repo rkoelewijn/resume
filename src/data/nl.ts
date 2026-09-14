@@ -6,21 +6,21 @@ export const nlData: ResumeData = {
   basics: {
     ...sharedBasics,
     location: "Nijmegen, Gelderland, Nederland",
-    summary: "Masterstudent Data Science & Artificial Intelligence en Information Sciences aan de Radboud Universiteit en Data Consultant. Gericht op het overbruggen van de kloof tussen complexe data-architectuur en bruikbare bedrijfsstrategie. Ervaren in het vertalen van ruwe data naar schaalbare oplossingen door expertise in Python, big data, machine learning, business intelligence en full-stack frameworks in te zetten voor het bouwen van robuuste analysetools en dynamische dashboards.",
+    summary: "Masterstudent Data Science & AI en Information Sciences aan de Radboud Universiteit en Data Consultant. Gespecialiseerd in het vertalen van complexe data-infrastructuren naar strategische stuurinformatie en schaalbare dataoplossingen. Ervaren in end-to-end data-architectuur, enterprise dashboarding in Power BI (DAX, Power Query) en machine learning in Python.",
   },
   education: [
     {
       degree: "MSc Data Science & AI",
       institution: "Radboud Universiteit",
       timeline: "2026 - Heden",
-      summary: "Als specialisatie binnen Computing Science richt dit programma zich op het omzetten van real-world datasets in inzichten en softwaretools. Het combineert machine learning, probabilistisch modelleren en information retrieval met praktische ontwikkeling, met de nadruk op het ontwerpen en programmeren van op maat gemaakte algoritmen. Naast de technische implementatie behandelt het curriculum databescherming, wet- en regelgeving en maatschappelijke impact, waarmee afgestudeerden worden voorbereid op het bouwen van verantwoorde dataoplossingen voor organisaties.",
+      summary: "Focus: Machine Learning, Probabilistische Modellen, Geavanceerd Algoritme-ontwerp, Responsible AI & Datagovernance.",
       logo: assets.radboud.logoLight,
     },
     {
       degree: "MSc Information Sciences",
       institution: "Radboud Universiteit",
       timeline: "2026 - Heden",
-      summary: "Onderwezen in samenwerking met de Faculteit der Managementwetenschappen, richt dit programma zich op de afstemming tussen technologie en bedrijfsstrategie. Het behandelt hoe data-infrastructuur kan worden vertaald naar praktische bedrijfsinzichten door software- en systeemkennis te combineren met managementprincipes. Het curriculum legt de focus op enterprise-architectuur, informatiebeveiliging en governance, wat afgestudeerden voorbereidt op het leiden van digitale transformaties en IT-implementaties binnen organisaties.",
+      summary: "Focus: Enterprise-architectuur, IT-governance, Strategische Business-IT Afstemming & Digitale Transformatie.",
       logo: assets.radboud.logoLight,
     },
     {
@@ -28,54 +28,33 @@ export const nlData: ResumeData = {
       degree: "BSc Computing Science (Specialisatie: Data & Software Science)",
       institution: "Radboud Universiteit",
       timeline: "Sep 2022 - Juli 2026",
-      summary: "De bacheloropleiding aan de Radboud Universiteit slaat een brug tussen strikte wiskundige logica en praktische software engineering, gericht op hoe informatie structureel wordt gerepresenteerd, verwerkt en beveiligd. In plaats van alleen te focussen op code-syntaxis, behandelt het curriculum de architectonische fundamenten van grootschalige softwaresystemen, datamodellering, netwerkinfrastructuur en cybersecurityprotocollen.",
+      summary: "Fundament in software-architectuur, datamodellering, grootschalige softwaresystemen en algoritmiek.",
       gpa: assets.radboud.gpa,
       projectId: assets.radboud.projectId,
       minor: "Bedrijfskunde",
-      courses: "Data Analysis, Introduction to Artificial Intelligence, Algorithms and Data Structures, Data Mining, Big Data, Information Modelling and Databases, Software Engineering",
-      details: "Scriptieonderzoek uitgevoerd naar het detecteren van hallucinaties in LLMs."
-    },
-    {
-      ...assets.streek,
-      degree: "Gymnasium NT/NG",
-      institution: "CSG Het Streek Lyceum",
-      timeline: "Sep 2016 - Jul 2022"
+      courses: "Data Analysis, Artificial Intelligence, Algorithms and Data Structures, Data Mining, Big Data, Information Modelling and Databases, Software Engineering",
+      details: "Bachelorscriptie: Ontwikkelde en evalueerde machine learning-modellen in Python ter detectie van hallucinaties in LLMs met behulp van een hybride NLI- en kennisgraaf-architectuur (MusicBrainz), resulterend in 100% foutdetectie (recall) en een F1-score van 0,86."
     }
   ],
   relevant_experience: [
     {
       ...assets.studentConsultant,
-      role: "Consultant",
+      role: "Data Consultant",
       company: "Student Consultant",
       timeline: "Aug 2024 - heden",
-      description: "Werkzaam als <strong>Data Consultant</strong> gespecialiseerd in <strong>Data-analyse, Management en Dashboarding</strong>. Verantwoordelijk voor hoogwaardige rapportageoplossingen, waaronder een <em>Power BI</em> dashboard om alle KPI's van <span class=\"highlight-text\">GROND'G</span> te monitoren en een gelaagd <em>Power BI</em> dashboard voor <span class=\"highlight-text\">Irado</span> en de <span class=\"highlight-text\">Gemeente Schiedam</span> om trends inzichtelijk te maken en besluitvorming te faciliteren.",
-      additional: "Bijgedragen aan het Talent Experience team door te ondersteunen bij talentacquisitie en kandidaatselectie."
+      description: "Ontwikkelde en implementeerde schaalbare <strong>Power BI-dashboards</strong> voor diverse publieke en private opdrachtgevers (o.a. <span class=\"highlight-text\">Gemeente Schiedam</span>, <span class=\"highlight-text\">Irado</span> en <span class=\"highlight-text\">GROND'G</span>), waarbij complexe datasets via <em>Power Query</em> en geavanceerde <em>DAX-berekeningen</em> werden getransformeerd tot strategische, gelaagde stuurinformatie.",
+      additional: "Automatiseerde datapijplijnen en rapportagestromen ter versnelling van besluitvorming; ondersteunde tevens het Talent Experience-team bij talentacquisitie."
     },
     {
       ...assets.thalia,
       role: "Secretaris (Bestuurslid)",
       company: "Studievereniging Thalia",
       timeline: "Sep 2024 - Sep 2025",
-      description: "Gediend als <strong>Bestuurslid</strong> voor de <span class=\"highlight-text\">studievereniging Computing Science</span> in Nijmegen. Verantwoordelijkheden omvatten het opstellen van nieuwsbrieven, het notuleren van officiële bestuursvergaderingen en het <strong>beheren</strong> van alle interne <strong>informatiekanalen</strong>.",
-      additional: "Direct bijgedragen aan de commissies Partner, Evenementen, Design en Bestuurssollicitatie."
+      description: "Beheerde de volledige interne en externe communicatiestrategie voor <strong>800+ leden</strong> en coördineerde 4 strategische commissies (waaronder Partner en Evenementen). Stuurde cross-functionele teams aan bij de organisatie van grootschalige evenementen, wat resulteerde in verhoogde stakeholderbetrokkenheid en soepele operationele executie.",
+      additional: "Verantwoordelijk voor corporate partnercommunicatie, contractbeheer en de optimalisatie van interne informatiestromen."
     }
   ],
-  side_jobs: [
-    {
-      ...assets.tapasia,
-      role: "Gastheer",
-      company: "TapAsia",
-      timeline: "Apr 2021 - Jun 2025",
-      description: "Verwelkomen van gasten, aansturen van het bedienend personeel en oplossen van operationele uitdagingen tijdens shifts."
-    },
-    {
-      ...assets.albertHeijn,
-      role: "Winkelmedewerker",
-      company: "Albert Heijn",
-      timeline: "Mrt 2019 - Apr 2021",
-      description: "Vakken vullen, zorgen voor een schone en georganiseerde winkelomgeving en klanten assisteren bij het vinden van producten."
-    }
-  ],
+  side_jobs: [],
   training: [
     {
       title: "Structured Slides & Analysis",
@@ -215,36 +194,40 @@ export const nlData: ResumeData = {
   ],
   programming_skills: [
     { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
-    { name: 'DAX / M', category: 'data', level: 'Gevorderd', percentage: 75 },
-    { name: 'LaTeX', category: 'systems', level: 'Expert', percentage: 100 },
+    { name: 'DAX / Power Query (M)', category: 'data', level: 'Gevorderd', percentage: 85 },
+    { name: 'SQL', category: 'data', level: 'Gevorderd', percentage: 80 },
     { name: 'C / C++', category: 'systems', level: 'Gevorderd', percentage: 75 },
-    { name: 'JavaScript / TypeScript', category: 'web', level: 'Gevorderd', percentage: 75 },
-    { name: 'HTML / CSS', category: 'web', level: 'Vaardig', percentage: 50 },
+    { name: 'LaTeX', category: 'systems', level: 'Gevorderd', percentage: 75 },
+    { name: 'JavaScript / TypeScript', category: 'web', level: 'Vaardig', percentage: 70 },
+    { name: 'HTML / CSS', category: 'web', level: 'Vaardig', percentage: 60 },
   ],
   categorized_skills: [
     {
-      title: 'Data Science & Analytics',
+      title: 'Data Science & Machine Learning',
       items: [
-        { area: 'Datamodellering & Verwerking', technologies: 'Polars, NumPy' },
-        { area: 'Machine Learning', technologies: 'scikit-learn, Anomaly Detection, LLM Evaluatie' },
-        { area: 'Business Intelligence', technologies: 'Power BI' },
-        { area: 'Ontwikkeling & Infrastructuur', technologies: 'Git, Linux / UNIX (Bash)' },
-        { area: 'Spreadsheet Analytics', technologies: 'Excel' }
+        { area: 'Datamodellering & Verwerking', technologies: 'Polars, NumPy, Pandas' },
+        { area: 'Machine Learning & AI', technologies: 'scikit-learn, LLM Evaluatie, Natural Language Inference (NLI), Outlier Detection' }
       ]
     },
     {
-      title: 'Consulting & Bedrijfsvoering',
+      title: 'Business Intelligence & Analytics',
       items: [
-        { area: 'Projectuitvoering', technologies: 'Stakeholdermanagement, Requirements Gathering, Projectmanagement' },
-        { area: 'Zakelijke Communicatie', technologies: 'PowerPoint, Executive Reporting' },
-        { area: 'Operationeel', technologies: 'Talentacquisitie Workflows' }
+        { area: 'BI & Dashboarding', technologies: 'Power BI, DAX, Power Query (M), KPI Frameworks, Datamodellering' },
+        { area: 'Spreadsheet Analytics', technologies: 'Geavanceerd Excel' }
       ]
     },
     {
-      title: 'Creatieve Vaardigheden',
+      title: 'Software- & Systeemengineering',
       items: [
-        { area: 'Videoproductie', technologies: 'Adobe Premiere Pro' },
-        { area: 'Grafisch Ontwerp', technologies: 'Adobe Illustrator, Adobe Photoshop' }
+        { area: 'Programmeertalen', technologies: 'Python, C / C++, TypeScript, JavaScript, SQL' },
+        { area: 'Tools & Infrastructuur', technologies: 'Git, Linux / UNIX (Bash), REST APIs, uv, LaTeX' }
+      ]
+    },
+    {
+      title: 'Consulting & Strategie',
+      items: [
+        { area: 'Projectuitvoering', technologies: 'Stakeholdermanagement, Requirements Gathering, Agile Delivery' },
+        { area: 'Zakelijke Communicatie', technologies: 'Executive Reporting, PowerPoint, Presentaties' }
       ]
     },
     {
