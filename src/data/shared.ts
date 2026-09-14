@@ -3,7 +3,7 @@
 export const sharedBasics = {
   name: "Ruben Koelewijn",
   photo: "/img/Ruben_Koelewijn2.jpg",
-  title: "Data Consultant & Computing Science Student",
+  title: "Data Consultant & MSc Student Data Science & AI",
   email: "rubenkoelewijn21@gmail.com",
   linkedin: "https://www.linkedin.com/in/ruben-koelewijn",
   github: "https://github.com/rkoelewijn",

@@ -5,6 +5,7 @@ import { assets, sharedBasics } from './shared'
 export const nlData: ResumeData = {
   basics: {
     ...sharedBasics,
+    title: "Data Consultant & Masterstudent Data Science & AI | Information Sciences",
     location: "Nijmegen, Gelderland, Nederland",
     summary: "Masterstudent Data Science & AI en Information Sciences aan de Radboud Universiteit en Data Consultant. Gespecialiseerd in het vertalen van complexe data-infrastructuren naar strategische stuurinformatie en schaalbare dataoplossingen. Ervaren in end-to-end data-architectuur, enterprise dashboarding in Power BI (DAX, Power Query) en machine learning in Python.",
   },

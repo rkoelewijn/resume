@@ -5,6 +5,7 @@ import { assets, sharedBasics } from './shared'
 export const enData: ResumeData = {
   basics: {
     ...sharedBasics,
+    title: "Data Consultant & MSc Student Data Science & AI | Information Sciences",
     location: "Nijmegen, Gelderland, Netherlands",
     summary: "Master student Data Science & AI and Information Sciences at Radboud University and Data Consultant. Focused on translating complex data architectures into strategic executive insights and scalable data solutions. Experienced in end-to-end data architecture, enterprise Power BI dashboarding (DAX, Power Query), and machine learning in Python.",
   },
