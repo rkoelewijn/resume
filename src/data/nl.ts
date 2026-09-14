@@ -6,7 +6,7 @@ export const nlData: ResumeData = {
   basics: {
     ...sharedBasics,
     location: "Nijmegen, Gelderland, Nederland",
-    summary: "Vierdejaars student Computing Science aan de Radboud Universiteit en Data Consultant gespecialiseerd in Data & Software Science. Gericht op het overbruggen van de kloof tussen complexe data-architectuur en bruikbare bedrijfsstrategie. Ervaren in het vertalen van ruwe data naar schaalbare oplossingen door expertise in Python, business intelligence en full-stack frameworks in te zetten voor het bouwen van robuuste analysetools en dynamische dashboards.",
+    summary: "Masterstudent Data Science & Artificial Intelligence en Information Sciences aan de Radboud Universiteit en Data Consultant. Gericht op het overbruggen van de kloof tussen complexe data-architectuur en bruikbare bedrijfsstrategie. Ervaren in het vertalen van ruwe data naar schaalbare oplossingen door expertise in Python, big data, machine learning, business intelligence en full-stack frameworks in te zetten voor het bouwen van robuuste analysetools en dynamische dashboards.",
   },
   education: [
     {
@@ -79,38 +79,38 @@ export const nlData: ResumeData = {
   training: [
     {
       title: "Structured Slides & Analysis",
-      organization: "Student Consultant", 
+      organization: "Student Consultant",
       date: "Mei 2026"
     },
     {
       title: "Change Management for Digital Processes in the Age of AI",
-      organization: "&Samhoud", 
+      organization: "&Samhoud",
       date: "Mei 2026"
     },
     {
       title: "Operating Model & Capability Thinking",
-      organization: "Capgemini Invent", 
+      organization: "Capgemini Invent",
       date: "Mrt 2026"
     },
     {
       title: "Effective PowerPoints",
-      organization: "Student Consultant", 
+      organization: "Student Consultant",
       date: "Feb 2026"
     },
     {
       title: "Project- en Stakeholdermanagement Training",
-      organization: "Student Consultant", 
+      organization: "Student Consultant",
       date: "Okt 2025"
     },
     {
       title: "Core Training - Basis Consultancy Vaardigheden",
-      organization: "Student Consultant", 
+      organization: "Student Consultant",
       date: "Aug 2024"
     },
-    { 
-      title: "C2 Cambridge English", 
-      organization: "Cambridge Assessment", 
-      date: "Dec 2021" 
+    {
+      title: "C2 Cambridge English",
+      organization: "Cambridge Assessment",
+      date: "Dec 2021"
     }
   ],
   projects: [
@@ -125,22 +125,22 @@ export const nlData: ResumeData = {
         {
           title: "Projectoverzicht",
           body: ["Dit project is een onderzoeksgericht evaluatiekader ontwikkeld als onderdeel van een bachelorscriptie. Het is ontworpen om geautomatiseerde concertnieuwsbrief-outputs van Large Language Models (LLMs) te valideren. Door Natural Language Inference (NLI) te combineren met een deterministische muziekkennisgraaf, detecteert de tweefasige evaluatiearchitectuur zowel semantische onnauwkeurigheden als feitelijke inconsistenties in gegenereerde evenementensamenvattingen."]
-        }, 
+        },
         {
-          title: "Kernfunctionaliteiten & Architectuur", 
+          title: "Kernfunctionaliteiten & Architectuur",
           isList: true,
           body: [
-            "Dataverzameling & Verwerking: De pijplijn gebruikt een Corpus Builder om evenementgegevens van de website van poppodium Doornroosje te scrapen en een gestructureerd evaluatiecorpus op te bouwen. Een Claims Decomposer gebruikt spaCy dependency parsing om atomaire claims uit de gegenereerde samenvattingen te extraheren zonder dure NLI-inferentie aan te roepen.", 
-            "NLI Baseline Evaluatie: Een meertalig XLM-RoBERTa NLI-model evalueert de semantische consistentie tussen de broninhoud en de gegenereerde samenvattingen. Het evalueert specifiek intrinsieke hallucinaties en volgt fouten die strikt zijn gedefinieerd als directe tegenspraken van de verstrekte bronmetadata, met expliciete uitsluiting van externe feitelijke toevoegingen.", 
+            "Dataverzameling & Verwerking: De pijplijn gebruikt een Corpus Builder om evenementgegevens van de website van poppodium Doornroosje te scrapen en een gestructureerd evaluatiecorpus op te bouwen. Een Claims Decomposer gebruikt spaCy dependency parsing om atomaire claims uit de gegenereerde samenvattingen te extraheren zonder dure NLI-inferentie aan te roepen.",
+            "NLI Baseline Evaluatie: Een meertalig XLM-RoBERTa NLI-model evalueert de semantische consistentie tussen de broninhoud en de gegenereerde samenvattingen. Het evalueert specifiek intrinsieke hallucinaties en volgt fouten die strikt zijn gedefinieerd als directe tegenspraken van de verstrekte bronmetadata, met expliciete uitsluiting van externe feitelijke toevoegingen.",
             "Hybride Kennisgraaf Verificatie: Om extrinsieke hallucinaties te detecteren, wordt de NLI-redenering gecombineerd met niet-parametrische feitenverificatie via de MusicBrainz API.",
             "Pijplijnbeheer: Een interactieve Master Control CLI ondersteunt sequentiële end-to-end uitvoering van de pijplijn, terwijl een testmodus snelle dry-runs mogelijk maakt voor foutopsporing en ontwikkeling."
           ]
-        }, 
+        },
         {
-          title: "Prestaties & Belangrijkste Resultaten", 
-          isList: true, 
+          title: "Prestaties & Belangrijkste Resultaten",
+          isList: true,
           body: [
-            "Perfecte Recall: Met behulp van een strikte min-pooling aggregatiestrategie behaalde de pijplijn een foutdetectiepercentage van 100% met nul fout-negatieven.", 
+            "Perfecte Recall: Met behulp van een strikte min-pooling aggregatiestrategie behaalde de pijplijn een foutdetectiepercentage van 100% met nul fout-negatieven.",
             "Algemene Statistieken: Het systeem registreerde een F1-score van 0,8615 en een algehele nauwkeurigheid van 80,85% op zinsniveau.",
             "Kennisgraaf Interventies: De integratie van de MusicBrainz-database loste extrinsieke hallucinaties succesvol op en zorgde voor deterministische correcties voor 5 atomaire claims met betrekking tot de geografische herkomst van artiesten.",
             "Gevoeligheidsafweging: De nultolerantie min-pooling benadering resulteerde in een fout-positief percentage van 47,37%, doordat het conservatieve model verifieerbare claims af en toe als intrinsieke tegenstrijdigheden markeerde vanwege kleine lexicale verschillen."
@@ -148,7 +148,7 @@ export const nlData: ResumeData = {
         },
         {
           title: "Beperkingen & Toekomstperspectief",
-          isList: true, 
+          isList: true,
           body: [
             "Scopebeperkingen: De MusicBrainz API-integratie is momenteel beperkt tot het valideren van de attributen Gebied, Land en Genre. Het systeem heeft daarnaast moeite met het verifiëren van subjectieve genrebeschrijvingen die stilistisch afwijken van strikte community-tags.",
             "Verdere Ontwikkeling: Toekomstig werk omvat het verkennen van dynamische aggregatielogica om een hoge foutdetectie te behouden en tegelijkertijd het aantal fout-positieven te verminderen. Verdere iteraties testen domeinoverschrijdende toepasbaarheid en integreren bredere databases zoals Wikidata om temporele en entiteitsclaims buiten de huidige scope te verifiëren."
@@ -215,11 +215,11 @@ export const nlData: ResumeData = {
   ],
   programming_skills: [
     { name: 'Python', category: 'data', level: 'Expert', percentage: 100 },
-    { name: 'DAX / M',  category: 'data', level: 'Gevorderd', percentage: 75 },
-    { name: 'LaTeX',  category: 'systems', level: 'Expert', percentage: 100 },
-    { name: 'C / C++',  category: 'systems', level: 'Gevorderd', percentage: 75 },
-    { name: 'JavaScript / TypeScript',  category: 'web', level: 'Gevorderd', percentage: 75 },
-    { name: 'HTML / CSS',  category: 'web', level: 'Vaardig', percentage: 50 },
+    { name: 'DAX / M', category: 'data', level: 'Gevorderd', percentage: 75 },
+    { name: 'LaTeX', category: 'systems', level: 'Expert', percentage: 100 },
+    { name: 'C / C++', category: 'systems', level: 'Gevorderd', percentage: 75 },
+    { name: 'JavaScript / TypeScript', category: 'web', level: 'Gevorderd', percentage: 75 },
+    { name: 'HTML / CSS', category: 'web', level: 'Vaardig', percentage: 50 },
   ],
   categorized_skills: [
     {
